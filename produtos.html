@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Fazendo Joias</title>
+    <link rel="stylesheet" href="styles/produtos.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/handpose"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
+</head>
+<body>
+    <main class="produtos-page">
+        <div class="produtos-header">
+            <h1>Nossos Produtos</h1>
+            <p>            </p>
+        </div>
+
+        <div class="produtos-filtros">
+            <div class="filtros-row">
+                <input type="text" placeholder="Buscar produtos..." class="busca-input">
+
+                <select class="filtro-select">
+                    <option value="">Tipo de Acessório</option>
+                    <!-- opções aqui -->
+                </select>
+
+                <select class="filtro-select">
+                    <option value="">Material</option>
+                    <!-- opções aqui -->
+                </select>
+
+                <select class="filtro-select">
+                    <option value="">Faixa de Preço</option>
+                    <!-- opções aqui -->
+                </select>
+            </div>
+
+            <div class="filtros-tabs">
+                <a href="#" class="tab-link active" data-categoria="todos">Todos</a>
+                <a href="#" class="tab-link" data-categoria="casamento">Casamento</a>
+                <a href="#" class="tab-link" data-categoria="namorados">Dia dos Namorados</a>
+                <a href="#" class="tab-link" data-categoria="aniversario">Aniversário</a>
+            </div>
+        </div>
+
+        <div class="container">
+            <a href="/provador-virtual.html" class="btn-provador-virtual">
+                <i class="fas fa-wand-magic-sparkles"></i>
+                Provador Virtual
+            </a>
+            
+            <div class="produtos-grid">
+                <!-- Produtos serão inseridos via JavaScript -->
+            </div>
+        </div>
+        <div class="paginacao">
+            <button class="paginacao-btn" disabled><i class="fas fa-chevron-left"></i></button>
+            <span class="pagina-atual">1</span>
+            <button class="paginacao-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <!-- ... footer content ... -->
+    </footer>
+
+    <script src="DB/db.js"></script>
+    <script src="js/produtos.js"></script>
+
+    <script src="js/add-to-cart-buttons.js"></script>
+    <script src="js/include-header.js"></script>
+    <script src="js/include-footer.js"></script>
+    <script src="js/cart-manager.js"></script>
+
+    <!-- Adiciona o modal do provador virtual -->
+    <div class="modal-provador" id="modal-provador">
+        <div class="modal-content">
+            <button class="btn-fechar" onclick="fecharModalProvador()">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <!-- Página 1: Introdução -->
+            <div class="modal-page active" id="pagina-intro">
+                <div class="modal-header">
+                    <h2>Provador Virtual de Joias</h2>
+                    <p class="subtitulo">Experimente nossas joias virtualmente antes de comprar!</p>
+                </div>
+                <div class="instrucoes">
+                    <h3>Como funciona?</h3>
+                    <ol>
+                        <li>Escolha o tipo de joia que deseja experimentar</li>
+                        <li>Use sua câmera para experimentar virtualmente</li>
+                        <li>Veja como a joia fica em você e ajuste se necessário</li>
+                        <li>Experimente diferentes modelos e finalize sua compra!</li>
+                    </ol>
+                </div>
+                <button class="btn-comecar" onclick="mostrarCategorias()">
+                    Começar a Experimentar
+                </button>
+                <p class="aviso">Este é um recurso em fase experimental. A representação virtual pode diferir do produto real.</p>
+            </div>
+
+            <!-- Página 2: Categorias -->
+            <div class="modal-page" id="pagina-categorias">
+                <button class="btn-voltar" onclick="voltarParaIntro()">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </button>
+                <div class="modal-header">
+                    <h2>Selecione o tipo de joia</h2>
+                </div>
+                <div class="categorias-grid">
+                    <a href="#" class="categoria-card" onclick="selecionarCategoria('aneis', event)">
+                        <i class="fas fa-gem"></i>
+                        <h3>Anéis</h3>
+                    </a>
+                    <a href="#" class="categoria-card disabled">
+                        <i class="fas fa-gem"></i>
+                        <h3>Colares</h3>
+                    </a>
+                    <a href="#" class="categoria-card disabled">
+                        <i class="fas fa-gem"></i>
+                        <h3>Brincos</h3>
+                    </a>
+                    <a href="#" class="categoria-card disabled">
+                        <i class="fas fa-gem"></i>
+                        <h3>Pulseiras</h3>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Página 3: Produto e Câmera -->
+            <div class="modal-page" id="pagina-camera">
+                <button class="btn-voltar" onclick="voltarParaCategorias()">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar
+                </button>
+                <div class="modal-header">
+                    <h2>Experimente Virtualmente</h2>
+                </div>
+
+                <div class="produto-preview">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e" alt="Anel Selecionado" />
+                    <div class="produto-info">
+                        <h3>Anel Solitário Diamante</h3>
+                        <p>Experimente este lindo anel virtualmente e veja como ele fica em seu dedo.</p>
+                        <button class="btn-ativar-camera" onclick="ativarCamera()">
+                            <i class="fas fa-camera"></i>
+                            Ativar Câmera
+                        </button>
+                    </div>
+                </div>
+
+                <div class="camera-view" id="camera-view">
+                    <video id="videoElement" autoplay playsinline></video>
+                    <canvas id="output-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+                    <div class="camera-controls">
+                        <button class="camera-btn" onclick="tirarFoto()">
+                            <i class="fas fa-camera"></i>
+                        </button>
+                        <button class="camera-btn" onclick="alternarCamera()">
+                            <i class="fas fa-sync"></i>
+                        </button>
+                    </div>
+                    <div class="model-controls">
+                        <div class="control-group">
+                            <button class="control-btn" onclick="moveModel('y', 0.1)" title="Mover para cima">
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                        </div>
+                        <div class="control-group">
+                            <button class="control-btn" onclick="moveModel('x', -0.1)" title="Mover para esquerda">
+                                <i class="fas fa-arrow-left"></i>
+                            </button>
+                            <button class="control-btn" onclick="resetModel()" title="Centralizar">
+                                <i class="fas fa-crosshairs"></i>
+                            </button>
+                            <button class="control-btn" onclick="moveModel('x', 0.1)" title="Mover para direita">
+                                <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="control-group">
+                            <button class="control-btn" onclick="moveModel('y', -0.1)" title="Mover para baixo">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                        </div>
+                        <div class="control-group rotation-controls">
+                            <div class="rotation-vertical">
+                                <button class="control-btn" onclick="rotateModel('x', -0.1)" title="Girar para cima">
+                                    <i class="fas fa-arrow-up"></i>
+                                </button>
+                                <button class="control-btn" onclick="rotateModel('x', 0.1)" title="Girar para baixo">
+                                    <i class="fas fa-arrow-down"></i>
+                                </button>
+                            </div>
+                            <div class="rotation-horizontal">
+                                <button class="control-btn" onclick="rotateModel('y', -0.1)" title="Girar para esquerda">
+                                    <i class="fas fa-undo"></i>
+                                </button>
+                                <button class="control-btn" onclick="rotateModel('y', 0.1)" title="Girar para direita">
+                                    <i class="fas fa-redo"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <button class="control-btn" onclick="scaleModel(-0.01)" title="Diminuir">
+                                <i class="fas fa-search-minus"></i>
+                            </button>
+                            <button class="control-btn" onclick="scaleModel(0.01)" title="Aumentar">
+                                <i class="fas fa-search-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="camera-container" id="camera-placeholder">
+                    <i class="fas fa-camera camera-placeholder"></i>
+                    <p class="camera-text">Clique em "Ativar Câmera" para começar a experimentar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let handposeModel = null;
+        let scene, camera3D, renderer, ring;
+        let isModelLoaded = false;
+        let isHandposeLoaded = false;
+        let isHandVisible = false;
+
+        // Inicializar Three.js
+        async function initThreeJS() {
+            scene = new THREE.Scene();
+            camera3D = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            const cameraView = document.getElementById('camera-view');
+            renderer.setSize(cameraView.offsetWidth, cameraView.offsetHeight);
+            renderer.domElement.style.position = 'absolute';
+            renderer.domElement.style.top = '0';
+            renderer.domElement.style.left = '0';
+            renderer.domElement.style.pointerEvents = 'none';
+            cameraView.appendChild(renderer.domElement);
+
+            // Adicionar luz
+            const light = new THREE.AmbientLight(0xffffff, 0.7);
+            scene.add(light);
+            const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+            directionalLight.position.set(0, 1, 1);
+            scene.add(directionalLight);
+
+            // Carregar o modelo do anel
+            const loader = new THREE.GLTFLoader();
+            loader.load('assets/models/ring.glb', function(gltf) {
+                ring = gltf.scene;
+                ring.scale.set(0.3, 0.3, 0.3);
+                ring.position.set(0, 0, 0);
+                ring.visible = false; // Inicialmente invisível
+                scene.add(ring);
+                isModelLoaded = true;
+                
+                renderer.render(scene, camera3D);
+            });
+
+            camera3D.position.z = 2;
+        }
+
+        // Carregar o modelo de detecção de mão
+        async function loadHandposeModel() {
+            handposeModel = await handpose.load();
+            isHandposeLoaded = true;
+        }
+
+        // Detectar mão e atualizar posição do anel
+        async function detectHand() {
+            if (!isHandposeLoaded || !isModelLoaded || !stream) return;
+
+            const video = document.getElementById('videoElement');
+            const predictions = await handposeModel.estimateHands(video);
+
+            if (predictions.length > 0 && !isHandVisible) {
+                // Mão detectada - mostrar o anel
+                ring.visible = true;
+                isHandVisible = true;
+            } else if (predictions.length === 0 && isHandVisible) {
+                // Mão não detectada - ocultar o anel
+                ring.visible = false;
+                isHandVisible = false;
+            }
+
+            renderer.render(scene, camera3D);
+            requestAnimationFrame(detectHand);
+        }
+
+        async function ativarCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        facingMode: 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    } 
+                });
+                
+                const videoElement = document.getElementById('videoElement');
+                videoElement.srcObject = stream;
+                
+                document.getElementById('camera-placeholder').style.display = 'none';
+                document.getElementById('camera-view').classList.add('active');
+                document.querySelector('.model-controls').style.display = 'flex'; // Mostrar controles imediatamente
+
+                // Inicializar Three.js e carregar modelos
+                await Promise.all([
+                    initThreeJS(),
+                    loadHandposeModel()
+                ]);
+
+                // Iniciar detecção de mão
+                detectHand();
+            } catch (err) {
+                console.error('Erro ao acessar a câmera:', err);
+                alert('Não foi possível acessar a câmera. Por favor, verifique as permissões.');
+            }
+        }
+
+        function pararCamera() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+                stream = null;
+                document.getElementById('camera-view').classList.remove('active');
+                document.getElementById('camera-placeholder').style.display = 'flex';
+                document.querySelector('.model-controls').style.display = 'none'; // Ocultar controles ao parar a câmera
+
+                // Limpar recursos do Three.js
+                if (renderer) {
+                    renderer.dispose();
+                    document.getElementById('camera-view').removeChild(renderer.domElement);
+                }
+                scene = null;
+                camera3D = null;
+                ring = null;
+                isModelLoaded = false;
+            }
+        }
+
+        // Função para abrir o modal do provador
+        function abrirModalProvador() {
+            const modal = document.getElementById('modal-provador');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            // Garantir que a página inicial seja mostrada
+            document.getElementById('pagina-intro').classList.add('active');
+            document.getElementById('pagina-categorias').classList.remove('active');
+        }
+
+        // Função para fechar o modal do provador
+        function fecharModalProvador() {
+            const modal = document.getElementById('modal-provador');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            pararCamera();
+        }
+
+        // Função para mostrar a página de categorias
+        function mostrarCategorias() {
+            document.getElementById('pagina-intro').classList.remove('active');
+            document.getElementById('pagina-categorias').classList.add('active');
+        }
+
+        // Função para voltar para a página de introdução
+        function voltarParaIntro() {
+            document.getElementById('pagina-categorias').classList.remove('active');
+            document.getElementById('pagina-intro').classList.add('active');
+        }
+
+        // Event listener para fechar o modal ao clicar fora dele
+        document.getElementById('modal-provador').addEventListener('click', function(e) {
+            if (e.target === this) {
+                fecharModalProvador();
+            }
+        });
+
+        // Atualizar o botão do provador virtual para abrir o modal
+        document.querySelector('.btn-provador-virtual').addEventListener('click', function(e) {
+            e.preventDefault();
+            abrirModalProvador();
+        });
+
+        function selecionarCategoria(categoria, event) {
+            event.preventDefault();
+            document.getElementById('pagina-categorias').classList.remove('active');
+            document.getElementById('pagina-camera').classList.add('active');
+        }
+
+        function voltarParaCategorias() {
+            document.getElementById('pagina-camera').classList.remove('active');
+            document.getElementById('pagina-categorias').classList.add('active');
+            pararCamera();
+        }
+
+        let cameraFrontal = false;
+        async function alternarCamera() {
+            cameraFrontal = !cameraFrontal;
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+            
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({
+                    video: {
+                        facingMode: cameraFrontal ? 'user' : 'environment',
+                        width: { ideal: 1280 },
+                        height: { ideal: 720 }
+                    }
+                });
+                
+                const videoElement = document.getElementById('videoElement');
+                videoElement.srcObject = stream;
+            } catch (err) {
+                console.error('Erro ao alternar câmera:', err);
+            }
+        }
+
+        // Função para resetar a posição e rotação do modelo
+        function resetModel() {
+            if (!ring) return;
+            
+            ring.position.set(0, 0, 0);
+            ring.rotation.set(Math.PI / 2, 0, 0);
+            ring.scale.set(0.3, 0.3, 0.3);
+            
+            renderer.render(scene, camera3D);
+        }
+
+        // Funções para controlar o modelo 3D
+        function rotateModel(axis, angle) {
+            if (!ring || !ring.visible) return;
+            
+            if (axis === 'x') ring.rotation.x += angle;
+            if (axis === 'y') ring.rotation.y += angle;
+            
+            renderer.render(scene, camera3D);
+        }
+
+        function scaleModel(factor) {
+            if (!ring || !ring.visible) return;
+            
+            const newScale = ring.scale.x + factor;
+            if (newScale > 0.05 && newScale < 0.5) {
+                ring.scale.set(newScale, newScale, newScale);
+                renderer.render(scene, camera3D);
+            }
+        }
+
+        function moveModel(axis, distance) {
+            if (!ring || !ring.visible) return;
+            
+            if (axis === 'x') ring.position.x += distance;
+            if (axis === 'y') ring.position.y += distance;
+            
+            renderer.render(scene, camera3D);
+        }
+    </script>
+</body>
+</html> 

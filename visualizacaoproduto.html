@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produto - Fazendo Joias</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <script src="js/cart-manager.js"></script>
+    <script src="js/include-header.js"></script>
+    
+    <main class="produto-container">
+        <div class="produto-grid">
+            <div class="produto-galeria">
+                <div class="produto-imagem-principal">
+                    <button class="nav-btn prev"><i class="fas fa-chevron-left"></i></button>
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&auto=format&fit=crop&q=60" alt="Anel Solitário Diamante">
+                    <button class="nav-btn next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+
+            <div class="produto-info">
+                <h1>Anel Solitário Diamante</h1>
+                <p class="preco">R$ 2.999,99</p>
+
+                <div class="produto-descricao">
+                    <h2>Descrição</h2>
+                    <p>Anel solitário em ouro 18k com diamante central de 20 pontos.</p>
+                </div>
+
+                <div class="produto-materiais">
+                    <h2>Materiais</h2>
+                    <ul>
+                        <li>Ouro 18k</li>
+                        <li>Diamante</li>
+                    </ul>
+                    <p class="certificado">Certificado de autenticidade GIA</p>
+                </div>
+
+                <div class="produto-tamanhos">
+                    <h2>Tamanhos Disponíveis</h2>
+                    <div class="tamanhos-grid">
+                        <button class="tamanho-btn">14</button>
+                        <button class="tamanho-btn">15</button>
+                        <button class="tamanho-btn">16</button>
+                        <button class="tamanho-btn">17</button>
+                        <button class="tamanho-btn">18</button>
+                        <button class="tamanho-btn">19</button>
+                    </div>
+                    <p class="tamanho-aviso">Selecione um tamanho para continuar</p>
+                </div>
+
+                <button class="adicionar-carrinho">Adicionar ao Carrinho</button>
+            </div>
+        </div>
+    </main>
+    <script src="DB/db.js"></script>
+    <script src="js/visualizacao-produto.js"></script>
+    <script src="js/include-footer.js"></script>
+</body>
+</html> 

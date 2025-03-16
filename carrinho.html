@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras - Fazendo Joias</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/cart.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <script src="js/include-header.js"></script>
+    <script src="js/cart-manager.js"></script>
+
+    <main class="cart-container">
+        <div class="cart-header">
+            <h1>Carrinho de Compras</h1>
+        </div>
+
+        <div class="cart-content">
+            <div class="cart-main">
+                <div class="cart-items">
+                    <!-- Os itens do carrinho serão inseridos aqui dinamicamente -->
+                </div>
+
+                <div class="shipping-section">
+                    <h2>Calcular Frete e Prazo</h2>
+                    <form class="frete-input">
+                        <input type="text" id="cep" placeholder="Digite seu CEP">
+                        <button type="submit" class="btn-calcular-frete">
+                            <i class="fas fa-truck"></i>
+                            Calcular
+                        </button>
+                    </form>
+                    <div class="shipping-options"></div>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <h2>Resumo do Pedido</h2>
+                
+                <div class="summary-item items-list">
+                    <div class="summary-products">
+                        <!-- Os itens serão inseridos aqui dinamicamente -->
+                    </div>
+                </div>
+
+                <div class="summary-item total">
+                    <span>Total</span>
+                    <span class="total-value">R$ 0,00</span>
+                </div>
+
+                <button type="button" class="btn-finalizar">
+                    <i class="fas fa-shopping-cart"></i>
+                    Finalizar Compra
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/carrinho.js"></script>
+    <script src="js/include-footer.js"></script>
+</body>
+</html> 

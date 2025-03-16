@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Pedido - Fazendo Joias</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/checkout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <script src="js/include-header.js"></script>
+
+    <main class="checkout-container">
+        <h1>Finalizar pedido</h1>
+
+        <div class="checkout-content">
+            <div class="checkout-form">
+                <section class="form-section dados-pessoais">
+                    <h2>Dados do destinatário</h2>
+                    <div class="form-group">
+                        <div class="input-row">
+                            <div class="input-group">
+                                <label for="nome">Nome completo</label>
+                                <input type="text" id="nome" placeholder="Maria da Silva">
+                            </div>
+                            <div class="input-group">
+                                <label for="telefone">Telefone</label>
+                                <input type="tel" id="telefone" placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-section endereco">
+                    <h2>Endereço de entrega</h2>
+                    <div class="form-group">
+                        <div class="input-row">
+                            <div class="input-group rua">
+                                <label for="rua">Rua</label>
+                                <input type="text" id="rua" placeholder="Rua das Flores">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group numero">
+                                <label for="numero">Número</label>
+                                <input type="text" id="numero" placeholder="123">
+                            </div>
+                            <div class="input-group complemento">
+                                <label for="complemento">Complemento</label>
+                                <input type="text" id="complemento" placeholder="Apto 52 T1">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group bairro">
+                                <label for="bairro">Bairro</label>
+                                <input type="text" id="bairro" placeholder="Centro">
+                            </div>
+                            <div class="input-group cep">
+                                <label for="cep">CEP</label>
+                                <input type="text" id="cep" placeholder="02245-000">
+                            </div>
+                        </div>
+                        <div class="input-row">
+                            <div class="input-group cidade">
+                                <label for="cidade">Cidade</label>
+                                <select id="cidade" disabled>
+                                    <option value="">Selecione um estado primeiro</option>
+                                </select>
+                            </div>
+                            <div class="input-group estado">
+                                <label for="estado">Estado</label>
+                                <select id="estado">
+                                    <option value="">Selecione um estado</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="form-section">
+                    <h2>Forma de pagamento</h2>
+                    <div class="payment-options">
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="credit">
+                            <span>Cartão de Crédito</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="pix">
+                            <span>PIX</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" value="boleto" checked>
+                            <span>Boleto</span>
+                        </label>
+                    </div>
+
+                    <!-- Campos do cartão de crédito -->
+                    <div id="credit-card-fields" style="display: none;">
+                        <div class="form-group">
+                            <div class="input-row">
+                                <div class="input-group card-number">
+                                    <label for="card-number">Número do Cartão</label>
+                                    <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group card-name">
+                                    <label for="card-name">Nome no Cartão</label>
+                                    <input type="text" id="card-name" placeholder="Como está escrito no cartão">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group card-expiry">
+                                    <label for="card-expiry">Validade</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/AA" maxlength="5">
+                                </div>
+                                <div class="input-group card-cvv">
+                                    <label for="card-cvv">CVV</label>
+                                    <input type="text" id="card-cvv" placeholder="123" maxlength="3">
+                                </div>
+                            </div>
+                            <div class="input-row">
+                                <div class="input-group card-installments">
+                                    <label for="card-installments">Parcelas</label>
+                                    <select id="card-installments">
+                                        <option value="1">1x de R$ 4.624,71 sem juros</option>
+                                        <option value="2">2x de R$ 2.312,35 sem juros</option>
+                                        <option value="3">3x de R$ 1.541,57 sem juros</option>
+                                        <option value="4">4x de R$ 1.156,17 sem juros</option>
+                                        <option value="5">5x de R$ 924,94 sem juros</option>
+                                        <option value="6">6x de R$ 770,78 sem juros</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Informações do Boleto -->
+                    <p id="boleto-info" class="payment-info">O boleto será gerado após a confirmação do pedido. O prazo de validade é de 3 dias úteis.</p>
+
+                    <!-- Informações do PIX -->
+                    <div id="pix-info" class="payment-info" style="display: none;">
+                        <p>O QR Code do PIX será gerado após a confirmação do pedido.</p>
+                    </div>
+                </section>
+            </div>
+
+            <aside class="order-summary">
+                <div class="summary-card">
+                    <h2>Resumo do Pedido</h2>
+                    <div class="summary-items">
+                        <div class="summary-item">
+                            <span class="item-name">Colar Pérolas Naturais (1x)</span>
+                            <span class="item-price">R$1.599,99</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="item-name">Anel Solitário Diamante (1x)</span>
+                            <span class="item-price">R$2.999,99</span>
+                        </div>
+                        <div class="summary-item frete">
+                            <span class="item-name">Frete</span>
+                            <span class="item-price">R$24,73</span>
+                        </div>
+                        <div class="summary-total">
+                            <span>TOTAL</span>
+                            <span class="total-price">R$4.624,71</span>
+                        </div>
+                    </div>
+                    <button a href="pedido-confirmado.html" class="btn-confirmar">Confirmar pedido</button>
+                    <a href="produtos.html" class="btn-continuar">Continuar comprando</a>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <script src="js/checkout.js"></script>
+    <script src="js/cidades-estados.js"></script>
+    <script src="js/include-footer.js"></script>
+    <script src="js/cart-manager.js"></script>
+</body>
+</html> 

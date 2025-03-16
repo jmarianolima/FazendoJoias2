@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provador Virtual AR - Fazendo Joias</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/provador-virtual.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <!-- MediaPipe -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1646424915/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    
+    <!-- Three.js -->
+    <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Carregar o CartManager primeiro -->
+    <script src="js/cart-manager.js"></script>
+    <script src="js/include-header.js"></script>
+    <script src="js/include-footer.js"></script>
+    <main class="provador-container">
+        <h1>Provador Virtual AR</h1>
+        
+        <div class="provador-content">
+            <div class="camera-container">
+                <video id="camera" autoplay playsinline muted></video>
+                <canvas id="overlay3d"></canvas>
+                <canvas id="hand-canvas"></canvas>
+                <div class="controls">
+                    <button id="capture-btn" class="btn-primary">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                    <button id="switch-camera" class="btn-secondary">
+                        <i class="fas fa-sync-alt"></i>
+                    </button>
+                    <div class="model-controls">
+                        <button id="rotate-left" class="btn-secondary">
+                            <i class="fas fa-undo"></i>
+                        </button>
+                        <button id="rotate-right" class="btn-secondary">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="produtos-provador">
+                <h2>Escolha uma joia para experimentar</h2>
+                <div class="joias-grid" id="joias-disponiveis"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Por último, carregar o script do provador -->
+    <script type="module" src="js/provador-virtual-3d.js"></script>
+</body>
+</html> 

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Senha - Nome da Loja</title>
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/recuperar-senha.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header será carregado via JavaScript -->
+    <header id="header-container"></header>
+
+    <!-- Conteúdo Principal -->
+    <main class="recuperar-senha-page">
+        <div class="recuperar-senha-container">
+            <div class="recuperar-senha-card">
+                <div class="card-header">
+                    <i class="fas fa-lock"></i>
+                    <h1>Recuperar senha</h1>
+                    <p>Digite seu e-mail para receber as instruções de recuperação de senha.</p>
+                </div>
+                <form id="form-recuperar-senha" class="recuperar-senha-form">
+                    <div class="form-group">
+                        <label for="email">E-mail</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="email" name="email" required placeholder="Digite seu e-mail">
+                            <div class="tooltip error">Por favor, insira um e-mail válido</div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-enviar">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar instruções
+                    </button>
+                    <a href="login.html" class="voltar-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar para o login
+                    </a>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Confirmação -->
+    <div id="modal-confirmacao" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-check-circle"></i>
+                <h2>E-mail enviado!</h2>
+            </div>
+            <div class="modal-body">
+                <p>As instruções para redefinição de senha foram enviadas para o seu e-mail.</p>
+                <p>Por favor, verifique sua caixa de entrada e siga as instruções.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="login.html" class="btn-voltar-login">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Voltar para o login
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer será carregado via JavaScript -->
+    <footer id="footer-container"></footer>
+
+    <!-- Scripts -->
+    <script src="js/include-header.js"></script>
+    <script src="js/header-scroll.js"></script>
+    <script src="js/include-footer.js"></script>
+    <script src="js/recuperar-senha.js"></script>
+    <script src="js/cart-manager.js"></script>
+</body>
+</html> 

@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta - Fazendo Joias</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/minha-conta.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <script src="js/include-header.js"></script>
+
+    <main class="conta-container">
+        <div class="conta-header">
+            <div class="conta-titulo">
+                <h1>Minha conta</h1>
+                <p class="saudacao">Olá, Maria! Bem-vinda de volta.</p>
+            </div>
+            <a href="login.html" class="btn-sair">
+                <i class="fas fa-sign-out-alt"></i>
+                Sair da conta
+            </a>
+        </div>
+
+        <nav class="conta-nav">
+            <a href="#cadastro" class="nav-item active">
+                <i class="far fa-user"></i>
+                Dados Cadastrais
+            </a>
+            <a href="#pedidos" class="nav-item">
+                <i class="far fa-clock"></i>
+                Pedidos em Andamento
+            </a>
+            <a href="#historico" class="nav-item">
+                <i class="fas fa-shopping-bag"></i>
+                Histórico de Compras
+            </a>
+            <a href="#pagamento" class="nav-item">
+                <i class="far fa-credit-card"></i>
+                Dados de Pagamento
+            </a>
+        </nav>
+
+        <div class="conta-content">
+            <div class="pedidos-andamento" id="pedidos">
+                <div class="section-header">
+                    <h2>Pedidos em Andamento</h2>
+                </div>
+
+                <div class="pedidos-list">
+                    <div class="pedido-card">
+                        <div class="pedido-header">
+                            <h3 class="pedido-numero">Pedido 10002589</h3>
+                            <span class="pedido-status status-preparacao">Em preparação</span>
+                        </div>
+                        <div class="pedido-info">
+                            <div class="info-item">
+                                <span class="info-label">Data do pedido</span>
+                                <span class="info-value">15/08/2023</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Total</span>
+                                <span class="info-value">R$ 349,90</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Itens</span>
+                                <span class="info-value">2 produtos</span>
+                            </div>
+                        </div>
+                        <div class="pedido-actions">
+                            <a href="#" class="btn-pedido btn-detalhes">
+                                <i class="fas fa-info-circle"></i>
+                                Detalhes
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="pedido-card">
+                        <div class="pedido-header">
+                            <h3 class="pedido-numero">Pedido 10003417</h3>
+                            <span class="pedido-status status-enviado">Enviado</span>
+                        </div>
+                        <div class="pedido-info">
+                            <div class="info-item">
+                                <span class="info-label">Data do pedido</span>
+                                <span class="info-value">10/08/2023</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Total</span>
+                                <span class="info-value">R$ 459,80</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Itens</span>
+                                <span class="info-value">2 produtos</span>
+                            </div>
+                        </div>
+                        <div class="pedido-actions">
+                            <a href="https://rastreamento.correios.com.br/app/index.php" target="_blank" class="btn-pedido btn-rastrear">
+                                <i class="fas fa-truck"></i>
+                                Rastrear
+                            </a>
+                            <a href="#" class="btn-pedido btn-detalhes">
+                                <i class="fas fa-info-circle"></i>
+                                Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="historico-compras" id="historico" style="display: none;">
+                <div class="section-header">
+                    <h2>Histórico de Compras</h2>
+                </div>
+
+                <div class="pedidos-list">
+                    <div class="pedido-card">
+                        <div class="pedido-header">
+                            <h3 class="pedido-numero">Pedido 10001325</h3>
+                            <span class="pedido-status status-entregue">Entregue</span>
+                        </div>
+                        <div class="pedido-info">
+                            <div class="info-item">
+                                <span class="info-label">Data do pedido</span>
+                                <span class="info-value">20/06/2023</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Entregue em</span>
+                                <span class="info-value">25/06/2023</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Total</span>
+                                <span class="info-value">R$ 489,70</span>
+                            </div>
+                        </div>
+                        <div class="pedido-actions">
+                            <a href="#" class="btn-pedido btn-avaliar">
+                                <i class="fas fa-star"></i>
+                                Avaliar
+                            </a>
+                            <a href="#" class="btn-pedido btn-detalhes">
+                                <i class="fas fa-info-circle"></i>
+                                Detalhes
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="pedido-card">
+                        <div class="pedido-header">
+                            <h3 class="pedido-numero">Pedido 10001249</h3>
+                            <span class="pedido-status status-entregue">Entregue</span>
+                        </div>
+                        <div class="pedido-info">
+                            <div class="info-item">
+                                <span class="info-label">Data do pedido</span>
+                                <span class="info-value">15/05/2023</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Entregue em</span>
+                                <span class="info-value">20/05/2023</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-label">Total</span>
+                                <span class="info-value">R$ 259,80</span>
+                            </div>
+                        </div>
+                        <div class="pedido-actions">
+                            <a href="#" class="btn-pedido btn-avaliar">
+                                <i class="fas fa-star"></i>
+                                Avaliar
+                            </a>
+                            <a href="#" class="btn-pedido btn-detalhes">
+                                <i class="fas fa-info-circle"></i>
+                                Detalhes
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dados-cadastrais" id="cadastro" style="display: none;">
+                <div class="section-header">
+                    <h2>Dados cadastrais</h2>
+                </div>
+
+                <div class="cards-list">
+                    <div class="info-card">
+                        <div class="card-header">
+                            <h3>Informações Pessoais</h3>
+                            <button class="btn-editar" onclick="toggleEdicao(this, 'info-pessoal')">
+                                <i class="far fa-edit"></i>
+                                <span>Editar informações</span>
+                            </button>
+                        </div>
+                        <div class="form-grid" id="info-pessoal">
+                            <div class="form-group">
+                                <label>Nome completo</label>
+                                <span class="campo-texto">Maria da Silva</span>
+                                <input type="text" value="Maria da Silva" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>CPF</label>
+                                <span class="campo-texto">999.999.999-99</span>
+                                <input type="text" value="999.999.999-99" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Data de Nascimento</label>
+                                <span class="campo-texto">02/02/1992</span>
+                                <input type="text" value="02/02/1992" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Telefone</label>
+                                <span class="campo-texto">(11) 99999-9999</span>
+                                <input type="text" value="(11) 99999-9999" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group full-width">
+                                <label>E-mail</label>
+                                <span class="campo-texto">maria@teste.com</span>
+                                <input type="email" value="maria@teste.com" class="campo-edicao" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <div class="card-header">
+                            <h3>Endereço de Entrega</h3>
+                            <button class="btn-editar" onclick="toggleEdicao(this, 'endereco')">
+                                <i class="far fa-edit"></i>
+                                <span>Editar endereço</span>
+                            </button>
+                        </div>
+                        <div class="form-grid" id="endereco">
+                            <div class="form-group full-width">
+                                <label>Rua</label>
+                                <span class="campo-texto">Rua das Flores</span>
+                                <input type="text" value="Rua das Flores" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Número</label>
+                                <span class="campo-texto">123</span>
+                                <input type="text" value="123" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <span class="campo-texto">Apto 45</span>
+                                <input type="text" value="Apto 45" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Bairro</label>
+                                <span class="campo-texto">Jardim das Flores</span>
+                                <input type="text" value="Jardim das Flores" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>CEP</label>
+                                <span class="campo-texto">12345-678</span>
+                                <input type="text" value="12345-678" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <span class="campo-texto">São Paulo</span>
+                                <input type="text" value="São Paulo" class="campo-edicao" style="display: none;">
+                            </div>
+                            <div class="form-group">
+                                <label>Estado</label>
+                                <span class="campo-texto">SP</span>
+                                <input type="text" value="SP" class="campo-edicao" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dados-pagamento" id="pagamento">
+                <div class="section-header">
+                    <h2>Dados de Pagamento</h2>
+                </div>
+
+                <div class="cartoes-container">
+                    <div class="cartoes-header">
+                        <h2>Cartões de Crédito</h2>
+                        <button class="btn-adicionar-cartao">
+                            <i class="fas fa-plus"></i>
+                            Adicionar Cartão
+                        </button>
+                    </div>
+
+                    <div class="cartoes-list">
+                        <!-- Cartão Principal -->
+                        <div class="cartao-item">
+                            <div class="cartao-info">
+                                <i class="far fa-credit-card cartao-icon"></i>
+                                <div class="cartao-detalhes">
+                                    <div class="cartao-numero">•••• •••• •••• 1111</div>
+                                    <div class="cartao-nome">MARIA S SILVA</div>
+                                    <div class="cartao-validade">Expira em 12/25</div>
+                                </div>
+                            </div>
+                            <div class="cartao-acoes">
+                                <span class="tag-padrao">Padrão</span>
+                                <button class="btn-remover">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cartão Secundário -->
+                        <div class="cartao-item">
+                            <div class="cartao-info">
+                                <i class="far fa-credit-card cartao-icon"></i>
+                                <div class="cartao-detalhes">
+                                    <div class="cartao-numero">•••• •••• •••• 4444</div>
+                                    <div class="cartao-nome">MARIA SILVA</div>
+                                    <div class="cartao-validade">Expira em 09/24</div>
+                                </div>
+                            </div>
+                            <div class="cartao-acoes">
+                                <button class="btn-definir-padrao">Definir como padrão</button>
+                                <button class="btn-remover">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de Detalhes do Pedido -->
+    <div class="modal-pedido" id="modal-pedido">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Pedido 10002589</h2>
+                <span class="status-pedido" data-status="Em preparação">Em preparação</span>
+                <button class="btn-fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="data-pedido">Realizado em 15/08/2023</p>
+
+            <div class="modal-section">
+                <h3>
+                    <i class="far fa-credit-card"></i>
+                    Informações de pagamento
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Método:</span>
+                        <span class="value">Cartão de Crédito</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Status:</span>
+                        <span class="value">Aprovado</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>
+                    <i class="fas fa-truck"></i>
+                    Informações de entrega
+                </h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <span class="label">Transportadora:</span>
+                        <span class="value">Correios</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Valor do frete:</span>
+                        <span class="value">R$ 19,90</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Prazo:</span>
+                        <span class="value">3 dias úteis</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-section">
+                <h3>Informações do pedido</h3>
+                <div class="produtos-lista">
+                    <div class="produto-item">
+                        <div class="produto-info">
+                            <h4>Colar de Prata com Zircônia</h4>
+                            <span class="quantidade">Quantidade: 1</span>
+                        </div>
+                        <span class="produto-preco">R$ 189,90</span>
+                    </div>
+                    <div class="produto-item">
+                        <div class="produto-info">
+                            <h4>Brincos de Pérola</h4>
+                            <span class="quantidade">Quantidade: 1</span>
+                        </div>
+                        <span class="produto-preco">R$ 159,90</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <div class="total">
+                    <span class="label">Total</span>
+                    <span class="value">R$ 369,70</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Avaliação do Pedido -->
+    <div class="modal-pedido" id="modal-avaliacao">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Avaliar Produtos</h2>
+                <button class="btn-fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <p class="data-pedido">Entregue em <span class="data-entrega"></span></p>
+
+            <div class="modal-section">
+                <h3>Produtos do pedido</h3>
+                <div class="produtos-lista">
+                    <!-- Será preenchido dinamicamente com produtos e suas avaliações individuais -->
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn-enviar-avaliacao" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                    Enviar avaliações
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navItems = document.querySelectorAll('.nav-item');
+            const sections = {
+                'cadastro': document.querySelector('.dados-cadastrais'),
+                'pedidos': document.querySelector('.pedidos-andamento'),
+                'historico': document.querySelector('.historico-compras'),
+                'pagamento': document.querySelector('.dados-pagamento')
+            };
+
+            // Dados dos pedidos
+            const pedidosData = {
+                '10002589': {
+                    numero: '10002589',
+                    status: 'Em preparação',
+                    data: '15/08/2023',
+                    pagamento: {
+                        metodo: 'Cartão de Crédito',
+                        status: 'Aprovado'
+                    },
+                    entrega: {
+                        transportadora: 'Correios',
+                        frete: 'R$ 19,90',
+                        prazo: '3 dias úteis'
+                    },
+                    produtos: [
+                        {
+                            nome: 'Colar de Prata com Zircônia',
+                            quantidade: 1,
+                            preco: 'R$ 189,90',
+                            imagem: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e'
+                        },
+                        {
+                            nome: 'Brincos de Pérola',
+                            quantidade: 1,
+                            preco: 'R$ 159,90',
+                            imagem: 'https://images.unsplash.com/photo-1687983545671-cc016d796614'
+                        }
+                    ],
+                    total: 'R$ 369,70'
+                },
+                '10003417': {
+                    numero: '10003417',
+                    status: 'Enviado',
+                    data: '10/08/2023',
+                    pagamento: {
+                        metodo: 'PIX',
+                        status: 'Aprovado'
+                    },
+                    entrega: {
+                        transportadora: 'Correios',
+                        frete: 'R$ 21,90',
+                        prazo: '4 dias úteis',
+                        codigoRastreio: 'BR1234567890BR'
+                    },
+                    produtos: [
+                        {
+                            nome: 'Anel de Ouro 18k',
+                            quantidade: 1,
+                            preco: 'R$ 399,90',
+                            imagem: 'https://images.unsplash.com/photo-1603561591411-77c55f6f775c'
+                        },
+                        {
+                            nome: 'Pulseira de Prata',
+                            quantidade: 1,
+                            preco: 'R$ 59,90',
+                            imagem: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a'
+                        }
+                    ],
+                    total: 'R$ 459,80'
+                },
+                '10001325': {
+                    numero: '10001325',
+                    status: 'Entregue',
+                    data: '20/06/2023',
+                    entregue: '25/06/2023',
+                    pagamento: {
+                        metodo: 'Cartão de Crédito',
+                        status: 'Aprovado'
+                    },
+                    entrega: {
+                        transportadora: 'Correios',
+                        frete: 'R$ 22,90',
+                        prazo: 'Entregue'
+                    },
+                    produtos: [
+                        {
+                            nome: 'Conjunto de Anéis',
+                            quantidade: 2,
+                            preco: 'R$ 299,90',
+                            imagem: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e'
+                        },
+                        {
+                            nome: 'Brincos de Ouro',
+                            quantidade: 1,
+                            preco: 'R$ 189,80',
+                            imagem: 'https://images.unsplash.com/photo-1687983545671-cc016d796614'
+                        }
+                    ],
+                    total: 'R$ 489,70'
+                },
+                '10001249': {
+                    numero: '10001249',
+                    status: 'Entregue',
+                    data: '15/05/2023',
+                    entregue: '20/05/2023',
+                    pagamento: {
+                        metodo: 'Boleto',
+                        status: 'Aprovado'
+                    },
+                    entrega: {
+                        transportadora: 'Correios',
+                        frete: 'R$ 19,90',
+                        prazo: 'Entregue'
+                    },
+                    produtos: [
+                        {
+                            nome: 'Colar de Ouro Rose',
+                            quantidade: 1,
+                            preco: 'R$ 259,80',
+                            imagem: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f'
+                        }
+                    ],
+                    total: 'R$ 259,80'
+                }
+            };
+
+            function abrirModal(numeroPedido) {
+                const pedido = pedidosData[numeroPedido];
+                const modal = document.getElementById('modal-pedido');
+                
+                // Atualiza os dados do modal
+                modal.querySelector('h2').textContent = `Pedido ${pedido.numero}`;
+                const statusElement = modal.querySelector('.status-pedido');
+                statusElement.textContent = pedido.status;
+                statusElement.setAttribute('data-status', pedido.status);
+                
+                // Atualiza a data do pedido com data de entrega se o pedido estiver entregue
+                let dataTexto = `Realizado em ${pedido.data}`;
+                if (pedido.status === 'Entregue' && pedido.entregue) {
+                    dataTexto += ` • Entregue em ${pedido.entregue}`;
+                }
+                modal.querySelector('.data-pedido').textContent = dataTexto;
+                
+                // Atualiza informações de pagamento
+                const infoPagamento = modal.querySelector('.modal-section:nth-child(3) .info-grid');
+                infoPagamento.innerHTML = `
+                    <div class="info-item">
+                        <span class="label">Método:</span>
+                        <span class="value">${pedido.pagamento.metodo}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Status:</span>
+                        <span class="value">${pedido.pagamento.status}</span>
+                    </div>
+                `;
+                
+                // Atualiza informações de entrega
+                const infoEntrega = modal.querySelector('.modal-section:nth-child(4) .info-grid');
+                let entregaHTML = `
+                    <div class="info-item">
+                        <span class="label">Transportadora:</span>
+                        <span class="value">${pedido.entrega.transportadora}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Valor do frete:</span>
+                        <span class="value">${pedido.entrega.frete}</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Prazo:</span>
+                        <span class="value">${pedido.entrega.prazo}</span>
+                    </div>`;
+
+                if (pedido.status === 'Enviado' && pedido.entrega.codigoRastreio) {
+                    entregaHTML += `
+                    <div class="info-item">
+                        <span class="label">Código de Rastreio:</span>
+                        <div class="rastreio-container">
+                            <span class="value" data-rastreio="${pedido.entrega.codigoRastreio}" onclick="window.open('https://www.correios.com.br/rastreamento', '_blank')">${pedido.entrega.codigoRastreio}</span>
+                            <button class="btn-rastreio-mini" onclick="window.open('https://rastreamento.correios.com.br/app/index.php', '_blank')">
+                                <i class="fas fa-truck"></i>
+                            </button>
+                        </div>
+                    </div>`;
+                }
+                
+                infoEntrega.innerHTML = entregaHTML;
+                
+                // Atualiza lista de produtos
+                const produtosLista = modal.querySelector('.produtos-lista');
+                produtosLista.innerHTML = pedido.produtos.map(produto => `
+                    <div class="produto-item">
+                        <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem" onerror="this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f'">
+                        <div class="produto-info">
+                            <h4>${produto.nome}</h4>
+                            <span class="quantidade">Quantidade: ${produto.quantidade}</span>
+                        </div>
+                        <span class="produto-preco">${produto.preco}</span>
+                    </div>
+                `).join('');
+                
+                // Atualiza o total
+                modal.querySelector('.total .value').textContent = pedido.total;
+                
+                // Exibe o modal
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Adiciona os event listeners para navegação
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    navItems.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                    Object.values(sections).forEach(section => {
+                        if (section) section.style.display = 'none';
+                    });
+                    const sectionId = this.getAttribute('href').replace('#', '');
+                    if (sections[sectionId]) {
+                        sections[sectionId].style.display = 'block';
+                        console.log('Exibindo seção:', sectionId, sections[sectionId]);
+                    }
+                });
+            });
+
+            // Event listeners para os botões de detalhes
+            document.querySelectorAll('.btn-pedido.btn-detalhes').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const numeroPedido = this.closest('.pedido-card')
+                        .querySelector('.pedido-numero')
+                        .textContent.replace('Pedido ', '');
+                    abrirModal(numeroPedido);
+                });
+            });
+
+            // Event listeners para os botões de avaliação
+            document.querySelectorAll('.btn-pedido.btn-avaliar').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const pedidoCard = this.closest('.pedido-card');
+                    const numeroPedido = pedidoCard.querySelector('.pedido-numero').textContent.replace('Pedido ', '');
+                    abrirModalAvaliacao(numeroPedido);
+                });
+            });
+
+            function abrirModalAvaliacao(numeroPedido) {
+                const pedido = pedidosData[numeroPedido];
+                const modal = document.getElementById('modal-avaliacao');
+                
+                // Atualiza a data de entrega
+                modal.querySelector('.data-entrega').textContent = pedido.entregue;
+                
+                // Atualiza lista de produtos com avaliações individuais
+                const produtosLista = modal.querySelector('.produtos-lista');
+                produtosLista.innerHTML = pedido.produtos.map((produto, index) => `
+                    <div class="produto-item" data-produto-id="${index}">
+                        <img src="${produto.imagem}" alt="${produto.nome}" class="produto-imagem" onerror="this.src='https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f'">
+                        <div class="produto-info">
+                            <h4>${produto.nome}</h4>
+                            <span class="quantidade">Quantidade: ${produto.quantidade}</span>
+                            <div class="avaliacao-container">
+                                <div class="avaliacao-linha">
+                                    <p class="avalie-texto">Avalie este produto</p>
+                                    <div class="estrelas">
+                                        <i class="far fa-star" data-valor="1"></i>
+                                        <i class="far fa-star" data-valor="2"></i>
+                                        <i class="far fa-star" data-valor="3"></i>
+                                        <i class="far fa-star" data-valor="4"></i>
+                                        <i class="far fa-star" data-valor="5"></i>
+                                    </div>
+                                </div>
+                                <p class="comentario-label">Deixe seu comentário:</p>
+                                <textarea class="comentario-avaliacao" placeholder="Conte-nos sobre sua experiência com este produto..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Event listeners para as estrelas de cada produto
+                produtosLista.querySelectorAll('.produto-item').forEach(produtoItem => {
+                    const estrelas = produtoItem.querySelectorAll('.estrelas i');
+                    estrelas.forEach(estrela => {
+                        estrela.addEventListener('click', function() {
+                            const valor = this.getAttribute('data-valor');
+                            
+                            // Atualiza as estrelas do produto atual
+                            estrelas.forEach(e => {
+                                const eValor = e.getAttribute('data-valor');
+                                e.className = eValor <= valor ? 'fas fa-star' : 'far fa-star';
+                            });
+                            
+                            // Verifica se todos os produtos foram avaliados
+                            const todosAvaliados = Array.from(modal.querySelectorAll('.produto-item')).every(
+                                item => item.querySelector('.estrelas .fas.fa-star')
+                            );
+                            
+                            const btnEnviar = modal.querySelector('.btn-enviar-avaliacao');
+                            btnEnviar.disabled = !todosAvaliados;
+                        });
+                    });
+                });
+                
+                // Event listener para o botão de enviar
+                modal.querySelector('.btn-enviar-avaliacao').addEventListener('click', function() {
+                    const avaliacoes = Array.from(produtosLista.querySelectorAll('.produto-item')).map(produtoItem => ({
+                        produtoId: produtoItem.getAttribute('data-produto-id'),
+                        nota: produtoItem.querySelectorAll('.fas.fa-star').length,
+                        comentario: produtoItem.querySelector('.comentario-avaliacao').value
+                    }));
+                    
+                    // Aqui você pode implementar o envio das avaliações para o servidor
+                    console.log('Avaliações enviadas:', {
+                        pedido: numeroPedido,
+                        avaliacoes: avaliacoes
+                    });
+                    
+                    // Fecha o modal
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    
+                    // Atualiza o botão de avaliar para "Avaliado"
+                    const btnAvaliar = document.querySelector(`.pedido-card:has(.pedido-numero:contains("${numeroPedido}")) .btn-avaliar`);
+                    btnAvaliar.innerHTML = '<i class="fas fa-check"></i>Avaliado';
+                    btnAvaliar.style.backgroundColor = '#22C55E';
+                    btnAvaliar.style.color = 'white';
+                    btnAvaliar.style.pointerEvents = 'none';
+                });
+                
+                // Exibe o modal
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+
+            // Controle para fechar os modais
+            document.querySelectorAll('.modal-pedido').forEach(modal => {
+                const btnFechar = modal.querySelector('.btn-fechar');
+                
+                btnFechar.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+                
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            });
+
+            function toggleEdicao(botao, formId) {
+                const form = document.getElementById(formId);
+                const spans = form.getElementsByClassName('campo-texto');
+                const inputs = form.getElementsByClassName('campo-edicao');
+                const btnTexto = botao.querySelector('span');
+                const isEditando = botao.classList.contains('editando');
+
+                if (!isEditando) {
+                    // Ativar modo de edição
+                    Array.from(spans).forEach(span => span.style.display = 'none');
+                    Array.from(inputs).forEach(input => {
+                        input.style.display = 'block';
+                        input.disabled = false;
+                    });
+                    btnTexto.textContent = 'Salvar alterações';
+                    botao.classList.add('editando');
+                } else {
+                    // Salvar alterações
+                    Array.from(spans).forEach((span, index) => {
+                        span.textContent = inputs[index].value;
+                        span.style.display = 'block';
+                    });
+                    Array.from(inputs).forEach(input => {
+                        input.style.display = 'none';
+                        input.disabled = true;
+                    });
+                    btnTexto.textContent = 'Editar informações';
+                    botao.classList.remove('editando');
+                }
+            }
+        });
+    </script>
+    <script src="js/include-footer.js"></script>
+    <script src="js/cart-manager.js"></script>
+</body>
+</html> 
