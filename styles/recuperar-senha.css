@@ -1,0 +1,532 @@
+.recuperar-senha-page {
+    background: linear-gradient(135deg, var(--purple-50) 0%, var(--purple-100) 100%);
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin-top: var(--header-height);
+    margin-bottom: var(--footer-height);
+}
+
+.recuperar-senha-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.recuperar-senha-card {
+    background: white;
+    padding: 3rem 4rem;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.recuperar-senha-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--purple-500), var(--purple-600));
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.card-header i {
+    font-size: 2.5rem;
+    color: var(--purple-500);
+    margin-bottom: 1.5rem;
+}
+
+.card-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 0.75rem;
+}
+
+.card-header p {
+    color: var(--gray-600);
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.recuperar-senha-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    color: var(--gray-800);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 1rem;
+    color: var(--gray-400);
+    transition: color 0.3s;
+    font-size: 1.25rem;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 1rem 2.75rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--gray-900);
+    transition: all 0.3s;
+    background-color: var(--gray-50);
+}
+
+.input-wrapper input:hover {
+    border-color: #CBD5E0;
+}
+
+.input-wrapper input:focus {
+    outline: none;
+    border-color: var(--purple-500);
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(var(--purple-500-rgb), 0.1);
+}
+
+.input-wrapper input:focus + i {
+    color: var(--purple-500);
+}
+
+.btn-enviar {
+    background: linear-gradient(90deg, var(--purple-500), var(--purple-600));
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.btn-enviar:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(var(--purple-500-rgb), 0.3);
+}
+
+.btn-enviar:active {
+    transform: translateY(0);
+}
+
+.voltar-link {
+    color: var(--purple-600);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    transition: color 0.3s;
+}
+
+.voltar-link:hover {
+    color: var(--purple-700);
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .recuperar-senha-card {
+        padding: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .recuperar-senha-page {
+        padding: 1rem;
+    }
+
+    .recuperar-senha-card {
+        padding: 2rem;
+    }
+
+    .card-header h1 {
+        font-size: 2rem;
+    }
+
+    .card-header p {
+        font-size: 1rem;
+    }
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 24px;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 480px;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    box-shadow: 
+        0 10px 25px rgba(0, 0, 0, 0.1),
+        0 20px 48px rgba(var(--purple-500-rgb), 0.1);
+    border: 1px solid rgba(var(--purple-500-rgb), 0.1);
+}
+
+.modal.show .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.modal-header i {
+    color: var(--green-500);
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: inline-block;
+    padding: 1rem;
+    border-radius: 50%;
+    background: rgba(var(--green-500-rgb), 0.1);
+}
+
+.modal-header h2 {
+    color: var(--gray-900);
+    font-size: 1.75rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 0.5rem;
+}
+
+.modal-body {
+    text-align: center;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+}
+
+.modal-body p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-voltar-login {
+    background: var(--purple-500);
+    color: white;
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-voltar-login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn-voltar-login:hover {
+    background: var(--purple-600);
+    transform: translateY(-2px);
+}
+
+.btn-voltar-login:hover::before {
+    transform: translateX(100%);
+}
+
+/* Tooltip de alerta */
+.tooltip {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    padding: 0.5rem 0.875rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-4px);
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 10;
+    width: 100%;
+    text-align: left;
+    pointer-events: none;
+}
+
+/* Estilo para tooltip de erro */
+.tooltip.error {
+    background: var(--red-500);
+    color: white;
+    box-shadow: 0 4px 12px rgba(var(--red-500-rgb), 0.15);
+}
+
+.tooltip.error::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 16px;
+    width: 8px;
+    height: 8px;
+    background: var(--red-500);
+    transform: rotate(45deg);
+}
+
+/* Estilo para tooltip de sucesso */
+.tooltip.success {
+    background: var(--green-500);
+    color: white;
+    box-shadow: 0 4px 12px rgba(var(--green-500-rgb), 0.15);
+}
+
+.tooltip.success::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 16px;
+    width: 8px;
+    height: 8px;
+    background: var(--green-500);
+    transform: rotate(45deg);
+}
+
+/* Mostra tooltip quando necessário */
+.input-wrapper.error .tooltip.error,
+.input-wrapper.success .tooltip.success {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+/* Remove regras conflitantes */
+.input-wrapper input:invalid + .tooltip {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Animação de shake para erro */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
+
+.input-wrapper.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+/* Estados do input com erro */
+.input-wrapper.error input {
+    border-color: var(--red-400);
+    background-color: var(--red-50);
+}
+
+.input-wrapper.error input:hover {
+    border-color: var(--red-500);
+}
+
+.input-wrapper.error input:focus {
+    border-color: var(--red-500);
+    box-shadow: 0 0 0 3px rgba(var(--red-500-rgb), 0.08);
+}
+
+.input-wrapper.error i {
+    color: var(--red-400);
+}
+
+.input-wrapper.error:focus-within i {
+    color: var(--red-500);
+}
+
+/* Estados do input com sucesso */
+.input-wrapper.success input {
+    border-color: var(--green-400);
+    background-color: var(--green-50);
+}
+
+.input-wrapper.success input:hover {
+    border-color: var(--green-500);
+}
+
+.input-wrapper.success input:focus {
+    border-color: var(--green-500);
+    box-shadow: 0 0 0 3px rgba(var(--green-500-rgb), 0.08);
+}
+
+.input-wrapper.success i {
+    color: var(--green-400);
+}
+
+.input-wrapper.success:focus-within i {
+    color: var(--green-500);
+}
+
+/* Remove validação nativa do navegador */
+.recuperar-senha-form input:invalid {
+    box-shadow: none;
+}
+
+.recuperar-senha-form input:-webkit-autofill {
+    box-shadow: 0 0 0 30px white inset;
+}
+
+/* Alerta flutuante */
+.alert-float {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background: var(--green-500);
+    color: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 9999;
+    box-shadow: 
+        0 4px 12px rgba(var(--green-500-rgb), 0.2),
+        0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    pointer-events: none;
+}
+
+.alert-float.show {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.alert-float i {
+    font-size: 1.25rem;
+    color: white;
+}
+
+@media (max-width: 480px) {
+    .alert-float {
+        top: 1rem;
+        right: 1rem;
+        left: 1rem;
+        padding: 0.875rem 1.25rem;
+        font-size: 0.9rem;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* Validação do input */
+.input-wrapper input:invalid {
+    border-color: var(--red-400);
+}
+
+.input-wrapper input:invalid:focus {
+    border-color: var(--red-500);
+    box-shadow: 0 0 0 3px rgba(var(--red-500-rgb), 0.08);
+}
+
+.input-wrapper input:invalid + .tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.form-group .message {
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.form-group.error .message {
+    color: var(--red-500);
+}
+
+.form-group.success .message {
+    color: var(--green-500);
+}
+
+.form-group.error input {
+    border-color: var(--red-500);
+    background-color: var(--red-50);
+}
+
+.form-group.success input {
+    border-color: var(--green-500);
+    background-color: var(--green-50);
+} 

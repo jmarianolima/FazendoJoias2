@@ -1,0 +1,92 @@
+.sobre-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    min-height: calc(100vh - 300px); /* Ajuste para footer fixo */
+}
+
+.sobre-page h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--neutral-900);
+    font-size: var(--font-xxl);
+    margin-bottom: var(--spacing-xl);
+    text-align: center;
+    font-weight: 400;
+}
+
+/* Seção Sobre */
+.sobre-section {
+    background-color: #ebe1ff;
+    padding: var(--spacing-xl);
+    border-radius: 24px;
+    margin-bottom: var(--spacing-xxl);
+    border: 1px solid var(--purple-200);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Adicionado efeito de sombra suave */
+}
+
+.sobre-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.sobre-content p {
+    color: var(--neutral-700);
+    font-size: var(--font-medium);
+    line-height: 1.6;
+    margin-bottom: var(--spacing-lg);
+}
+
+/* Seção Contato */
+.contato-section {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contato-section h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--neutral-900);
+    font-size: var(--font-xl);
+    margin-bottom: var(--spacing-xl);
+    font-weight: 400;
+    margin-top: 40px;
+}
+.contato-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    text-align: left; /* Alinhamento à esquerda */
+    max-width: 300px; /* Largura máxima para manter consistência */
+    margin: 0 auto; /* Centraliza o container */
+    margin-left: 200px;
+}
+
+.contato-info p {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    color: var(--neutral-700);
+    font-size: var(--font-medium);
+}
+
+.contato-info i {
+    width: 24px; /* Largura fixa para os ícones */
+    color: var(--purple-600);
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sobre-page {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .sobre-section {
+        padding: var(--spacing-lg);
+    }
+
+    .sobre-content p,
+    .contato-info p {
+        font-size: var(--font-base);
+    }
+} 

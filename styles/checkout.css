@@ -1,0 +1,721 @@
+/* Estilos gerais do checkout */
+.checkout-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.checkout-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gray-900);
+    margin-bottom: 2rem;
+}
+
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+}
+
+/* Estilos do formulário */
+.form-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(var(--purple-500-rgb), 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid var(--purple-100);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--purple-500), var(--purple-600));
+}
+
+.form-section:hover {
+    transform: translateY(-3px);
+    border-color: var(--purple-300);
+    box-shadow: 0 8px 24px rgba(var(--purple-500-rgb), 0.12);
+}
+
+.form-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.form-section h2::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--purple-500);
+}
+
+/* Ícones específicos para cada seção */
+.form-section:nth-child(1) h2::before {
+    content: '\f007'; /* Ícone de usuário */
+}
+
+.form-section:nth-child(2) h2::before {
+    content: '\f3c5'; /* Ícone de localização */
+}
+
+.form-section:nth-child(3) h2::before {
+    content: '\f09d'; /* Ícone de cartão */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+/* Campos específicos */
+.input-group.rua {
+    grid-column: 1 / -1;
+}
+
+.input-group.numero {
+    grid-column: 1 / 2;
+}
+
+.input-group.complemento {
+    grid-column: 2 / 3;
+}
+
+.input-group.bairro {
+    grid-column: 1 / 2;
+}
+
+.input-group.cep {
+    grid-column: 2 / 3;
+}
+
+.input-group.cidade {
+    grid-column: 1 / 2;
+}
+
+.input-group.estado {
+    grid-column: 2 / 3;
+}
+
+/* Grupo de dados pessoais */
+.dados-pessoais .input-row {
+    grid-template-columns: 1fr 1fr;
+}
+
+/* Grupo de endereço */
+.endereco .input-row {
+    grid-template-columns: 1fr 1fr;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.input-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    font-size: 1rem;
+    color: var(--gray-900);
+    font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+    padding: 0.500rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--gray-900);
+    transition: all 0.2s ease;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.input-group input:hover,
+.input-group select:hover {
+    border-color: #D1D5DB;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+    border-color: var(--purple-500);
+    box-shadow: 0 0 0 2px rgba(var(--purple-500-rgb), 0.1);
+    outline: none;
+}
+
+.input-group input::placeholder {
+    color: var(--purple-300);
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.input-group input:focus::placeholder {
+    color: var(--purple-200);
+}
+
+.input-group label::after {
+    content: '*';
+    color: var(--purple-500);
+    margin-left: 4px;
+    font-size: 1.1rem;
+}
+
+.input-group.optional label::after {
+    content: '(opcional)';
+    color: var(--gray-400);
+    font-size: 0.8rem;
+    font-weight: normal;
+    margin-left: 4px;
+}
+
+.input-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M8 10.5l4-4H4l4 4z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+}
+
+/* Estilos das opções de pagamento */
+.payment-options {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-option:hover {
+    border-color: #CBD5E0;
+}
+
+.payment-option input[type="radio"] {
+    margin: 0;
+}
+
+.payment-info {
+    color: #4A5568;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Estilos para os campos do cartão de crédito */
+#credit-card-fields {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background-color: #F7FAFC;
+    border-radius: 8px;
+}
+
+#credit-card-fields .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card-number input {
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+.card-name input {
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.card-expiry, .card-cvv {
+    flex: 1;
+}
+
+.card-expiry input, .card-cvv input {
+    width: 100%;
+    text-align: center;
+}
+
+.card-installments select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #E2E8F0;
+    border-radius: 4px;
+    background-color: white;
+    color: #2D3748;
+    font-size: 1rem;
+}
+
+.card-installments select:focus {
+    border-color: #4A5568;
+    outline: none;
+}
+
+/* Estilos para os estados dos campos */
+.input-group input:focus {
+    border-color: #4A5568;
+    outline: none;
+}
+
+.input-group input.error {
+    border-color: #E53E3E;
+}
+
+/* Estilos do resumo do pedido */
+.order-summary {
+    position: sticky;
+    top: 2rem;
+}
+
+.summary-card {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(var(--purple-500-rgb), 0.08);
+    border: 2px solid var(--purple-100);
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    box-shadow: 0 8px 24px rgba(var(--purple-500-rgb), 0.12);
+    border-color: var(--purple-300);
+}
+
+.summary-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: var(--gray-900);
+    margin-bottom: 2rem;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.summary-card h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--purple-500), var(--purple-600));
+    border-radius: 2px;
+}
+
+.summary-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+    color: var(--gray-900);
+    padding: 0.5rem 0;
+}
+
+.summary-item .item-name {
+    font-size: 1rem;
+    color: var(--gray-800);
+    font-weight: 500;
+}
+
+.summary-item .item-price {
+    font-size: 1rem;
+    color: var(--gray-900);
+    font-weight: 600;
+}
+
+.summary-item.frete {
+    margin: 1rem 0;
+    padding: 1rem 0;
+    border-top: 1px solid var(--purple-100);
+    border-bottom: 1px solid var(--purple-100);
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid var(--purple-100);
+}
+
+.summary-total span:first-child {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--gray-900);
+}
+
+.summary-total .total-price {
+    font-size: 1.4rem;
+    color: var(--purple-600);
+    font-weight: 700;
+}
+
+.btn-confirmar {
+    width: 100%;
+    padding: 1.2rem;
+    background: linear-gradient(45deg, var(--purple-600), var(--purple-500));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(var(--purple-500-rgb), 0.2);
+}
+
+.btn-confirmar:hover {
+    background: linear-gradient(45deg, var(--purple-700), var(--purple-600));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(var(--purple-500-rgb), 0.3);
+}
+
+.btn-continuar {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    text-align: center;
+    background: white;
+    border: 1px solid var(--purple-500);
+    border-radius: 12px;
+    color: var(--purple-600);
+    text-decoration: none;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-continuar:hover {
+    background: var(--purple-50);
+    border-color: var(--purple-600);
+    transform: translateY(-2px);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    .checkout-content {
+        grid-template-columns: 1fr 340px;
+    }
+}
+
+@media (max-width: 768px) {
+    .checkout-content {
+        grid-template-columns: 1fr;
+    }
+
+    .order-summary {
+        position: static;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-options {
+        flex-direction: column;
+    }
+
+    .payment-option {
+        width: 100%;
+    }
+
+    .card-expiry, .card-cvv {
+        width: 100%;
+    }
+}
+
+/* Estilos da página Minha Conta */
+.conta-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.conta-container h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gray-900);
+    margin-bottom: 2rem;
+}
+
+.conta-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 2rem;
+}
+
+.conta-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 12px rgba(var(--purple-500-rgb), 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid var(--purple-100);
+    position: relative;
+    overflow: hidden;
+}
+
+.conta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--purple-500), var(--purple-600));
+}
+
+.conta-section:hover {
+    transform: translateY(-3px);
+    border-color: var(--purple-300);
+    box-shadow: 0 8px 24px rgba(var(--purple-500-rgb), 0.12);
+}
+
+.conta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--gray-900);
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.conta-section h2::before {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: var(--purple-500);
+}
+
+/* Responsividade para Minha Conta */
+@media (max-width: 1024px) {
+    .conta-content {
+        grid-template-columns: 1fr 340px;
+    }
+}
+
+@media (max-width: 768px) {
+    .conta-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.conta-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.conta-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.conta-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.conta-input-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.conta-input-group label {
+    font-size: 1rem;
+    color: var(--gray-900);
+    font-weight: 500;
+}
+
+.conta-input-group input,
+.conta-input-group select {
+    padding: 0.75rem;
+    border: 2px solid var(--gray-300);
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--gray-900);
+    transition: all 0.2s ease;
+    background-color: white;
+}
+
+.conta-input-group input:hover,
+.conta-input-group select:hover {
+    border-color: var(--gray-400);
+}
+
+.conta-input-group input:focus,
+.conta-input-group select:focus {
+    border-color: var(--purple-500);
+    outline: none;
+}
+
+.conta-input-group input::placeholder {
+    color: var(--gray-500);
+}
+
+.conta-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--purple-500);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.conta-btn:hover {
+    background: var(--purple-600);
+}
+
+.conta-btn-secondary {
+    width: 100%;
+    padding: 0.75rem;
+    text-align: center;
+    background: white;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    color: var(--gray-900);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.2s;
+}
+
+.conta-btn-secondary:hover {
+    background: var(--gray-50);
+    border-color: var(--gray-300);
+}
+
+.conta-section .dados-cadastrais {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.conta-section .campo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.conta-section .campo label {
+    font-size: 1rem;
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.conta-section .campo input,
+.conta-section .campo .valor {
+    padding: 0.75rem;
+    border: 2px solid var(--gray-300);
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--gray-900);
+    background-color: white;
+    width: 100%;
+}
+
+.conta-section .campo.full-width {
+    grid-column: 1 / -1;
+}
+
+.conta-section .campo input:hover,
+.conta-section .campo .valor:hover {
+    border-color: var(--gray-400);
+}
+
+.conta-section .campo input:focus {
+    border-color: var(--purple-500);
+    outline: none;
+}
+
+.input-group.estado select,
+.input-group.cidade select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: var(--gray-900);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.input-group.estado select:hover,
+.input-group.cidade select:hover {
+    border-color: var(--purple-300);
+}
+
+.input-group.estado select:focus,
+.input-group.cidade select:focus {
+    border-color: var(--purple-500);
+    box-shadow: 0 0 0 2px rgba(var(--purple-500-rgb), 0.1);
+    outline: none;
+}
+
+.input-group.estado select option,
+.input-group.cidade select option {
+    padding: 8px;
+    font-size: 1rem;
+    background-color: white;
+    color: var(--gray-900);
+}
+
+.input-group.estado select option:hover,
+.input-group.cidade select option:hover {
+    background-color: var(--purple-50);
+}
+
+/* Estilo para o select desabilitado (cidade antes de selecionar estado) */
+.input-group.cidade select:disabled {
+    background-color: var(--gray-50);
+    cursor: not-allowed;
+    border-color: var(--gray-200);
+} 
