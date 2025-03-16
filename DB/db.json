@@ -1,0 +1,574 @@
+{
+    "produtos": [
+        {
+            "id": 1,
+            "nome": "Anel Solitário Diamante",
+            "descricao": "Anel solitário em ouro 18k com diamante central de 20 pontos",
+            "preco": 2999.99,
+            "tipo": "anel",
+            "material": "ouro-18k",
+            "imagem": "https://images.unsplash.com/photo-1605100804763-247f67b3557e",
+            "categoria": "casamento",
+            "materiais": ["Ouro 18k", "Diamante"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/anel-solitario.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 2,
+            "nome": "Colar Pérolas Naturais",
+            "descricao": "Colar em ouro branco 18k com pérolas naturais",
+            "preco": 1599.99,
+            "tipo": "colar",
+            "material": "ouro-branco-18k",
+            "imagem": "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338",
+            "categoria": "casamento",
+            "materiais": ["Ouro Branco 18k", "Pérolas Naturais"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.3,
+                "y": 0.4,
+                "escala": 0.8
+            },
+            "modelo3D": "./assets/models/colar-perolas.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 3,
+            "nome": "Brincos Gota Safira",
+            "preco": 1899.99,
+            "imagem": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908",
+            "descricao": "Brincos em ouro branco 18k com safiras azuis",
+            "materiais": ["Ouro Branco 18k", "Safira"],
+            "categoria": "Brincos",
+            "colecao": "Aniversário",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.8,
+                "escala": 0.5
+            },
+            "modelo3D": "./assets/models/brincos-gota.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 4,
+            "nome": "Anel Aliança Eternidade",
+            "preco": 3499.99,
+            "imagem": "https://images.unsplash.com/photo-1603561591411-07134e71a2a9",
+            "descricao": "Aliança em ouro rosé 18k com diamantes em toda volta",
+            "materiais": ["Ouro Rosé 18k", "Diamantes"],
+            "categoria": "Anéis",
+            "tamanhos": [14, 15, 16, 17, 18, 19],
+            "colecao": "Casamento",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.8,
+                "escala": 0.5
+            },
+            "modelo3D": "./assets/models/anel-aliança.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 5,
+            "nome": "Colar Coração Rubi",
+            "preco": 2299.99,
+            "imagem": "https://images.unsplash.com/photo-1602752250015-52934bc45613",
+            "descricao": "Colar em ouro branco 18k com rubi em formato de coração",
+            "materiais": ["Ouro Branco 18k", "Rubi"],
+            "categoria": "Colares",
+            "colecao": "Dia dos Namorados",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/colar-coração.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 6,
+            "nome": "Brincos Argola Diamantes",
+            "preco": 2799.99,
+            "imagem": "https://images.unsplash.com/photo-1535556116002-6281ff3e9f36",
+            "descricao": "Brincos em ouro branco 18k com diamantes em toda extensão",
+            "materiais": ["Ouro Branco 18k", "Diamantes"],
+            "categoria": "Brincos",
+            "colecao": "Aniversário",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.8,
+                "escala": 0.5
+            },
+            "modelo3D": "./assets/models/brincos-argola.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 7,
+            "nome": "Pulseira Riviera",
+            "preco": 4599.99,
+            "imagem": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+            "descricao": "Pulseira em ouro branco 18k com diamantes alinhados",
+            "categoria": "aniversario",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/pulseira-riviera.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 8,
+            "nome": "Pingente Coração Safira",
+            "preco": 1899.99,
+            "imagem": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f",
+            "descricao": "Pingente em ouro amarelo 18k com safira central",
+            "categoria": "namorados",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/pingente-coração.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 9,
+            "nome": "Anel Meia Aliança",
+            "preco": 2499.99,
+            "imagem": "https://images.unsplash.com/photo-1603561591411-07134e71a2a9",
+            "descricao": "Anel meia aliança em ouro rosé com diamantes",
+            "categoria": "casamento",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.8,
+                "escala": 0.5
+            },
+            "modelo3D": "./assets/models/anel-meia-aliança.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 10,
+            "nome": "Brincos Chandelier",
+            "preco": 3299.99,
+            "imagem": "https://images.unsplash.com/photo-1600721391776-b5cd0e0048f9",
+            "descricao": "Brincos longos em ouro branco com diamantes e pérolas",
+            "categoria": "casamento",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/brincos-chandelier.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 11,
+            "nome": "Pulseira Infinito",
+            "preco": 1299.99,
+            "imagem": "https://images.unsplash.com/photo-1573408301185-9146fe634ad0",
+            "descricao": "Pulseira em ouro amarelo 18k com símbolo do infinito",
+            "categoria": "namorados",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/pulseira-infinito.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 12,
+            "nome": "Colar Choker",
+            "preco": 1799.99,
+            "imagem": "https://images.unsplash.com/photo-1599643477877-530eb83abc8e",
+            "descricao": "Colar choker em ouro amarelo 18k com diamantes",
+            "categoria": "aniversario",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/colar-choker.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 13,
+            "nome": "Anel Solitário Esmeralda",
+            "preco": 3999.99,
+            "imagem": "https://images.unsplash.com/photo-1608042314453-ae338d80c427",
+            "descricao": "Anel em platina com esmeralda colombiana central",
+            "categoria": "casamento",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.8,
+                "escala": 0.5
+            },
+            "modelo3D": "./assets/models/anel-solitario-esmeralda.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 14,
+            "nome": "Brincos Coração",
+            "preco": 1599.99,
+            "imagem": "https://images.unsplash.com/photo-1587467512961-120760940315",
+            "descricao": "Brincos em ouro rosé com diamantes em formato de coração",
+            "categoria": "namorados",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/brincos-coração.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 15,
+            "nome": "Pulseira Tennis",
+            "preco": 5999.99,
+            "imagem": "https://images.unsplash.com/photo-1611048267451-e6ed903d4a38",
+            "descricao": "Pulseira tennis em ouro branco com diamantes",
+            "categoria": "aniversario",
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/pulseira-tennis.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 16,
+            "nome": "Conjunto de Alianças Clássicas",
+            "descricao": "Par de alianças em ouro 18k com acabamento polido",
+            "preco": 1899.90,
+            "tipo": "alianca",
+            "material": "ouro-18k",
+            "imagem": "https://images.unsplash.com/photo-1587467512961-120760940315",
+            "categoria": "casamento",
+            "materiais": ["Ouro 18k"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/conjunto-alianças.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 17,
+            "nome": "Brincos para Noiva Crystal",
+            "descricao": "Brincos longos com cristais e pérolas",
+            "preco": 599.90,
+            "tipo": "brinco",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908",
+            "categoria": "casamento",
+            "materiais": ["Prata 925", "Cristais", "Pérolas"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/brincos-noiva.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 18,
+            "nome": "Tiara de Noiva Pérolas",
+            "descricao": "Tiara delicada com pérolas e cristais",
+            "preco": 459.90,
+            "tipo": "tiara",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1458538977777-0549b2370168",
+            "categoria": "casamento",
+            "materiais": ["Prata 925", "Pérolas", "Cristais"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/tiara-noiva.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 19,
+            "nome": "Colar Coração Infinito",
+            "descricao": "Colar em prata 925 com pingente de coração",
+            "preco": 289.90,
+            "tipo": "colar",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f",
+            "categoria": "namorados",
+            "materiais": ["Prata 925", "Zircônia"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/colar-coração-infinito.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 20,
+            "nome": "Anel Promessa",
+            "descricao": "Anel delicado com zircônia central",
+            "preco": 399.90,
+            "tipo": "anel",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1605100804763-247f67b3557e",
+            "categoria": "namorados",
+            "materiais": ["Prata 925", "Zircônia"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/anel-promessa.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 21,
+            "nome": "Pulseira Love",
+            "descricao": "Pulseira em ouro rosé com pingente love",
+            "preco": 259.90,
+            "tipo": "pulseira",
+            "material": "ouro-rose",
+            "imagem": "https://images.unsplash.com/photo-1573408301185-9146fe634ad0",
+            "categoria": "namorados",
+            "materiais": ["Ouro Rosé 18k"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/pulseira-love.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 22,
+            "nome": "Conjunto Pedras Coloridas",
+            "descricao": "Conjunto com colar e brincos em pedras naturais",
+            "preco": 499.90,
+            "tipo": "conjunto",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1576723417715-6b408c988c23",
+            "categoria": "aniversario",
+            "materiais": ["Prata 925", "Pedras Naturais"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/conjunto-pedras.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 23,
+            "nome": "Bracelete Comemorativo",
+            "descricao": "Bracelete ajustável com detalhes em zircônia",
+            "preco": 359.90,
+            "tipo": "bracelete",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a",
+            "categoria": "aniversario",
+            "materiais": ["Prata 925", "Zircônia"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/bracelete-comemorativo.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        },
+        {
+            "id": 24,
+            "nome": "Anel de Festa",
+            "descricao": "Anel statement com pedra central colorida",
+            "preco": 429.90,
+            "tipo": "anel",
+            "material": "prata-925",
+            "imagem": "https://images.unsplash.com/photo-1608042314453-ae338d80c427",
+            "categoria": "aniversario",
+            "materiais": ["Prata 925", "Pedra Natural"],
+            "provadorVirtual": true,
+            "posicaoProvador": {
+                "x": 0.5,
+                "y": 0.7,
+                "escala": 1.0
+            },
+            "modelo3D": "./assets/models/anel-festa.gltf",
+            "posicao3D": {
+                "x": 0,
+                "y": -0.5,
+                "z": -2,
+                "rotacao": 0,
+                "escala": 1
+            }
+        }
+    ]
+} 
