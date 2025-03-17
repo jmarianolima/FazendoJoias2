@@ -146,6 +146,10 @@
                                 <i class="fas fa-info-circle"></i>
                                 Detalhes
                             </a>
+                            <a href="#" class="btn-pedido btn-devolver">
+                                <i class="fas fa-undo-alt"></i>
+                                Devolver
+                            </a>
                         </div>
                     </div>
 
@@ -197,28 +201,28 @@
                             </button>
                         </div>
                         <div class="form-grid" id="info-pessoal">
-                            <div class="form-group">
-                                <label>Nome completo</label>
+                    <div class="form-group">
+                        <label>Nome completo</label>
                                 <span class="campo-texto">Maria da Silva</span>
                                 <input type="text" value="Maria da Silva" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>CPF</label>
+                    </div>
+                    <div class="form-group">
+                        <label>CPF</label>
                                 <span class="campo-texto">999.999.999-99</span>
                                 <input type="text" value="999.999.999-99" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Data de Nascimento</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Data de Nascimento</label>
                                 <span class="campo-texto">02/02/1992</span>
                                 <input type="text" value="02/02/1992" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Telefone</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
                                 <span class="campo-texto">(11) 99999-9999</span>
                                 <input type="text" value="(11) 99999-9999" class="campo-edicao">
-                            </div>
-                            <div class="form-group full-width">
-                                <label>E-mail</label>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>E-mail</label>
                                 <span class="campo-texto">maria@teste.com</span>
                                 <input type="email" value="maria@teste.com" class="campo-edicao">
                             </div>
@@ -232,40 +236,40 @@
                                 <i class="far fa-edit"></i>
                                 <span>Editar endereço</span>
                             </button>
-                        </div>
+                </div>
                         <div class="form-grid" id="endereco">
-                            <div class="form-group full-width">
-                                <label>Rua</label>
+                    <div class="form-group full-width">
+                        <label>Rua</label>
                                 <span class="campo-texto">Rua das Flores</span>
                                 <input type="text" value="Rua das Flores" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Número</label>
+                    </div>
+                        <div class="form-group">
+                            <label>Número</label>
                                 <span class="campo-texto">123</span>
                                 <input type="text" value="123" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Complemento</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Complemento</label>
                                 <span class="campo-texto">Apto 45</span>
                                 <input type="text" value="Apto 45" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Bairro</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Bairro</label>
                                 <span class="campo-texto">Jardim das Flores</span>
                                 <input type="text" value="Jardim das Flores" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>CEP</label>
+                        </div>
+                        <div class="form-group">
+                            <label>CEP</label>
                                 <span class="campo-texto">12345-678</span>
                                 <input type="text" value="12345-678" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Cidade</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Cidade</label>
                                 <span class="campo-texto">São Paulo</span>
                                 <input type="text" value="São Paulo" class="campo-edicao">
-                            </div>
-                            <div class="form-group">
-                                <label>Estado</label>
+                        </div>
+                        <div class="form-group">
+                            <label>Estado</label>
                                 <span class="campo-texto">SP</span>
                                 <input type="text" value="SP" class="campo-edicao">
                             </div>
@@ -432,6 +436,32 @@
                     <i class="fas fa-paper-plane"></i>
                     Enviar avaliações
                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Devolução -->
+    <div class="modal-pedido" id="modal-devolucao">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Solicitar Devolução ou Troca</h2>
+                <button class="btn-fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-section">
+                <div class="devolucao-info">
+                    <i class="fas fa-info-circle"></i>
+                    <p>Para solicitar a devolução ou troca do seu produto, por favor envie um e-mail para:</p>
+                    <a href="mailto:sac@fazendojoias.com.br" class="email-link">sac@fazendojoias.com.br</a>
+                    <p class="instrucoes">Inclua no e-mail o número do seu pedido e o motivo da devolução ou troca. Nossa equipe entrará em contato em até 24 horas úteis.</p>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secundario fechar-modal">Fechar</button>
+                <a href="mailto:sac@fazendojoias.com.br" class="btn-primario">Enviar E-mail</a>
             </div>
         </div>
     </div>
@@ -682,6 +712,74 @@
                     abrirModalAvaliacao(numeroPedido);
                 });
             });
+
+            // Event listeners para os botões de devolução existentes
+            document.querySelectorAll('.btn-pedido.btn-devolver').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    abrirModalDevolucao();
+                });
+            });
+            
+            // Adicionar botão de devolução apenas para pedidos com status "Entregue"
+            document.querySelectorAll('.pedido-card').forEach(card => {
+                const statusElement = card.querySelector('.pedido-status');
+                if (statusElement && statusElement.classList.contains('status-entregue')) {
+                    const actionsContainer = card.querySelector('.pedido-actions');
+                    
+                    // Verificar se o botão já existe
+                    if (!actionsContainer.querySelector('.btn-devolver')) {
+                        const devolverBtn = document.createElement('a');
+                        devolverBtn.href = "#";
+                        devolverBtn.className = "btn-pedido btn-devolver";
+                        devolverBtn.innerHTML = '<i class="fas fa-undo-alt"></i> Devolver';
+                        
+                        // Adicionar event listener
+                        devolverBtn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            abrirModalDevolucao();
+                        });
+                        
+                        actionsContainer.appendChild(devolverBtn);
+                    }
+                }
+            });
+            
+            // Função para abrir o modal de devolução
+            function abrirModalDevolucao() {
+                const modal = document.getElementById('modal-devolucao');
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                // Configurar o botão de fechar
+                const btnFechar = modal.querySelector('.btn-fechar');
+                if (btnFechar) {
+                    btnFechar.addEventListener('click', function() {
+                        fecharModal(modal);
+                    });
+                }
+                
+                // Configurar o botão "Fechar" no rodapé
+                const btnSecundario = modal.querySelector('.btn-secundario');
+                if (btnSecundario) {
+                    btnSecundario.addEventListener('click', function() {
+                        fecharModal(modal);
+                    });
+                }
+                
+                // Fechar ao clicar fora do modal
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        fecharModal(modal);
+                    }
+                });
+            }
+            
+            // Função genérica para fechar modais
+            function fecharModal(modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
 
             function abrirModalAvaliacao(numeroPedido) {
                 const pedido = pedidosData[numeroPedido];
