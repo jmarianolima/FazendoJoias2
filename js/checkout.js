@@ -4,6 +4,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnConfirmar = document.querySelector('.btn-confirmar');
     const cepInput = document.querySelector('#cep');
     const telefoneInput = document.querySelector('#telefone');
+    
+    // Adicionar event listeners para remover mensagens de erro ao preencher campos
+    const camposObrigatorios = ['nome', 'telefone', 'rua', 'numero', 'bairro', 'cep', 'cidade', 'estado'];
+    
+    camposObrigatorios.forEach(campoId => {
+        const campo = document.querySelector(`#${campoId}`);
+        if (campo) {
+            // Usar 'change' para selects e 'input' para outros campos
+            const evento = campo.tagName === 'SELECT' ? 'change' : 'input';
+            
+            campo.addEventListener(evento, function() {
+                // Se o campo tem valor, remove a mensagem de erro
+                if (this.value.trim() !== '' || 
+                   (this.tagName === 'SELECT' && this.value !== '' && this.value !== 'Selecione um estado')) {
+                    const errorElement = this.parentElement.querySelector('.error-message');
+                    if (errorElement) {
+                        errorElement.remove();
+                    }
+                    this.style.borderColor = '';
+                }
+            });
+        }
+    });
 
     // Máscara para o CEP
     cepInput.addEventListener('input', (e) => {
@@ -42,6 +65,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector('#bairro').value = data.bairro;
                     document.querySelector('#cidade').value = data.localidade;
                     document.querySelector('#estado').value = data.uf;
+                    
+                    // Remover mensagens de erro dos campos preenchidos automaticamente
+                    ['rua', 'bairro', 'cidade', 'estado'].forEach(campo => {
+                        const input = document.querySelector(`#${campo}`);
+                        if (input && input.value) {
+                            const errorElement = input.parentElement.querySelector('.error-message');
+                            if (errorElement) {
+                                errorElement.remove();
+                            }
+                            input.style.borderColor = '';
+                        }
+                    });
                 }
             } catch (error) {
                 console.error('Erro ao buscar CEP:', error);
@@ -81,13 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Adicionar frete se existir
-        const freteRadios = document.querySelectorAll('input[name="frete"]');
-        let freteValor = 0;
-        freteRadios.forEach(radio => {
-            if (radio.checked) {
-                freteValor = parseFloat(radio.value);
-            }
-        });
+        const freteValor = parseFloat(localStorage.getItem('shipping_cost')) || 0;
 
         // Adicionar linha do frete
         html += `
@@ -127,15 +156,23 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 'numero', mensagem: 'Número é obrigatório' },
             { id: 'bairro', mensagem: 'Bairro é obrigatório' },
             { id: 'cep', mensagem: 'CEP é obrigatório' },
-            { id: 'cidade', mensagem: 'Cidade é obrigatória' }
+            { id: 'cidade', mensagem: 'Cidade é obrigatória' },
+            { id: 'estado', mensagem: 'Estado é obrigatório' }
         ];
 
         let isValid = true;
         campos.forEach(campo => {
             const input = document.querySelector(`#${campo.id}`);
+            if (!input) return; // Pular se o elemento não existir
+            
             const errorElement = input.parentElement.querySelector('.error-message');
             
-            if (!input.value.trim()) {
+            // Verificar se o campo está vazio (para inputs) ou não selecionado (para selects)
+            const isEmpty = input.tagName === 'SELECT' 
+                ? input.value === '' || input.value === 'Selecione um estado' 
+                : !input.value.trim();
+            
+            if (isEmpty) {
                 isValid = false;
                 if (!errorElement) {
                     const error = document.createElement('span');
@@ -154,10 +191,40 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // Verificar se uma forma de pagamento foi selecionada
+        const paymentSelected = document.querySelector('input[name="payment"]:checked');
+        if (!paymentSelected) {
+            isValid = false;
+            alert('Por favor, selecione uma forma de pagamento');
+        } else if (paymentSelected.value === 'credit') {
+            // Validação dos campos do cartão
+            const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
+            const cardName = document.getElementById('card-name').value;
+            const cardExpiry = document.getElementById('card-expiry').value;
+            const cardCvv = document.getElementById('card-cvv').value;
+
+            if (cardNumber.length !== 16) {
+                isValid = false;
+                alert('Por favor, insira um número de cartão válido');
+            }
+            else if (!cardName) {
+                isValid = false;
+                alert('Por favor, insira o nome como está no cartão');
+            }
+            else if (!cardExpiry || cardExpiry.length !== 5) {
+                isValid = false;
+                alert('Por favor, insira uma data de validade válida');
+            }
+            else if (!cardCvv || cardCvv.length !== 3) {
+                isValid = false;
+                alert('Por favor, insira um CVV válido');
+            }
+        }
+
         return isValid;
     };
 
-    // Finalizar pedido
+    // Finalizar pedido - Único event listener para o botão confirmar
     btnConfirmar.addEventListener('click', async (e) => {
         e.preventDefault();
 
@@ -266,40 +333,5 @@ document.addEventListener('DOMContentLoaded', () => {
                     break;
             }
         });
-    });
-
-    // Validação do formulário antes do envio
-    btnConfirmar.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        const selectedPayment = document.querySelector('input[name="payment"]:checked').value;
-        
-        if (selectedPayment === 'credit') {
-            // Validação dos campos do cartão
-            const cardNumber = cardNumberInput.value.replace(/\s/g, '');
-            const cardName = document.getElementById('card-name').value;
-            const cardExpiry = cardExpiryInput.value;
-            const cardCvv = cardCvvInput.value;
-
-            if (cardNumber.length !== 16) {
-                alert('Por favor, insira um número de cartão válido');
-                return;
-            }
-            if (!cardName) {
-                alert('Por favor, insira o nome como está no cartão');
-                return;
-            }
-            if (!cardExpiry || cardExpiry.length !== 5) {
-                alert('Por favor, insira uma data de validade válida');
-                return;
-            }
-            if (!cardCvv || cardCvv.length !== 3) {
-                alert('Por favor, insira um CVV válido');
-                return;
-            }
-        }
-
-        // Se passou por todas as validações, redireciona para a página de confirmação
-        window.location.href = 'pedido-confirmado.html';
     });
 }); 
