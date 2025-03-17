@@ -195,19 +195,19 @@ document.addEventListener('DOMContentLoaded', function() {
                         <div class="form-grid">
                             <div class="form-group full-width">
                                 <label for="numero-cartao">Número do Cartão</label>
-                                <input type="text" id="numero-cartao" placeholder="0000 0000 0000 0000" required>
+                                <input type="text" id="numero-cartao" placeholder="0000 0000 0000 0000" maxlength="19" required>
                             </div>
                             <div class="form-group full-width">
                                 <label for="nome-cartao">Nome no Cartão</label>
-                                <input type="text" id="nome-cartao" placeholder="Como aparece no cartão" required>
+                                <input type="text" id="nome-cartao" placeholder="Como aparece no cartão" maxlength="30" required>
                             </div>
                             <div class="form-group">
                                 <label for="validade-cartao">Data de Validade</label>
-                                <input type="text" id="validade-cartao" placeholder="MM/AA" required>
+                                <input type="text" id="validade-cartao" placeholder="MM/AA" maxlength="5" required>
                             </div>
                             <div class="form-group">
                                 <label for="cvv-cartao">CVV</label>
-                                <input type="text" id="cvv-cartao" placeholder="123" required>
+                                <input type="text" id="cvv-cartao" placeholder="123" maxlength="4" required>
                             </div>
                             <div class="form-group full-width">
                                 <label class="checkbox-container">
@@ -239,6 +239,64 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         modal.querySelector('#salvar-cartao').addEventListener('click', salvarNovoCartao);
+        
+        // Adiciona as máscaras e validações para os campos do formulário
+        const numeroCartao = modal.querySelector('#numero-cartao');
+        const validadeCartao = modal.querySelector('#validade-cartao');
+        const cvvCartao = modal.querySelector('#cvv-cartao');
+        const nomeCartao = modal.querySelector('#nome-cartao');
+        
+        // Máscara para o número do cartão (formato: 0000 0000 0000 0000)
+        numeroCartao.addEventListener('input', function(e) {
+            let valor = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            valor = valor.substring(0, 16); // Limita a 16 dígitos
+            
+            // Adiciona espaços a cada 4 dígitos
+            let numeroFormatado = '';
+            for (let i = 0; i < valor.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    numeroFormatado += ' ';
+                }
+                numeroFormatado += valor[i];
+            }
+            
+            e.target.value = numeroFormatado;
+        });
+        
+        // Máscara para a data de validade (formato: MM/AA)
+        validadeCartao.addEventListener('input', function(e) {
+            let valor = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            valor = valor.substring(0, 4); // Limita a 4 dígitos
+            
+            if (valor.length > 0) {
+                // Valida mês entre 01 e 12
+                let mes = parseInt(valor.substring(0, 2));
+                if (valor.length >= 2) {
+                    if (mes < 1) mes = '01';
+                    if (mes > 12) mes = '12';
+                    valor = mes.toString().padStart(2, '0') + valor.substring(2);
+                }
+                
+                // Formata como MM/AA
+                if (valor.length > 2) {
+                    valor = valor.substring(0, 2) + '/' + valor.substring(2);
+                }
+            }
+            
+            e.target.value = valor;
+        });
+        
+        // Validação para permitir apenas números no CVV
+        cvvCartao.addEventListener('input', function(e) {
+            let valor = e.target.value.replace(/\D/g, ''); // Remove caracteres não numéricos
+            valor = valor.substring(0, 4); // Limita a 4 dígitos (para cartões Amex)
+            e.target.value = valor;
+        });
+        
+        // Converte nome para maiúsculas
+        nomeCartao.addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
         
         return modal;
     }
@@ -476,4 +534,229 @@ document.addEventListener('DOMContentLoaded', function() {
     btnsRemoverCartao.forEach(btn => {
         btn.addEventListener('click', removerCartao);
     });
+
+    // ===== FUNCIONALIDADES DE ALTERAÇÃO DE SENHA =====
+    
+    // Referência ao modal e botão de alteração de senha
+    const btnAlterarSenha = document.getElementById('btn-alterar-senha');
+    const modalAlterarSenha = document.getElementById('modal-alterar-senha');
+    
+    // Inputs e botões do formulário de senha
+    const novaSenhaInput = document.getElementById('nova-senha');
+    const confirmarSenhaInput = document.getElementById('confirmar-senha');
+    const toggleSenhaButtons = document.querySelectorAll('.toggle-senha');
+    const salvarSenhaBtn = document.getElementById('salvar-senha');
+    const cancelarAlteracaoBtn = document.getElementById('cancelar-alteracao');
+    
+    // Indicadores de requisitos de senha
+    const reqTamanho = document.getElementById('req-tamanho');
+    const reqMaiuscula = document.getElementById('req-maiuscula');
+    const reqNumero = document.getElementById('req-numero');
+    const reqEspecial = document.getElementById('req-especial');
+    const erroConfirmacao = document.getElementById('erro-confirmacao');
+    
+    // Variáveis para controle de validação
+    let requisitosValidos = {
+        tamanho: false,
+        maiuscula: false,
+        numero: false,
+        especial: false
+    };
+    let senhasIguais = false;
+    
+    // Adiciona event listener ao botão de alteração de senha
+    if (btnAlterarSenha) {
+        btnAlterarSenha.addEventListener('click', () => {
+            // Limpa os campos e resetar validações
+            novaSenhaInput.value = '';
+            confirmarSenhaInput.value = '';
+            erroConfirmacao.style.display = 'none';
+            
+            // Resetar os indicadores visuais
+            resetarIndicadoresRequisitos();
+            
+            // Exibe o modal
+            modalAlterarSenha.style.display = 'block';
+            novaSenhaInput.focus();
+        });
+    }
+    
+    // Função para resetar indicadores visuais de requisitos
+    function resetarIndicadoresRequisitos() {
+        reqTamanho.classList.remove('valido');
+        reqMaiuscula.classList.remove('valido');
+        reqNumero.classList.remove('valido');
+        reqEspecial.classList.remove('valido');
+        
+        reqTamanho.querySelector('i').className = 'fas fa-times-circle';
+        reqMaiuscula.querySelector('i').className = 'fas fa-times-circle';
+        reqNumero.querySelector('i').className = 'fas fa-times-circle';
+        reqEspecial.querySelector('i').className = 'fas fa-times-circle';
+        
+        Object.keys(requisitosValidos).forEach(req => {
+            requisitosValidos[req] = false;
+        });
+        
+        senhasIguais = false;
+        salvarSenhaBtn.disabled = true;
+    }
+    
+    // Adiciona event listeners aos botões de visualização de senha
+    toggleSenhaButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const input = this.parentElement.querySelector('input');
+            const icon = this.querySelector('i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'far fa-eye-slash';
+            } else {
+                input.type = 'password';
+                icon.className = 'far fa-eye';
+            }
+        });
+    });
+    
+    // Validação da nova senha
+    if (novaSenhaInput) {
+        novaSenhaInput.addEventListener('input', function() {
+            const senha = this.value;
+            
+            // Validar requisitos
+            requisitosValidos.tamanho = senha.length >= 8;
+            requisitosValidos.maiuscula = /[A-Z]/.test(senha);
+            requisitosValidos.numero = /[0-9]/.test(senha);
+            requisitosValidos.especial = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
+            
+            // Atualizar indicadores visuais
+            atualizarIndicadoresRequisitos();
+            
+            // Validar confirmação de senha se já tiver algo digitado
+            if (confirmarSenhaInput.value) {
+                validarConfirmacaoSenha();
+            }
+            
+            // Verificar se todos os requisitos estão válidos
+            verificarHabilitarSalvar();
+        });
+    }
+    
+    // Validação da confirmação de senha
+    if (confirmarSenhaInput) {
+        confirmarSenhaInput.addEventListener('input', function() {
+            validarConfirmacaoSenha();
+            verificarHabilitarSalvar();
+        });
+    }
+    
+    // Função para atualizar os indicadores visuais de requisitos
+    function atualizarIndicadoresRequisitos() {
+        // Tamanho
+        if (requisitosValidos.tamanho) {
+            reqTamanho.classList.add('valido');
+            reqTamanho.querySelector('i').className = 'fas fa-check-circle';
+        } else {
+            reqTamanho.classList.remove('valido');
+            reqTamanho.querySelector('i').className = 'fas fa-times-circle';
+        }
+        
+        // Maiúscula
+        if (requisitosValidos.maiuscula) {
+            reqMaiuscula.classList.add('valido');
+            reqMaiuscula.querySelector('i').className = 'fas fa-check-circle';
+        } else {
+            reqMaiuscula.classList.remove('valido');
+            reqMaiuscula.querySelector('i').className = 'fas fa-times-circle';
+        }
+        
+        // Número
+        if (requisitosValidos.numero) {
+            reqNumero.classList.add('valido');
+            reqNumero.querySelector('i').className = 'fas fa-check-circle';
+        } else {
+            reqNumero.classList.remove('valido');
+            reqNumero.querySelector('i').className = 'fas fa-times-circle';
+        }
+        
+        // Caractere especial
+        if (requisitosValidos.especial) {
+            reqEspecial.classList.add('valido');
+            reqEspecial.querySelector('i').className = 'fas fa-check-circle';
+        } else {
+            reqEspecial.classList.remove('valido');
+            reqEspecial.querySelector('i').className = 'fas fa-times-circle';
+        }
+    }
+    
+    // Função para validar a confirmação de senha
+    function validarConfirmacaoSenha() {
+        const senha = novaSenhaInput.value;
+        const confirmacao = confirmarSenhaInput.value;
+        
+        if (confirmacao) {
+            if (senha === confirmacao) {
+                senhasIguais = true;
+                erroConfirmacao.style.display = 'none';
+                confirmarSenhaInput.style.borderColor = '#10B981';
+            } else {
+                senhasIguais = false;
+                erroConfirmacao.style.display = 'block';
+                confirmarSenhaInput.style.borderColor = '#EF4444';
+            }
+        } else {
+            senhasIguais = false;
+            erroConfirmacao.style.display = 'none';
+            confirmarSenhaInput.style.borderColor = '#E5E7EB';
+        }
+    }
+    
+    // Função para verificar se o botão de salvar deve ser habilitado
+    function verificarHabilitarSalvar() {
+        const todosRequisitosValidos = Object.values(requisitosValidos).every(Boolean);
+        salvarSenhaBtn.disabled = !(todosRequisitosValidos && senhasIguais);
+    }
+    
+    // Event listener para o botão de salvar
+    if (salvarSenhaBtn) {
+        salvarSenhaBtn.addEventListener('click', function() {
+            // Aqui você implementaria a chamada para API para alterar a senha
+            // Por enquanto, apenas simulamos o sucesso
+            
+            // Fecha o modal
+            modalAlterarSenha.style.display = 'none';
+            
+            // Exibe mensagem de sucesso
+            mostrarAlerta('Sua senha foi alterada com sucesso!');
+            
+            // Limpa os campos
+            novaSenhaInput.value = '';
+            confirmarSenhaInput.value = '';
+            resetarIndicadoresRequisitos();
+        });
+    }
+    
+    // Event listener para o botão de cancelar
+    if (cancelarAlteracaoBtn) {
+        cancelarAlteracaoBtn.addEventListener('click', function() {
+            modalAlterarSenha.style.display = 'none';
+        });
+    }
+    
+    // Event listener para fechar o modal de alteração de senha
+    if (modalAlterarSenha) {
+        // Fechar ao clicar no X
+        const btnFechar = modalAlterarSenha.querySelector('.btn-fechar');
+        if (btnFechar) {
+            btnFechar.addEventListener('click', function() {
+                modalAlterarSenha.style.display = 'none';
+            });
+        }
+        
+        // Fechar ao clicar fora do modal
+        modalAlterarSenha.addEventListener('click', function(e) {
+            if (e.target === modalAlterarSenha) {
+                modalAlterarSenha.style.display = 'none';
+            }
+        });
+    }
 }); 
