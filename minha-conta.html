@@ -20,10 +20,16 @@
                 <h1>Minha conta</h1>
                 <p class="saudacao">Olá, Maria! Bem-vinda de volta.</p>
             </div>
+            <div class="header-actions">
+                <button class="btn-alterar-senha" id="btn-alterar-senha">
+                    <i class="fas fa-key"></i>
+                    <span>Alterar Senha</span>
+                </button>
             <a href="login.html" class="btn-sair">
                 <i class="fas fa-sign-out-alt"></i>
                 Sair da conta
             </a>
+            </div>
         </div>
 
         <nav class="conta-nav">
@@ -473,6 +479,74 @@
                 <i class="fas fa-check-circle"></i>
             </div>
             <div class="alerta-mensagem">Operação realizada com sucesso!</div>
+        </div>
+    </div>
+
+    <!-- Modal de Alteração de Senha -->
+    <div class="modal-pedido" id="modal-alterar-senha">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Alterar Senha</h2>
+                <button class="btn-fechar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-section">
+                <div class="instrucoes-senha">
+                    <p>Para alterar sua senha, preencha os campos abaixo:</p>
+                    <ul class="requisitos-senha">
+                        <li>Mínimo de 8 caracteres</li>
+                        <li>Pelo menos uma letra maiúscula</li>
+                        <li>Pelo menos um número</li>
+                        <li>Pelo menos um caractere especial (ex: @, #, $, %)</li>
+                    </ul>
+                </div>
+                <form id="form-senha">
+                    <div class="form-group senha-field">
+                        <label for="nova-senha">Nova Senha</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="nova-senha" placeholder="Digite sua nova senha" required>
+                            <button type="button" class="toggle-senha">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="requisitos-validacao">
+                            <div class="requisito" id="req-tamanho">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Mínimo de 8 caracteres</span>
+                            </div>
+                            <div class="requisito" id="req-maiuscula">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Pelo menos uma letra maiúscula</span>
+                            </div>
+                            <div class="requisito" id="req-numero">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Pelo menos um número</span>
+                            </div>
+                            <div class="requisito" id="req-especial">
+                                <i class="fas fa-times-circle"></i>
+                                <span>Pelo menos um caractere especial</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group senha-field">
+                        <label for="confirmar-senha">Confirmar Senha</label>
+                        <div class="input-wrapper">
+                            <input type="password" id="confirmar-senha" placeholder="Confirme sua nova senha" required>
+                            <button type="button" class="toggle-senha">
+                                <i class="far fa-eye"></i>
+                            </button>
+                        </div>
+                        <span class="erro-confirmacao" id="erro-confirmacao">As senhas não coincidem</span>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-secundario fechar-modal" id="cancelar-alteracao">Cancelar</button>
+                <button class="btn-primario" id="salvar-senha" disabled>Salvar Nova Senha</button>
+            </div>
         </div>
     </div>
 
