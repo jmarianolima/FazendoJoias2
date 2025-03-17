@@ -160,6 +160,187 @@ function adicionarAoCarrinho(produto) {
     }
 }
 
+// Função para carregar avaliações do produto
+async function carregarAvaliacoes(produtoId) {
+    console.log('[VisualizacaoProduto] Carregando avaliações para o produto ID:', produtoId);
+    
+    // Aqui você pode implementar uma chamada para uma API real
+    // Por enquanto, vamos simular algumas avaliações
+    const avaliacoes = [
+        {
+            id: 1,
+            usuario: {
+                nome: "Maria Silva",
+                iniciais: "MS"
+            },
+            data: "25/06/2023",
+            estrelas: 5,
+            comentario: "Anel lindo e de excelente qualidade! O diamante brilha muito e o acabamento é perfeito. Chegou antes do prazo previsto e muito bem embalado. Super recomendo!"
+        },
+        {
+            id: 2,
+            usuario: {
+                nome: "João Paulo",
+                iniciais: "JP"
+            },
+            data: "18/06/2023",
+            estrelas: 5,
+            comentario: "Comprei para o pedido de casamento e foi um sucesso! A qualidade é excepcional e o atendimento da loja foi impecável. Minha noiva adorou!"
+        },
+        {
+            id: 3,
+            usuario: {
+                nome: "Carla Almeida",
+                iniciais: "CA"
+            },
+            data: "10/06/2023",
+            estrelas: 4,
+            comentario: "O anel é muito bonito, mas achei que o diamante seria um pouco maior. De qualquer forma, a qualidade é ótima e o atendimento foi excelente."
+        },
+        {
+            id: 4,
+            usuario: {
+                nome: "Roberto Santos",
+                iniciais: "RS"
+            },
+            data: "05/06/2023",
+            estrelas: 5,
+            comentario: "Produto de altíssima qualidade! Entrega rápida e embalagem segura. Recomendo a todos!"
+        },
+        {
+            id: 5,
+            usuario: {
+                nome: "Ana Luiza",
+                iniciais: "AL"
+            },
+            data: "28/05/2023",
+            estrelas: 5,
+            comentario: "Simplesmente perfeito! O anel é ainda mais bonito pessoalmente. Valeu cada centavo!"
+        },
+        {
+            id: 6,
+            usuario: {
+                nome: "Pedro Henrique",
+                iniciais: "PH"
+            },
+            data: "20/05/2023",
+            estrelas: 3,
+            comentario: "O produto é bom, mas demorou mais do que o esperado para chegar. O atendimento ao cliente poderia ser melhor."
+        }
+    ];
+    
+    return {
+        media: 4.8,
+        total: 24,
+        distribuicao: {
+            5: 75,
+            4: 20,
+            3: 5,
+            2: 0,
+            1: 0
+        },
+        avaliacoes: avaliacoes
+    };
+}
+
+// Função para renderizar as avaliações na página
+function renderizarAvaliacoes(dadosAvaliacoes) {
+    console.log('[VisualizacaoProduto] Renderizando avaliações:', dadosAvaliacoes);
+    
+    // Atualizar média e total
+    document.querySelector('.media-valor').textContent = dadosAvaliacoes.media.toFixed(1);
+    document.querySelector('.total-avaliacoes').textContent = `Baseado em ${dadosAvaliacoes.total} avaliações`;
+    
+    // Atualizar distribuição de estrelas
+    for (let i = 5; i >= 1; i--) {
+        const porcentagem = dadosAvaliacoes.distribuicao[i];
+        const barraElement = document.querySelector(`.barra-estrela:nth-child(${6-i}) .barra-preenchida`);
+        const porcentagemElement = document.querySelector(`.barra-estrela:nth-child(${6-i}) .estrela-porcentagem`);
+        
+        if (barraElement && porcentagemElement) {
+            barraElement.style.width = `${porcentagem}%`;
+            porcentagemElement.textContent = `${porcentagem}%`;
+        }
+    }
+    
+    // Limpar lista de avaliações existente
+    const listaAvaliacoes = document.querySelector('.avaliacoes-lista');
+    // Manter apenas o botão "Ver Mais"
+    const btnMaisAvaliacoes = listaAvaliacoes.querySelector('.btn-mais-avaliacoes');
+    listaAvaliacoes.innerHTML = '';
+    
+    // Adicionar avaliações (limitado a 3 inicialmente)
+    const avaliacoesVisiveis = dadosAvaliacoes.avaliacoes.slice(0, 3);
+    
+    avaliacoesVisiveis.forEach(avaliacao => {
+        const avaliacaoHTML = criarElementoAvaliacao(avaliacao);
+        listaAvaliacoes.appendChild(avaliacaoHTML);
+    });
+    
+    // Adicionar botão "Ver Mais" se houver mais avaliações
+    if (dadosAvaliacoes.avaliacoes.length > 3) {
+        const btnMais = document.createElement('button');
+        btnMais.className = 'btn-mais-avaliacoes';
+        btnMais.textContent = 'Ver Mais Avaliações';
+        btnMais.addEventListener('click', () => mostrarMaisAvaliacoes(dadosAvaliacoes.avaliacoes));
+        listaAvaliacoes.appendChild(btnMais);
+    }
+}
+
+// Função para criar elemento de avaliação
+function criarElementoAvaliacao(avaliacao) {
+    const avaliacaoItem = document.createElement('div');
+    avaliacaoItem.className = 'avaliacao-item';
+    avaliacaoItem.dataset.id = avaliacao.id;
+    
+    // Criar estrelas
+    let estrelasHTML = '';
+    for (let i = 1; i <= 5; i++) {
+        const estrelaTipo = i <= avaliacao.estrelas ? 'fas' : 'far';
+        estrelasHTML += `<i class="${estrelaTipo} fa-star"></i>`;
+    }
+    
+    avaliacaoItem.innerHTML = `
+        <div class="avaliacao-cabecalho">
+            <div class="avaliacao-usuario">
+                <div class="usuario-avatar">${avaliacao.usuario.iniciais}</div>
+                <div class="usuario-info">
+                    <h4 class="usuario-nome">${avaliacao.usuario.nome}</h4>
+                    <span class="data-avaliacao">${avaliacao.data}</span>
+                </div>
+            </div>
+            <div class="avaliacao-estrelas">
+                ${estrelasHTML}
+            </div>
+        </div>
+        <p class="avaliacao-comentario">${avaliacao.comentario}</p>
+    `;
+    
+    return avaliacaoItem;
+}
+
+// Função para mostrar mais avaliações
+function mostrarMaisAvaliacoes(todasAvaliacoes) {
+    console.log('[VisualizacaoProduto] Mostrando mais avaliações');
+    
+    const listaAvaliacoes = document.querySelector('.avaliacoes-lista');
+    const avaliacoesExistentes = listaAvaliacoes.querySelectorAll('.avaliacao-item');
+    
+    // Remover o botão "Ver Mais"
+    const btnMais = listaAvaliacoes.querySelector('.btn-mais-avaliacoes');
+    if (btnMais) {
+        btnMais.remove();
+    }
+    
+    // Adicionar as avaliações restantes
+    const avaliacoesRestantes = todasAvaliacoes.slice(avaliacoesExistentes.length);
+    
+    avaliacoesRestantes.forEach(avaliacao => {
+        const avaliacaoHTML = criarElementoAvaliacao(avaliacao);
+        listaAvaliacoes.appendChild(avaliacaoHTML);
+    });
+}
+
 // Carrega o produto e adiciona os eventos quando o documento estiver carregado
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOMContentLoaded disparado');
@@ -184,24 +365,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.querySelector('.preco').textContent = `R$ ${produto.preco.toFixed(2)}`;
         document.querySelector('.produto-descricao p').textContent = produto.descricao;
         document.querySelector('.produto-imagem-principal img').src = produto.imagem;
-
-        // Preencher informações dos materiais
-        const materiaisLista = document.querySelector('.produto-materiais ul');
-        materiaisLista.innerHTML = ''; // Limpa a lista atual
-
-        if (produto.materiais && produto.materiais.length > 0) {
-            produto.materiais.forEach(material => {
-                const materialItem = document.createElement('li');
-                materialItem.textContent = material;
-                materiaisLista.appendChild(materialItem);
-            });
-        } else {
-            const materialItem = document.createElement('li');
-            materialItem.textContent = 'Material não especificado';
-            materialItem.style.fontStyle = 'italic';
-            materialItem.style.color = 'var(--gray-500)';
-            materiaisLista.appendChild(materialItem);
-        }
+        
+        // Preencher materiais
+        const materiaisList = document.querySelector('.produto-materiais ul');
+        materiaisList.innerHTML = '';
+        produto.materiais.forEach(material => {
+            const li = document.createElement('li');
+            li.textContent = material;
+            materiaisList.appendChild(li);
+        });
+        
+        // Carregar avaliações do produto
+        const dadosAvaliacoes = await carregarAvaliacoes(produto.id);
+        renderizarAvaliacoes(dadosAvaliacoes);
 
         // Adicionar evento aos botões de tamanho
         const btnsSize = document.querySelectorAll('.tamanho-btn');
