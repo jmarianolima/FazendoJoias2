@@ -160,6 +160,16 @@
                 <div class="camera-view" id="camera-view">
                     <video id="videoElement" autoplay playsinline></video>
                     <canvas id="output-canvas" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></canvas>
+                    <div class="instruction-message visible" id="camera-instructions">
+                        <div class="message-content">
+                            <i class="fas fa-hand-paper"></i>
+                            <p>Mostre suas mãos para a câmera para que a joia seja exibida</p>
+                            <p class="sub-message">Use os controles laterais para ajustar a visualização</p>
+                            <button id="close-instructions" class="btn-secondary">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    </div>
                     <div class="camera-controls">
                         <button class="camera-btn" onclick="tirarFoto()">
                             <i class="fas fa-camera"></i>
@@ -315,12 +325,21 @@
                 document.getElementById('camera-view').classList.add('active');
                 document.querySelector('.model-controls').style.display = 'flex'; // Mostrar controles imediatamente
 
+                // Mostrar a mensagem de instruções
+                const instructionsElement = document.getElementById('camera-instructions');
+                instructionsElement.classList.add('visible');
+                
+                // Adicionar evento para fechar a mensagem
+                document.getElementById('close-instructions').addEventListener('click', function() {
+                    instructionsElement.classList.remove('visible');
+                });
+
                 // Inicializar Three.js e carregar modelos
                 await Promise.all([
                     initThreeJS(),
                     loadHandposeModel()
                 ]);
-
+                
                 // Iniciar detecção de mão
                 detectHand();
             } catch (err) {
@@ -336,6 +355,12 @@
                 document.getElementById('camera-view').classList.remove('active');
                 document.getElementById('camera-placeholder').style.display = 'flex';
                 document.querySelector('.model-controls').style.display = 'none'; // Ocultar controles ao parar a câmera
+                
+                // Ocultar a mensagem de instruções
+                const instructionsElement = document.getElementById('camera-instructions');
+                if (instructionsElement) {
+                    instructionsElement.classList.remove('visible');
+                }
 
                 // Limpar recursos do Three.js
                 if (renderer) {
