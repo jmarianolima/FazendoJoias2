@@ -368,45 +368,59 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Função para remover um cartão
     function removerCartao(event) {
+        const cartaoItem = event.target.closest('.cartao-item');
+        const cartaoNumero = cartaoItem.querySelector('.cartao-numero').textContent;
+        const cartaoValidade = cartaoItem.querySelector('.cartao-validade').textContent;
+        const cartaoIcone = cartaoItem.querySelector('.cartao-icon').innerHTML;
+        const isPadrao = cartaoItem.querySelector('.tag-padrao') !== null;
+        
         // Cria um modal de confirmação personalizado
         const modalConfirmacao = document.createElement('div');
-        modalConfirmacao.className = 'modal-pedido';
-        modalConfirmacao.style.display = 'flex';
+        modalConfirmacao.className = 'modal-confirmacao-exclusao';
         modalConfirmacao.innerHTML = `
-            <div class="modal-content" style="max-width: 400px;">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h2>Confirmar exclusão</h2>
                     <button class="btn-fechar">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                <div class="modal-section">
-                    <p>Tem certeza que deseja remover este cartão?</p>
+                <div class="modal-body">
+                    <div class="cartao-preview">
+                        <div class="cartao-icon">${cartaoIcone}</div>
+                        <div class="cartao-detalhes">
+                            <div class="cartao-numero">${cartaoNumero}</div>
+                            <div class="cartao-validade">Validade: ${cartaoValidade}</div>
+                            ${isPadrao ? '<span class="tag-padrao" style="margin-top: 5px; display: inline-block;">Padrão</span>' : ''}
+                        </div>
+                    </div>
+                    <p class="mensagem">Tem certeza que deseja remover este cartão?</p>
+                    ${isPadrao ? '<p class="aviso">Este é seu cartão padrão. Se removê-lo, outro cartão será definido como padrão.</p>' : ''}
                 </div>
                 <div class="modal-footer">
-                    <button class="btn-secundario btn-cancelar">Cancelar</button>
-                    <button class="btn-primario btn-confirmar" style="background: var(--red-500);">Remover</button>
+                    <button class="btn-cancelar">Cancelar</button>
+                    <button class="btn-confirmar">Remover</button>
                 </div>
             </div>
         `;
         
         document.body.appendChild(modalConfirmacao);
         
+        // Mostra o modal com animação
+        setTimeout(() => {
+            modalConfirmacao.classList.add('mostrar');
+        }, 10);
+        
         // Adiciona event listeners para o modal de confirmação
         modalConfirmacao.querySelector('.btn-fechar').addEventListener('click', () => {
-            document.body.removeChild(modalConfirmacao);
+            fecharModalConfirmacao();
         });
         
         modalConfirmacao.querySelector('.btn-cancelar').addEventListener('click', () => {
-            document.body.removeChild(modalConfirmacao);
+            fecharModalConfirmacao();
         });
         
         modalConfirmacao.querySelector('.btn-confirmar').addEventListener('click', () => {
-            const cartaoItem = event.target.closest('.cartao-item');
-            
-            // Verifica se o cartão é o padrão
-            const isPadrao = cartaoItem.querySelector('.tag-padrao');
-            
             // Remove o cartão
             cartaoItem.remove();
             
@@ -427,12 +441,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
-            // Remove o modal de confirmação
-            document.body.removeChild(modalConfirmacao);
+            // Fecha o modal de confirmação
+            fecharModalConfirmacao();
             
             // Exibe mensagem de sucesso
             mostrarAlerta('Cartão removido com sucesso!');
         });
+        
+        // Fecha o modal de confirmação quando clicar fora
+        modalConfirmacao.addEventListener('click', (e) => {
+            if (e.target === modalConfirmacao) {
+                fecharModalConfirmacao();
+            }
+        });
+        
+        // Função para fechar o modal com animação
+        function fecharModalConfirmacao() {
+            modalConfirmacao.classList.remove('mostrar');
+            setTimeout(() => {
+                document.body.removeChild(modalConfirmacao);
+            }, 300);
+        }
     }
     
     // Adiciona event listeners para os botões
