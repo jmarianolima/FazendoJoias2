@@ -425,6 +425,16 @@
     background-color: var(--purple-100);
 }
 
+.btn-pedido.btn-devolver {
+    background-color: var(--red-50);
+    color: var(--red-700);
+}
+
+.btn-pedido.btn-devolver:hover {
+    background-color: var(--red-100);
+    color: var(--red-800);
+}
+
 @media (max-width: 1024px) {
     .conta-nav {
         gap: 1rem;
@@ -644,6 +654,12 @@
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1000;
     overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-pedido[style*="display: flex"] {
+    display: flex !important;
 }
 
 .modal-content {
@@ -989,27 +1005,92 @@
 }
 
 .modal-footer {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--purple-200);
-}
-
-.total {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+.devolucao-info {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    background-color: var(--gray-50);
+    border-radius: 12px;
 }
 
-.total .label {
-    color: var(--gray-900);
-    font-weight: 500;
-    font-size: 1.1rem;
-}
-
-.total .value {
+.devolucao-info i {
+    font-size: 3rem;
     color: var(--purple-600);
+    margin-bottom: 1.5rem;
+}
+
+.devolucao-info p {
+    color: var(--gray-700);
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.devolucao-info .email-link {
+    font-size: 1.2rem;
     font-weight: 600;
-    font-size: 1.25rem;
+    color: var(--purple-600);
+    margin: 0.5rem 0 1.5rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.devolucao-info .email-link:hover {
+    color: var(--purple-700);
+    text-decoration: underline;
+}
+
+.devolucao-info .instrucoes {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    margin-top: 0.5rem;
+}
+
+.btn-primario {
+    background: linear-gradient(45deg, var(--purple-600), var(--purple-500));
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primario:hover {
+    background: linear-gradient(45deg, var(--purple-700), var(--purple-600));
+    transform: translateY(-2px);
+}
+
+.btn-secundario {
+    background-color: var(--gray-100);
+    color: var(--gray-700);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-secundario:hover {
+    background-color: var(--gray-200);
 }
 
 @media (max-width: 768px) {
