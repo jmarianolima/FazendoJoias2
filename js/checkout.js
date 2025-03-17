@@ -89,6 +89,17 @@ document.addEventListener('DOMContentLoaded', () => {
                             cidadeSelect.add(newOption);
                             cidadeSelect.value = data.localidade;
                         }
+                        
+                        // Disparar o evento change no select de cidade para remover a mensagem de erro
+                        const cidadeChangeEvent = new Event('change', { bubbles: true });
+                        cidadeSelect.dispatchEvent(cidadeChangeEvent);
+                        
+                        // Remover explicitamente a mensagem de erro do campo cidade
+                        const cidadeErrorElement = cidadeSelect.parentElement.querySelector('.error-message');
+                        if (cidadeErrorElement) {
+                            cidadeErrorElement.remove();
+                        }
+                        cidadeSelect.style.borderColor = '';
                     }, 100);
                     
                     // Remover mensagens de erro dos campos preenchidos automaticamente
