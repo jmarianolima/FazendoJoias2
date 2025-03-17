@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="styles/pedido-confirmado.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Biblioteca QRCode.js -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 </head>
 <body>
     <!-- Header será carregado via JavaScript -->
@@ -111,6 +113,45 @@
                                     <p>Acompanhe o status do pedido na sua conta.</p>
                                     <span class="status-time">Previsão: 18/03/2025</span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card de Pagamento PIX (será exibido apenas quando o pagamento for PIX) -->
+            <div class="card card-pix" style="display: none;">
+                <div class="card-header">
+                    <i class="fas fa-qrcode"></i>
+                    <h2>Pagamento via PIX</h2>
+                </div>
+                <div class="card-content">
+                    <div class="pix-container">
+                        <div class="pix-qrcode">
+                            <div id="qrcode">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=00020126580014BR.GOV.BCB.PIX0136example.com/pix/v2/cobv/318445161589" alt="QR Code PIX" width="200" height="200">
+                            </div>
+                        </div>
+                        <div class="pix-info">
+                            <p>Escaneie o QR Code com o aplicativo do seu banco para realizar o pagamento.</p>
+                            <div class="pix-copy">
+                                <p><strong>Ou copie o código PIX:</strong></p>
+                                <div class="pix-code-container">
+                                    <input type="text" id="pix-code" value="00020126580014BR.GOV.BCB.PIX0136example.com/pix/v2/cobv/9d36b84fc4214eb3b4abe636cdc6" readonly>
+                                    <button id="copy-pix" class="btn-copy">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                                <span id="copy-message" style="display: none; color: var(--green-500); font-size: 0.8rem; margin-top: 5px;">
+                                    <i class="fas fa-check"></i> Código copiado!
+                                </span>
+                            </div>
+                            <div class="pix-timer">
+                                <p><strong>Tempo para pagamento:</strong></p>
+                                <div class="timer">
+                                    <span id="timer-minutes">30</span>:<span id="timer-seconds">00</span>
+                                </div>
+                                <p class="timer-info">O QR Code expira em 30 minutos</p>
                             </div>
                         </div>
                     </div>
