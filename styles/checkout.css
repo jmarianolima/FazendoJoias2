@@ -718,4 +718,33 @@
     background-color: var(--gray-50);
     cursor: not-allowed;
     border-color: var(--gray-200);
+}
+
+/* Estilo para campos obrigatórios */
+.required {
+    color: #e53e3e;
+    margin-left: 3px;
+}
+
+/* Estilo para mensagens de erro */
+.error-message {
+    color: #e53e3e;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    display: block;
+}
+
+/* Estilo para campos com erro */
+.input-group input.error,
+.input-group select.error {
+    border-color: #e53e3e;
+    background-color: #fff5f5;
+}
+
+/* Estilo para a legenda dos campos obrigatórios */
+.form-legend {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    margin-bottom: 1rem;
+    font-style: italic;
 } 
