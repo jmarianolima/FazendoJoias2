@@ -90,43 +90,43 @@
     gap: 2rem;
 }
 
-/* Campos específicos */
+/* Ajustes para o layout de duas colunas */
 .input-group.rua {
-    grid-column: 1 / -1;
-}
-
-.input-group.numero {
-    grid-column: 1 / 2;
-}
-
-.input-group.complemento {
-    grid-column: 2 / 3;
-}
-
-.input-group.bairro {
-    grid-column: 1 / 2;
+    flex: 3;
 }
 
 .input-group.cep {
-    grid-column: 2 / 3;
+    flex: 1;
+}
+
+.input-group.bairro {
+    grid-column: 1 / -1;
+    width: 100%;
 }
 
 .input-group.cidade {
-    grid-column: 1 / 2;
+    flex: 3;
 }
 
 .input-group.estado {
-    grid-column: 2 / 3;
+    flex: 1;
 }
 
-/* Grupo de dados pessoais */
-.dados-pessoais .input-row {
-    grid-template-columns: 1fr 1fr;
+/* Ajuste para campos específicos */
+.input-row:has(.rua, .cep),
+.input-row:has(.cidade, .estado) {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
 }
 
-/* Grupo de endereço */
-.endereco .input-row {
-    grid-template-columns: 1fr 1fr;
+/* Ajuste para o campo de bairro */
+.input-row.bairro-row {
+    display: block;
+}
+
+.input-row.bairro-row .input-group.bairro {
+    max-width: 50%;
 }
 
 .input-group {
