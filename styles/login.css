@@ -28,7 +28,7 @@
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--purple-500), var(--purple-600));
+    background: linear-gradient(90deg, #805ad5, #6b46c1);
 }
 
 .login-header {
@@ -40,12 +40,12 @@
     font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     font-weight: 600;
-    color: var(--gray-900);
+    color: #1a202c;
     margin-bottom: 0.75rem;
 }
 
 .subtitle {
-    color: var(--gray-600);
+    color: #718096;
     font-size: 1.1rem;
 }
 
@@ -63,7 +63,7 @@
 }
 
 .form-group label {
-    color: var(--gray-800);
+    color: #2d3748;
     font-weight: 600;
     font-size: 0.95rem;
 }
@@ -77,29 +77,29 @@
 .input-with-icon i {
     position: absolute;
     left: 1rem;
-    color: var(--gray-400);
+    color: #cbd5e0;
     transition: color 0.3s;
 }
 
 .input-with-icon input {
     width: 100%;
     padding: 1rem 2.75rem;
-    border: 2px solid var(--gray-200);
+    border: 2px solid #e2e8f0;
     border-radius: 10px;
     font-size: 1rem;
-    color: var(--gray-900);
+    color: #1a202c;
     transition: all 0.3s;
-    background-color: var(--gray-50);
+    background-color: #f7fafc;
 }
 
 .input-with-icon input:focus {
     outline: none;
-    border-color: var(--purple-500);
+    border-color: #805ad5;
     background-color: white;
 }
 
 .input-with-icon input:focus + i {
-    color: var(--purple-500);
+    color: #805ad5;
 }
 
 .toggle-password {
@@ -107,14 +107,14 @@
     right: 1rem;
     background: none;
     border: none;
-    color: var(--gray-400);
+    color: #cbd5e0;
     cursor: pointer;
     padding: 0.5rem;
     transition: color 0.3s;
 }
 
 .toggle-password:hover {
-    color: var(--gray-600);
+    color: #718096;
 }
 
 .form-options {
@@ -133,19 +133,19 @@
 .remember-me input[type="checkbox"] {
     width: 1.125rem;
     height: 1.125rem;
-    border: 2px solid var(--gray-300);
+    border: 2px solid #e2e8f0;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .remember-me label {
-    color: var(--gray-600);
+    color: #718096;
     font-size: 0.9rem;
     cursor: pointer;
 }
 
 .forgot-password {
-    color: var(--purple-600);
+    color: #6b46c1;
     text-decoration: none;
     font-size: 0.9rem;
     font-weight: 500;
@@ -153,12 +153,12 @@
 }
 
 .forgot-password:hover {
-    color: var(--purple-700);
+    color: #553c9a;
     text-decoration: underline;
 }
 
 .btn-entrar {
-    background: linear-gradient(90deg, var(--purple-500), var(--purple-600));
+    background: linear-gradient(90deg, #805ad5, #6b46c1);
     color: white;
     border: none;
     padding: 1rem;
@@ -175,7 +175,7 @@
 
 .btn-entrar:hover {
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(var(--purple-500-rgb), 0.3);
+    box-shadow: 0 4px 12px rgba(128, 90, 213, 0.3);
 }
 
 .btn-entrar:active {
@@ -186,7 +186,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: var(--gray-400);
+    color: #cbd5e0;
     font-size: 0.9rem;
     margin: 1.5rem 0;
 }
@@ -195,7 +195,7 @@
 .separator::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .separator span {
@@ -215,17 +215,17 @@
     gap: 0.75rem;
     padding: 0.875rem;
     border-radius: 10px;
-    border: 2px solid var(--gray-200);
+    border: 2px solid #e2e8f0;
     background: white;
-    color: var(--gray-700);
+    color: #4a5568;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .btn-social:hover {
-    background: var(--gray-50);
-    border-color: var(--gray-300);
+    background: #f7fafc;
+    border-color: #e2e8f0;
 }
 
 .btn-social i {
@@ -243,12 +243,12 @@
 .register-link {
     text-align: center;
     margin-top: 2rem;
-    color: var(--gray-600);
+    color: #718096;
     font-size: 0.95rem;
 }
 
 .register-link a {
-    color: var(--purple-600);
+    color: #6b46c1;
     text-decoration: none;
     font-weight: 600;
     margin-left: 0.5rem;
@@ -256,7 +256,7 @@
 }
 
 .register-link a:hover {
-    color: var(--purple-700);
+    color: #553c9a;
     text-decoration: underline;
 }
 
