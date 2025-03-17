@@ -2,6 +2,16 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Inicializando script minha-conta.js');
     
+    // Garantir que os campos de edição estejam ocultos inicialmente
+    document.querySelectorAll('.campo-edicao').forEach(input => {
+        input.style.display = 'none';
+    });
+    
+    // Garantir que os campos de texto estejam visíveis inicialmente
+    document.querySelectorAll('.campo-texto').forEach(span => {
+        span.style.display = 'block';
+    });
+    
     // Adiciona event listeners aos botões de edição
     document.querySelectorAll('.btn-editar').forEach(botao => {
         botao.addEventListener('click', function() {
