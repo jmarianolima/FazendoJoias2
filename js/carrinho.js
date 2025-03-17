@@ -33,15 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const cart = JSON.parse(localStorage.getItem('carrinho')) || [];
         const cartSummary = document.querySelector('.cart-summary');
         const shippingSection = document.querySelector('.shipping-section');
-        const cartContent = document.querySelector('.cart-content');
 
         // Atualizar a variável cartItems com os dados mais recentes do localStorage
         cartItems = cart;
 
         if (cart.length === 0) {
-            // Adicionar classe ao container principal quando o carrinho estiver vazio
-            if (cartContent) cartContent.classList.add('empty-cart');
-            
             // Ocultar o resumo do pedido e a seção de frete quando o carrinho estiver vazio
             if (cartSummary) cartSummary.style.display = 'none';
             if (shippingSection) shippingSection.style.display = 'none';
@@ -79,9 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
             
             return;
         } else {
-            // Remover classe do container principal quando houver produtos no carrinho
-            if (cartContent) cartContent.classList.remove('empty-cart');
-
             // Mostrar o resumo do pedido e a seção de frete quando houver produtos no carrinho
             if (cartSummary) cartSummary.style.display = 'block';
             if (shippingSection) shippingSection.style.display = 'block';
@@ -269,6 +262,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     cepInput.focus();
                 }
                 return;
+            }
+
+            // Salvar o valor do frete selecionado no localStorage
+            const freteRadioSelecionado = document.querySelector('input[name="frete"]:checked');
+            if (freteRadioSelecionado) {
+                const freteValor = parseFloat(freteRadioSelecionado.value);
+                localStorage.setItem('shipping_cost', freteValor.toString());
+                console.log('Valor do frete salvo no localStorage:', freteValor);
             }
 
             window.location.href = 'checkout.html';
