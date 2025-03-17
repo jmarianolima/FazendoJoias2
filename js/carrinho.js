@@ -26,15 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Renderizar itens do carrinho
     const cartItemsContainer = document.querySelector('.cart-items');
     const cartSummary = document.querySelector('.cart-summary');
+    const shippingSection = document.querySelector('.shipping-section');
     
     function renderCartItems() {
         const cartContainer = document.querySelector('.cart-items');
         const cart = JSON.parse(localStorage.getItem('carrinho')) || [];
+        const cartSummary = document.querySelector('.cart-summary');
+        const shippingSection = document.querySelector('.shipping-section');
+        const cartContent = document.querySelector('.cart-content');
 
         // Atualizar a variável cartItems com os dados mais recentes do localStorage
         cartItems = cart;
 
         if (cart.length === 0) {
+            // Adicionar classe ao container principal quando o carrinho estiver vazio
+            if (cartContent) cartContent.classList.add('empty-cart');
+            
+            // Ocultar o resumo do pedido e a seção de frete quando o carrinho estiver vazio
+            if (cartSummary) cartSummary.style.display = 'none';
+            if (shippingSection) shippingSection.style.display = 'none';
+            
             cartContainer.innerHTML = `
                 <div class="empty-cart-container">
                     <div class="empty-cart-icon">
@@ -63,59 +74,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
-            // Zerar o resumo do pedido
-            const summaryProducts = document.querySelector('.summary-products');
-            if (summaryProducts) {
-                summaryProducts.innerHTML = `
-                    <div class="empty-summary">
-                        <p>Nenhum item no carrinho</p>
-                        <small>Adicione produtos para ver o resumo aqui</small>
-                    </div>
-                `;
-            }
-
-            // Zerar os valores totais
-            const totalElement = document.querySelector('.total-value');
-            if (totalElement) {
-                totalElement.textContent = 'R$ 0,00';
-            }
-
-            // Limpar e zerar opções de frete
-            const shippingOptions = document.querySelector('.shipping-options');
-            if (shippingOptions) {
-                shippingOptions.innerHTML = '';
-                shippingOptions.classList.remove('show');
-            }
-
-            // Zerar o valor do frete no resumo
-            const freteElement = document.querySelector('.summary-item.frete');
-            if (freteElement) {
-                const freteValueElement = freteElement.querySelector('.frete-value');
-                if (freteValueElement) {
-                    freteValueElement.textContent = 'R$ 0,00';
-                }
-            }
-
-            // Resetar o select de frete se existir
-            const freteSelect = document.querySelector('#opcao-frete');
-            if (freteSelect) {
-                freteSelect.value = '0';
-            }
-
-            // Resetar os radio buttons de frete se existirem
-            const freteRadios = document.querySelectorAll('input[name="frete"]');
-            freteRadios.forEach(radio => {
-                radio.checked = false;
-            });
-
             // Atualizar o resumo do pedido
             atualizarResumo();
             
             return;
-        }
+        } else {
+            // Remover classe do container principal quando houver produtos no carrinho
+            if (cartContent) cartContent.classList.remove('empty-cart');
 
-        if (cartSummary) {
-            cartSummary.classList.remove('empty');
+            // Mostrar o resumo do pedido e a seção de frete quando houver produtos no carrinho
+            if (cartSummary) cartSummary.style.display = 'block';
+            if (shippingSection) shippingSection.style.display = 'block';
         }
 
         const itemsHtml = cartItems.map(item => `
@@ -398,6 +367,38 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Adicionar listener para o botão de calcular frete
     const calcularFreteBtn = document.querySelector('.shipping-section button');
+    const cepInput = document.querySelector('#cep');
+    
+    // Adicionar máscara e validação para o campo de CEP
+    if (cepInput) {
+        // Limitar a entrada para apenas números e máximo de 8 dígitos
+        cepInput.addEventListener('input', function(e) {
+            // Remove caracteres não numéricos
+            let value = this.value.replace(/\D/g, '');
+            
+            // Limita a 8 dígitos
+            if (value.length > 8) {
+                value = value.slice(0, 8);
+            }
+            
+            // Formata o CEP (XXXXX-XXX)
+            if (value.length > 5) {
+                value = value.slice(0, 5) + '-' + value.slice(5);
+            }
+            
+            // Atualiza o valor do campo
+            this.value = value;
+        });
+        
+        // Impede a entrada de caracteres não numéricos
+        cepInput.addEventListener('keypress', function(e) {
+            const char = String.fromCharCode(e.which);
+            if (!/[0-9]/.test(char)) {
+                e.preventDefault();
+            }
+        });
+    }
+    
     if (calcularFreteBtn) {
         // Prevenir envio do formulário
         const freteForm = calcularFreteBtn.closest('form');
@@ -406,7 +407,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 e.preventDefault();
                 e.stopPropagation();
                 
-                const cepInput = document.querySelector('#cep');
                 const cep = cepInput.value.replace(/\D/g, ''); // Remove caracteres não numéricos
 
                 if (!cep) {
@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // Validação básica do CEP (8 dígitos)
                 if (cep.length !== 8) {
-                    mostrarAlerta('Por favor, digite um CEP válido.', 'atencao');
+                    mostrarAlerta('Por favor, digite um CEP válido com 8 dígitos.', 'atencao');
                     cepInput.focus();
                     return;
                 }
@@ -479,9 +479,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function removeItem(itemId) {
         const item = document.querySelector(`.cart-item[data-id="${itemId}"]`);
         if (item) {
-            item.classList.add('removing');
-            
-            setTimeout(() => {
+        item.classList.add('removing');
+        
+        setTimeout(() => {
                 // Remover o item do array local
                 cartItems = cartItems.filter(item => item.id !== itemId);
                 
@@ -489,13 +489,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('carrinho', JSON.stringify(cartItems));
                 
                 // Se o CartManager estiver disponível, atualizar através dele
-                if (window.cartManager) {
-                    window.cartManager.loadCartState();
-                    window.cartManager.updateHeaderCounter();
-                }
-                
+            if (window.cartManager) {
+                window.cartManager.loadCartState();
+                window.cartManager.updateHeaderCounter();
+            }
+            
                 // Renderizar os itens atualizados
-                renderCartItems();
+            renderCartItems();
                 
                 // Atualizar explicitamente o resumo do pedido
                 atualizarResumo();
@@ -512,7 +512,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     finalizarBtn.disabled = true;
                     finalizarBtn.title = 'Seu carrinho está vazio';
                 }
-            }, 300);
+        }, 300);
         }
     }
 
@@ -538,16 +538,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function atualizarResumo() {
         const summaryProducts = document.querySelector('.summary-products');
+        const cartSummary = document.querySelector('.cart-summary');
+        
         if (!summaryProducts) return;
 
-        if (cartItems.length === 0) {
+            if (cartItems.length === 0) {
+            // Ocultar o resumo do pedido quando o carrinho estiver vazio
+            if (cartSummary) cartSummary.style.display = 'none';
+            
             summaryProducts.innerHTML = `
                 <div class="empty-summary">
                     <p>Nenhum item no carrinho</p>
                     <small>Adicione produtos para ver o resumo aqui</small>
                 </div>
             `;
+            
+            // Zerar o total
+            const totalElement = document.querySelector('.total-value');
+            if (totalElement) {
+                totalElement.textContent = 'R$ 0,00';
+            }
+            
+                return;
         } else {
+            // Mostrar o resumo do pedido quando houver produtos
+            if (cartSummary) cartSummary.style.display = 'block';
+            
             let html = '';
             cartItems.forEach(item => {
                 const precoTotal = (item.quantidade || 1) * item.preco;
