@@ -56,6 +56,90 @@ document.addEventListener('DOMContentLoaded', () => {
         entregaElement.textContent = calcularDataEntrega();
     }
 
+    // Verificar se o pagamento é PIX e exibir o QR Code
+    if (dadosPedido.formaPagamento === 'pix') {
+        const cardPix = document.querySelector('.card-pix');
+        if (cardPix) {
+            cardPix.style.display = 'block';
+            
+            // Gerar QR Code
+            const qrcodeContainer = document.getElementById('qrcode');
+            if (qrcodeContainer && window.QRCode) {
+                // Criar um código PIX fictício baseado no valor total e número do pedido
+                const valorFormatado = dadosPedido.total.toFixed(2).replace('.', '');
+                const numeroPedido = Math.floor(Math.random() * 1000000).toString().padStart(6, '0');
+                const pixCopia = `00020126580014BR.GOV.BCB.PIX0136example.com/pix/v2/cobv/${numeroPedido}${valorFormatado}`;
+                
+                // Atualizar o campo de texto com o código PIX
+                const pixCodeInput = document.getElementById('pix-code');
+                if (pixCodeInput) {
+                    pixCodeInput.value = pixCopia;
+                }
+                
+                // Gerar o QR Code
+                QRCode.toCanvas(qrcodeContainer, pixCopia, {
+                    width: 200,
+                    margin: 1,
+                    color: {
+                        dark: '#333333',
+                        light: '#FFFFFF'
+                    }
+                }, function (error) {
+                    if (error) console.error(error);
+                });
+                
+                // Iniciar o temporizador
+                iniciarTemporizador();
+                
+                // Adicionar funcionalidade para copiar o código PIX
+                const btnCopy = document.getElementById('copy-pix');
+                const copyMessage = document.getElementById('copy-message');
+                
+                if (btnCopy && copyMessage) {
+                    btnCopy.addEventListener('click', () => {
+                        const pixCode = document.getElementById('pix-code');
+                        pixCode.select();
+                        document.execCommand('copy');
+                        
+                        // Mostrar mensagem de confirmação
+                        copyMessage.style.display = 'inline-block';
+                        setTimeout(() => {
+                            copyMessage.style.display = 'none';
+                        }, 3000);
+                    });
+                }
+            }
+        }
+    }
+    
+    // Função para iniciar o temporizador de 30 minutos
+    function iniciarTemporizador() {
+        const timerMinutes = document.getElementById('timer-minutes');
+        const timerSeconds = document.getElementById('timer-seconds');
+        
+        if (!timerMinutes || !timerSeconds) return;
+        
+        let minutes = 30;
+        let seconds = 0;
+        
+        const timer = setInterval(() => {
+            if (seconds === 0) {
+                if (minutes === 0) {
+                    clearInterval(timer);
+                    // Aqui você pode adicionar código para expirar o QR Code
+                    return;
+                }
+                minutes--;
+                seconds = 59;
+            } else {
+                seconds--;
+            }
+            
+            timerMinutes.textContent = minutes.toString().padStart(2, '0');
+            timerSeconds.textContent = seconds.toString().padStart(2, '0');
+        }, 1000);
+    }
+
     // Limpar dados do pedido do localStorage após exibir
     localStorage.removeItem('dadosPedidoConfirmado');
 }); 
