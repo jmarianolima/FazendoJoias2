@@ -45,7 +45,7 @@
         </nav>
 
         <div class="conta-content">
-            <div class="pedidos-andamento" id="pedidos">
+            <div class="pedidos-andamento" id="pedidos" style="display: none;">
                 <div class="section-header">
                     <h2>Pedidos em Andamento</h2>
                 </div>
@@ -181,7 +181,7 @@
                 </div>
             </div>
 
-            <div class="dados-cadastrais" id="cadastro" style="display: none;">
+            <div class="dados-cadastrais" id="cadastro">
                 <div class="section-header">
                     <h2>Dados cadastrais</h2>
                 </div>
@@ -190,7 +190,7 @@
                     <div class="info-card">
                         <div class="card-header">
                             <h3>Informações Pessoais</h3>
-                            <button class="btn-editar" onclick="toggleEdicao(this, 'info-pessoal')">
+                            <button class="btn-editar" data-form="info-pessoal">
                                 <i class="far fa-edit"></i>
                                 <span>Editar informações</span>
                             </button>
@@ -199,27 +199,27 @@
                             <div class="form-group">
                                 <label>Nome completo</label>
                                 <span class="campo-texto">Maria da Silva</span>
-                                <input type="text" value="Maria da Silva" class="campo-edicao" style="display: none;">
+                                <input type="text" value="Maria da Silva" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>CPF</label>
                                 <span class="campo-texto">999.999.999-99</span>
-                                <input type="text" value="999.999.999-99" class="campo-edicao" style="display: none;">
+                                <input type="text" value="999.999.999-99" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Data de Nascimento</label>
                                 <span class="campo-texto">02/02/1992</span>
-                                <input type="text" value="02/02/1992" class="campo-edicao" style="display: none;">
+                                <input type="text" value="02/02/1992" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Telefone</label>
                                 <span class="campo-texto">(11) 99999-9999</span>
-                                <input type="text" value="(11) 99999-9999" class="campo-edicao" style="display: none;">
+                                <input type="text" value="(11) 99999-9999" class="campo-edicao">
                             </div>
                             <div class="form-group full-width">
                                 <label>E-mail</label>
                                 <span class="campo-texto">maria@teste.com</span>
-                                <input type="email" value="maria@teste.com" class="campo-edicao" style="display: none;">
+                                <input type="email" value="maria@teste.com" class="campo-edicao">
                             </div>
                         </div>
                     </div>
@@ -227,7 +227,7 @@
                     <div class="info-card">
                         <div class="card-header">
                             <h3>Endereço de Entrega</h3>
-                            <button class="btn-editar" onclick="toggleEdicao(this, 'endereco')">
+                            <button class="btn-editar" data-form="endereco">
                                 <i class="far fa-edit"></i>
                                 <span>Editar endereço</span>
                             </button>
@@ -236,37 +236,37 @@
                             <div class="form-group full-width">
                                 <label>Rua</label>
                                 <span class="campo-texto">Rua das Flores</span>
-                                <input type="text" value="Rua das Flores" class="campo-edicao" style="display: none;">
+                                <input type="text" value="Rua das Flores" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Número</label>
                                 <span class="campo-texto">123</span>
-                                <input type="text" value="123" class="campo-edicao" style="display: none;">
+                                <input type="text" value="123" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Complemento</label>
                                 <span class="campo-texto">Apto 45</span>
-                                <input type="text" value="Apto 45" class="campo-edicao" style="display: none;">
+                                <input type="text" value="Apto 45" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Bairro</label>
                                 <span class="campo-texto">Jardim das Flores</span>
-                                <input type="text" value="Jardim das Flores" class="campo-edicao" style="display: none;">
+                                <input type="text" value="Jardim das Flores" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>CEP</label>
                                 <span class="campo-texto">12345-678</span>
-                                <input type="text" value="12345-678" class="campo-edicao" style="display: none;">
+                                <input type="text" value="12345-678" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Cidade</label>
                                 <span class="campo-texto">São Paulo</span>
-                                <input type="text" value="São Paulo" class="campo-edicao" style="display: none;">
+                                <input type="text" value="São Paulo" class="campo-edicao">
                             </div>
                             <div class="form-group">
                                 <label>Estado</label>
                                 <span class="campo-texto">SP</span>
-                                <input type="text" value="SP" class="campo-edicao" style="display: none;">
+                                <input type="text" value="SP" class="campo-edicao">
                             </div>
                         </div>
                     </div>
@@ -786,40 +786,10 @@
                     }
                 });
             });
-
-            function toggleEdicao(botao, formId) {
-                const form = document.getElementById(formId);
-                const spans = form.getElementsByClassName('campo-texto');
-                const inputs = form.getElementsByClassName('campo-edicao');
-                const btnTexto = botao.querySelector('span');
-                const isEditando = botao.classList.contains('editando');
-
-                if (!isEditando) {
-                    // Ativar modo de edição
-                    Array.from(spans).forEach(span => span.style.display = 'none');
-                    Array.from(inputs).forEach(input => {
-                        input.style.display = 'block';
-                        input.disabled = false;
-                    });
-                    btnTexto.textContent = 'Salvar alterações';
-                    botao.classList.add('editando');
-                } else {
-                    // Salvar alterações
-                    Array.from(spans).forEach((span, index) => {
-                        span.textContent = inputs[index].value;
-                        span.style.display = 'block';
-                    });
-                    Array.from(inputs).forEach(input => {
-                        input.style.display = 'none';
-                        input.disabled = true;
-                    });
-                    btnTexto.textContent = 'Editar informações';
-                    botao.classList.remove('editando');
-                }
-            }
         });
     </script>
     <script src="js/include-footer.js"></script>
     <script src="js/cart-manager.js"></script>
+    <script src="js/minha-conta.js"></script>
 </body>
 </html> 
