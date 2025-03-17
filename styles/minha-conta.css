@@ -1455,4 +1455,277 @@
         padding-top: 1rem;
         border-top: 1px solid var(--gray-200);
     }
+}
+
+/* Estilos para o modal de cartão */
+#modal-cartao {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-cartao.visible {
+    display: flex;
+}
+
+#modal-cartao .modal-content {
+    width: 100%;
+    max-width: 600px;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    animation: modalFadeIn 0.3s ease;
+}
+
+#modal-cartao .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+#modal-cartao .modal-header h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--gray-900);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+#modal-cartao .modal-section {
+    padding: 2rem;
+}
+
+#modal-cartao .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 0;
+}
+
+#modal-cartao .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#modal-cartao .form-group label {
+    color: var(--gray-700);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+#modal-cartao .form-group input {
+    padding: 0.75rem;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 1rem;
+    color: var(--gray-900);
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+#modal-cartao .form-group input:focus {
+    border-color: var(--purple-600);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(var(--purple-500-rgb), 0.1);
+}
+
+#modal-cartao .form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+#modal-cartao .checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--gray-700);
+    user-select: none;
+    position: relative;
+    padding-left: 2rem;
+}
+
+#modal-cartao .checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+#modal-cartao .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+#modal-cartao .checkbox-container:hover input ~ .checkmark {
+    background-color: var(--gray-200);
+}
+
+#modal-cartao .checkbox-container input:checked ~ .checkmark {
+    background-color: var(--purple-600);
+    border-color: var(--purple-600);
+}
+
+#modal-cartao .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+#modal-cartao .checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+#modal-cartao .checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+#modal-cartao .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--gray-200);
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    #modal-cartao .modal-content {
+        width: 90%;
+        max-width: 500px;
+    }
+    
+    #modal-cartao .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    #modal-cartao .modal-content {
+        width: 95%;
+    }
+    
+    #modal-cartao .modal-header,
+    #modal-cartao .modal-section,
+    #modal-cartao .modal-footer {
+        padding: 1rem;
+    }
+}
+
+/* Estilos para o alerta personalizado */
+.alerta-personalizado {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 0;
+    max-width: 350px;
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    border-left: 4px solid var(--green-500);
+    overflow: hidden;
+}
+
+.alerta-personalizado.mostrar {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.alerta-personalizado.erro {
+    border-left-color: var(--red-500);
+}
+
+.alerta-personalizado.erro .alerta-icone i {
+    color: var(--red-500);
+}
+
+.alerta-conteudo {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+}
+
+.alerta-icone {
+    flex-shrink: 0;
+}
+
+.alerta-icone i {
+    font-size: 24px;
+    color: var(--green-500);
+}
+
+.alerta-mensagem {
+    font-size: 14px;
+    color: var(--gray-800);
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+@keyframes progresso {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+.alerta-personalizado::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-color: rgba(var(--purple-500-rgb), 0.3);
+    animation: progresso 3s linear forwards;
+}
+
+@media (max-width: 480px) {
+    .alerta-personalizado {
+        left: 20px;
+        right: 20px;
+        max-width: calc(100% - 40px);
+    }
 } 
