@@ -38,6 +38,10 @@
                     <h2>Endereço de entrega</h2>
                     <div class="form-group">
                         <div class="input-row">
+                            <div class="input-group cep">
+                                <label for="cep">CEP</label>
+                                <input type="text" id="cep" placeholder="02245-000">
+                            </div>
                             <div class="input-group rua">
                                 <label for="rua">Rua</label>
                                 <input type="text" id="rua" placeholder="Rua das Flores">
@@ -53,23 +57,13 @@
                                 <input type="text" id="complemento" placeholder="Apto 52 T1">
                             </div>
                         </div>
-                        <div class="input-row">
+                        <div class="input-row bairro-row">
                             <div class="input-group bairro">
                                 <label for="bairro">Bairro</label>
                                 <input type="text" id="bairro" placeholder="Centro">
                             </div>
-                            <div class="input-group cep">
-                                <label for="cep">CEP</label>
-                                <input type="text" id="cep" placeholder="02245-000">
-                            </div>
                         </div>
                         <div class="input-row">
-                            <div class="input-group cidade">
-                                <label for="cidade">Cidade</label>
-                                <select id="cidade" disabled>
-                                    <option value="">Selecione um estado primeiro</option>
-                                </select>
-                            </div>
                             <div class="input-group estado">
                                 <label for="estado">Estado</label>
                                 <select id="estado">
@@ -101,6 +95,12 @@
                                     <option value="SP">São Paulo</option>
                                     <option value="SE">Sergipe</option>
                                     <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                            <div class="input-group cidade">
+                                <label for="cidade">Cidade</label>
+                                <select id="cidade" disabled>
+                                    <option value="">Selecione um estado primeiro</option>
                                 </select>
                             </div>
                         </div>
