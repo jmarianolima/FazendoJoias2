@@ -1,0 +1,42 @@
+/* Correção para campos duplicados na página Minha Conta */
+.form-group {
+    position: relative;
+}
+
+.form-group .campo-texto,
+.form-group .campo-edicao {
+    position: absolute;
+    top: 2.5rem; /* Ajuste conforme necessário para alinhar com a label */
+    left: 0;
+    width: 100%;
+}
+
+.form-group .campo-texto {
+    display: block;
+    z-index: 1;
+}
+
+.form-group .campo-edicao {
+    display: none;
+    z-index: 2;
+}
+
+/* Ajuste para o modo de edição */
+.btn-editar.editando ~ .form-grid .campo-texto {
+    display: none;
+}
+
+.btn-editar.editando ~ .form-grid .campo-edicao {
+    display: block;
+}
+
+/* Ajuste para altura dos form-groups */
+.form-group {
+    min-height: 5rem; /* Ajuste conforme necessário */
+    margin-bottom: 1rem;
+}
+
+/* Ajuste para o campo full-width */
+.form-group.full-width {
+    min-height: 5rem;
+} 
