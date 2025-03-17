@@ -2095,4 +2095,200 @@
     .modal-confirmacao-exclusao .btn-confirmar {
         width: 100%;
     }
+}
+
+/* Botão de Alteração de Senha */
+.senha-container {
+    margin-top: 1rem;
+}
+
+.btn-alterar-senha {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #4a5568;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-alterar-senha:hover {
+    color: #553c9a;
+    background-color: #faf5ff;
+    transform: translateY(-2px);
+}
+
+.btn-alterar-senha i {
+    font-size: 1rem;
+}
+
+/* Modal de Alteração de Senha */
+#modal-alterar-senha .modal-content {
+    max-width: 500px;
+}
+
+.instrucoes-senha {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #F4F1F9;
+    border-radius: 8px;
+    border-left: 4px solid #7B5BA8;
+}
+
+.instrucoes-senha p {
+    margin-bottom: 0.75rem;
+    color: #374151;
+    font-size: 0.95rem;
+}
+
+.requisitos-senha {
+    padding-left: 1.5rem;
+    margin: 0;
+}
+
+.requisitos-senha li {
+    margin-bottom: 0.25rem;
+    color: #4B5563;
+    font-size: 0.85rem;
+}
+
+.senha-field {
+    margin-bottom: 1.5rem;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.75rem;
+    padding-right: 2.5rem;
+    border: 2px solid #E5E7EB;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #374151;
+    transition: all 0.2s ease;
+}
+
+.input-wrapper input:focus {
+    border-color: #7B5BA8;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(123, 91, 168, 0.1);
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #9CA3AF;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.25rem;
+}
+
+.toggle-senha:hover {
+    color: #4B5563;
+}
+
+.requisitos-validacao {
+    margin-top: 1rem;
+}
+
+.requisito {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #4B5563;
+}
+
+.requisito i {
+    font-size: 0.85rem;
+    color: #EF4444;
+}
+
+.requisito.valido i {
+    color: #10B981;
+}
+
+.erro-confirmacao {
+    display: none;
+    color: #EF4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+}
+
+#modal-alterar-senha .btn-primario {
+    background: #7B5BA8;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#modal-alterar-senha .btn-primario:hover:not(:disabled) {
+    background: #5A4080;
+}
+
+#modal-alterar-senha .btn-primario:disabled {
+    background: #D1D5DB;
+    cursor: not-allowed;
+}
+
+#modal-alterar-senha .btn-secundario {
+    background: white;
+    border: 1px solid #E5E7EB;
+    color: #4B5563;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#modal-alterar-senha .btn-secundario:hover {
+    background-color: #F9FAFB;
+    border-color: #D1D5DB;
+}
+
+/* Header com botões */
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* Ajuste da responsividade para manter os botões alinhados */
+@media (max-width: 768px) {
+    .conta-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .header-actions {
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .btn-alterar-senha,
+    .btn-sair {
+        width: 100%;
+        justify-content: center;
+    }
 } 
