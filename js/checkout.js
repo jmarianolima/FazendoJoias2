@@ -220,30 +220,55 @@ document.addEventListener('DOMContentLoaded', () => {
         const paymentSelected = document.querySelector('input[name="payment"]:checked');
         if (!paymentSelected) {
             isValid = false;
-            alert('Por favor, selecione uma forma de pagamento');
+            // Criar mensagem de erro para forma de pagamento
+            const paymentSection = document.querySelector('.form-section:nth-child(3)');
+            if (paymentSection) {
+                const errorElement = paymentSection.querySelector('.payment-error');
+                if (!errorElement) {
+                    const error = document.createElement('span');
+                    error.className = 'error-message payment-error';
+                    error.style.color = 'red';
+                    error.style.fontSize = '0.75rem';
+                    error.style.display = 'block';
+                    error.style.marginTop = '0.5rem';
+                    error.textContent = 'Por favor, selecione uma forma de pagamento';
+                    paymentSection.querySelector('.payment-options').appendChild(error);
+                }
+            }
         } else if (paymentSelected.value === 'credit') {
             // Validação dos campos do cartão
-            const cardNumber = document.getElementById('card-number').value.replace(/\s/g, '');
-            const cardName = document.getElementById('card-name').value;
-            const cardExpiry = document.getElementById('card-expiry').value;
-            const cardCvv = document.getElementById('card-cvv').value;
+            const cardFields = [
+                { id: 'card-number', mensagem: 'Por favor, insira um número de cartão válido (16 dígitos)', validacao: (valor) => valor.replace(/\s/g, '').length === 16 },
+                { id: 'card-name', mensagem: 'Por favor, insira o nome como está no cartão', validacao: (valor) => valor.trim() !== '' },
+                { id: 'card-expiry', mensagem: 'Por favor, insira uma data de validade válida (MM/AA)', validacao: (valor) => valor.length === 5 && /^\d{2}\/\d{2}$/.test(valor) },
+                { id: 'card-cvv', mensagem: 'Por favor, insira um CVV válido (3 dígitos)', validacao: (valor) => valor.length === 3 && /^\d{3}$/.test(valor) }
+            ];
 
-            if (cardNumber.length !== 16) {
-                isValid = false;
-                alert('Por favor, insira um número de cartão válido');
-            }
-            else if (!cardName) {
-                isValid = false;
-                alert('Por favor, insira o nome como está no cartão');
-            }
-            else if (!cardExpiry || cardExpiry.length !== 5) {
-                isValid = false;
-                alert('Por favor, insira uma data de validade válida');
-            }
-            else if (!cardCvv || cardCvv.length !== 3) {
-                isValid = false;
-                alert('Por favor, insira um CVV válido');
-            }
+            cardFields.forEach(campo => {
+                const input = document.getElementById(campo.id);
+                if (!input) return;
+                
+                const errorElement = input.parentElement.querySelector('.error-message');
+                const valor = input.value.trim();
+                
+                if (!campo.validacao(valor)) {
+                    isValid = false;
+                    if (!errorElement) {
+                        const error = document.createElement('span');
+                        error.className = 'error-message';
+                        error.style.color = 'red';
+                        error.style.fontSize = '0.75rem';
+                        error.textContent = campo.mensagem;
+                        input.parentElement.appendChild(error);
+                    }
+                    input.style.borderColor = 'red';
+                } else {
+                    if (errorElement) {
+                        errorElement.remove();
+                    }
+                    input.style.borderColor = '';
+                }
+            });
         }
 
         return isValid;
@@ -312,6 +337,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const creditCardFields = document.getElementById('credit-card-fields');
     const boletoInfo = document.getElementById('boleto-info');
     const pixInfo = document.getElementById('pix-info');
+
+    // Adicionar event listeners para remover mensagens de erro dos campos do cartão
+    const camposCartao = ['card-number', 'card-name', 'card-expiry', 'card-cvv'];
+    
+    camposCartao.forEach(campoId => {
+        const campo = document.getElementById(campoId);
+        if (campo) {
+            campo.addEventListener('input', function() {
+                const errorElement = this.parentElement.querySelector('.error-message');
+                if (errorElement) {
+                    errorElement.remove();
+                }
+                this.style.borderColor = '';
+            });
+        }
+    });
+
+    // Remover mensagem de erro da forma de pagamento quando uma opção for selecionada
+    paymentOptions.forEach(option => {
+        option.addEventListener('change', function() {
+            const paymentError = document.querySelector('.payment-error');
+            if (paymentError) {
+                paymentError.remove();
+            }
+        });
+    });
 
     // Máscara para o número do cartão
     const cardNumberInput = document.getElementById('card-number');
