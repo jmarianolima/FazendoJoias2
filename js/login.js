@@ -45,6 +45,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const password = document.getElementById('password').value;
             const remember = document.getElementById('remember').checked;
 
+            // Validação básica
+            if (email.trim() === '' || password.trim() === '') {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+            
             // Simulação de login bem-sucedido
             console.log('Login attempt:', { email, password, remember });
             
@@ -60,8 +66,8 @@ document.addEventListener('DOMContentLoaded', () => {
             // Atualizar estado do ícone
             checkLoginState();
             
-            // Redirecionar para a página principal
-            window.location.href = 'index.html';
+            // Redirecionar para a página minha-conta
+            window.location.href = 'minha-conta.html';
         });
     }
     
