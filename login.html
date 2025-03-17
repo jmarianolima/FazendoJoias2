@@ -58,14 +58,14 @@
                 </div>
 
                 <div class="social-login">
-                    <button type="button" class="btn-social google">
+                    <a href="https://accounts.google.com/signin" target="_blank" rel="noopener noreferrer" class="btn-social google">
                         <i class="fab fa-google"></i>
                         <span>Continuar com Google</span>
-                    </button>
-                    <button type="button" class="btn-social facebook">
+                    </a>
+                    <a href="https://www.facebook.com/login" target="_blank" rel="noopener noreferrer" class="btn-social facebook">
                         <i class="fab fa-facebook-f"></i>
                         <span>Continuar com Facebook</span>
-                    </button>
+                    </a>
                 </div>
 
                 <div class="register-link">
@@ -76,26 +76,7 @@
         </div>
     </main>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.querySelector('.login-form');
-            const emailInput = document.querySelector('input[type="email"]');
-            const passwordInput = document.querySelector('input[type="password"]');
-
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-
-                // Validação básica
-                if (emailInput.value.trim() === '' || passwordInput.value.trim() === '') {
-                    alert('Por favor, preencha todos os campos.');
-                    return;
-                }
-
-                // Se passou na validação, redireciona para a página minha-conta.html
-                window.location.href = 'minha-conta.html';
-            });
-        });
-    </script>
+    <script src="js/login.js"></script>
     <script src="js/include-footer.js"></script>
     <script src="js/cart-manager.js"></script>
 </body>
