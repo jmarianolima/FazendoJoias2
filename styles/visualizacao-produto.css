@@ -211,4 +211,238 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Estilos para a seção de avaliações */
+.avaliacoes-container {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+.avaliacoes-titulo {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gray-800);
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.avaliacoes-titulo::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, var(--purple-500), var(--purple-300));
+    border-radius: 3px;
+}
+
+.avaliacoes-resumo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.avaliacao-media {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-right: 2rem;
+    border-right: 1px solid var(--gray-200);
+    min-width: 200px;
+}
+
+.media-valor {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--gray-900);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.media-estrelas {
+    margin-bottom: 0.75rem;
+}
+
+.media-estrelas i {
+    color: #ffc206;
+    font-size: 1.5rem;
+    margin: 0 2px;
+}
+
+.total-avaliacoes {
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.distribuicao-estrelas {
+    flex: 1;
+    padding-left: 2rem;
+}
+
+.barra-estrela {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.estrela-label {
+    width: 50px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.estrela-label i {
+    color: var(--yellow-500);
+    font-size: 0.9rem;
+}
+
+.barra-progresso {
+    flex: 1;
+    height: 8px;
+    background-color: var(--gray-200);
+    border-radius: 4px;
+    margin: 0 1rem;
+    overflow: hidden;
+}
+
+.barra-preenchida {
+    height: 100%;
+    background: linear-gradient(to right, var(--yellow-400), var(--yellow-500));
+    border-radius: 4px;
+}
+
+.estrela-porcentagem {
+    width: 40px;
+    text-align: right;
+    color: var(--gray-600);
+    font-size: 0.9rem;
+}
+
+.avaliacoes-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.avaliacao-item {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.avaliacao-cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.avaliacao-usuario {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.usuario-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--purple-500), var(--purple-400));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.usuario-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-nome {
+    font-weight: 600;
+    color: var(--gray-800);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.data-avaliacao {
+    color: var(--gray-500);
+    font-size: 0.85rem;
+}
+
+.avaliacao-estrelas i {
+    color: var(--yellow-500);
+    font-size: 1rem;
+    margin-left: 2px;
+}
+
+.avaliacao-comentario {
+    color: var(--gray-700);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.btn-mais-avaliacoes {
+    background-color: transparent;
+    border: 2px solid var(--purple-500);
+    color: var(--purple-600);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: center;
+    margin-top: 1rem;
+}
+
+.btn-mais-avaliacoes:hover {
+    background-color: var(--purple-50);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .avaliacoes-resumo {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    
+    .avaliacao-media {
+        border-right: none;
+        border-bottom: 1px solid var(--gray-200);
+        padding-right: 0;
+        padding-bottom: 2rem;
+        width: 100%;
+    }
+    
+    .distribuicao-estrelas {
+        padding-left: 0;
+        width: 100%;
+    }
+    
+    .avaliacao-cabecalho {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .avaliacao-estrelas {
+        align-self: flex-start;
+    }
 } 

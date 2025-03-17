@@ -1,42 +1,29 @@
 /* Correção para campos duplicados na página Minha Conta */
+
+/* Posicionamento relativo para o container dos campos */
 .form-group {
     position: relative;
-}
-
-.form-group .campo-texto,
-.form-group .campo-edicao {
-    position: absolute;
-    top: 2.5rem; /* Ajuste conforme necessário para alinhar com a label */
-    left: 0;
+    min-height: 60px;
     width: 100%;
 }
 
-.form-group .campo-texto {
-    display: block;
-    z-index: 1;
-}
-
+/* Esconder os campos de edição por padrão */
 .form-group .campo-edicao {
     display: none;
-    z-index: 2;
+    width: 100%;
 }
 
-/* Ajuste para o modo de edição */
-.btn-editar.editando ~ .form-grid .campo-texto {
-    display: none;
+/* Mostrar os campos de texto por padrão */
+.form-group span.campo-texto {
+    display: block;
+    width: 100%;
 }
 
+/* Quando o botão de edição está ativo, mostrar campos de edição e esconder campos de texto */
 .btn-editar.editando ~ .form-grid .campo-edicao {
     display: block;
 }
 
-/* Ajuste para altura dos form-groups */
-.form-group {
-    min-height: 5rem; /* Ajuste conforme necessário */
-    margin-bottom: 1rem;
-}
-
-/* Ajuste para o campo full-width */
-.form-group.full-width {
-    min-height: 5rem;
+.btn-editar.editando ~ .form-grid .campo-texto {
+    display: none;
 } 
