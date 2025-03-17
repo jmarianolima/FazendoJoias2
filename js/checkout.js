@@ -61,10 +61,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 
                 if (!data.erro) {
+                    const estadoSelect = document.querySelector('#estado');
+                    const cidadeSelect = document.querySelector('#cidade');
+                    
                     document.querySelector('#rua').value = data.logradouro;
                     document.querySelector('#bairro').value = data.bairro;
-                    document.querySelector('#cidade').value = data.localidade;
-                    document.querySelector('#estado').value = data.uf;
+                    estadoSelect.value = data.uf;
+                    
+                    // Disparar o evento change no select de estado para carregar as cidades
+                    const changeEvent = new Event('change', { bubbles: true });
+                    estadoSelect.dispatchEvent(changeEvent);
+                    
+                    // Após carregar as cidades, selecionar a cidade correta
+                    setTimeout(() => {
+                        // Procurar pela opção que corresponde à cidade retornada pela API
+                        const cidadeOptions = Array.from(cidadeSelect.options);
+                        const cidadeOption = cidadeOptions.find(option => 
+                            option.text.toLowerCase() === data.localidade.toLowerCase());
+                        
+                        if (cidadeOption) {
+                            cidadeSelect.value = cidadeOption.value;
+                        } else {
+                            // Se não encontrar a cidade exata, adicionar manualmente
+                            const newOption = document.createElement('option');
+                            newOption.value = data.localidade;
+                            newOption.text = data.localidade;
+                            cidadeSelect.add(newOption);
+                            cidadeSelect.value = data.localidade;
+                        }
+                    }, 100);
                     
                     // Remover mensagens de erro dos campos preenchidos automaticamente
                     ['rua', 'bairro', 'cidade', 'estado'].forEach(campo => {
