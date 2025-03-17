@@ -3,6 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const togglePassword = document.querySelector('.toggle-password');
     const passwordInput = document.getElementById('password');
     
+    // Botões de login social
+    const btnGoogle = document.querySelector('.btn-social.google');
+    const btnFacebook = document.querySelector('.btn-social.facebook');
+    
     // Verificar se o usuário está logado
     function checkLoginState() {
         const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
@@ -58,6 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Redirecionar para a página principal
             window.location.href = 'index.html';
+        });
+    }
+    
+    // Login com Google
+    if (btnGoogle) {
+        btnGoogle.addEventListener('click', () => {
+            console.log('Redirecionando para login do Google');
+            window.location.href = 'https://accounts.google.com/signin';
+        });
+    }
+    
+    // Login com Facebook
+    if (btnFacebook) {
+        btnFacebook.addEventListener('click', () => {
+            console.log('Redirecionando para login do Facebook');
+            window.location.href = 'https://www.facebook.com/login';
         });
     }
 
