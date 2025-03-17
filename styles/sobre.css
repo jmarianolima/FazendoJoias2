@@ -1,15 +1,15 @@
 .sobre-page {
     max-width: 1200px;
     margin: 0 auto;
-    padding: var(--spacing-xl) var(--spacing-lg);
+    padding: 2.5rem 2rem;
     min-height: calc(100vh - 300px); /* Ajuste para footer fixo */
 }
 
 .sobre-page h1 {
     font-family: 'Playfair Display', serif;
-    color: var(--neutral-900);
-    font-size: var(--font-xxl);
-    margin-bottom: var(--spacing-xl);
+    color: #1a202c;
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
     text-align: center;
     font-weight: 400;
 }
@@ -17,10 +17,10 @@
 /* Seção Sobre */
 .sobre-section {
     background-color: #ebe1ff;
-    padding: var(--spacing-xl);
+    padding: 2.5rem;
     border-radius: 24px;
-    margin-bottom: var(--spacing-xxl);
-    border: 1px solid var(--purple-200);
+    margin-bottom: 3rem;
+    border: 1px solid #d6bcfa;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Adicionado efeito de sombra suave */
 }
 
@@ -30,10 +30,10 @@
 }
 
 .sobre-content p {
-    color: var(--neutral-700);
-    font-size: var(--font-medium);
+    color: #4a5568;
+    font-size: 1.125rem;
     line-height: 1.6;
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: 2rem;
 }
 
 /* Seção Contato */
@@ -45,16 +45,63 @@
 
 .contato-section h2 {
     font-family: 'Playfair Display', serif;
-    color: var(--neutral-900);
-    font-size: var(--font-xl);
-    margin-bottom: var(--spacing-xl);
+    color: #1a202c;
+    font-size: 1.75rem;
+    margin-bottom: 2.5rem;
     font-weight: 400;
     margin-top: 40px;
 }
+
+.contato-icons {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin: 0 auto;
+}
+
+.contato-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ebe1ff;
+    color: #6b46c1;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(107, 70, 193, 0.1);
+    border: 1px solid #d6bcfa;
+}
+
+.contato-icons a:hover {
+    transform: translateY(-5px);
+    background-color: #6b46c1;
+    color: #ffffff;
+    box-shadow: 0 5px 15px rgba(107, 70, 193, 0.3);
+}
+
+.contato-icons i {
+    font-size: 1.75rem;
+}
+
+/* Cores específicas para os diferentes ícones no hover */
+.contato-icons a:nth-child(1):hover {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.contato-icons a:nth-child(2):hover {
+    background: #d44638;
+}
+
+.contato-icons a:nth-child(3):hover {
+    background: #25d366;
+}
+
 .contato-info {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: 2rem;
     text-align: left; /* Alinhamento à esquerda */
     max-width: 300px; /* Largura máxima para manter consistência */
     margin: 0 auto; /* Centraliza o container */
@@ -64,29 +111,48 @@
 .contato-info p {
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
-    color: var(--neutral-700);
-    font-size: var(--font-medium);
+    gap: 1rem;
+    color: #4a5568;
+    font-size: 1.125rem;
 }
 
 .contato-info i {
     width: 24px; /* Largura fixa para os ícones */
-    color: var(--purple-600);
+    color: #6b46c1;
     text-align: center;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     .sobre-page {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: 2rem 1.5rem;
     }
 
     .sobre-section {
-        padding: var(--spacing-lg);
+        padding: 2rem;
     }
 
     .sobre-content p,
     .contato-info p {
-        font-size: var(--font-base);
+        font-size: 1rem;
+    }
+    
+    .contato-icons {
+        gap: 2rem;
+    }
+    
+    .contato-icons a {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .contato-icons i {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .contato-icons {
+        gap: 1.5rem;
     }
 } 
