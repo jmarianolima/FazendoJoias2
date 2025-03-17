@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('.cadastro-form');
     const inputs = form.querySelectorAll('input');
     const btnCriarConta = document.querySelector('.btn-criar-conta');
+    const successModal = document.getElementById('success-modal');
+    const btnIrParaLogin = document.querySelector('.btn-ir-para-login');
 
     // Criar elemento de alerta global
     const formAlert = document.createElement('div');
@@ -26,6 +28,19 @@ document.addEventListener('DOMContentLoaded', () => {
             formAlert.classList.remove('show');
         }, 5000);
     };
+
+    // Função para mostrar o modal de sucesso
+    const showSuccessModal = () => {
+        successModal.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Impedir rolagem da página
+    };
+
+    // Evento para o botão de ir para login
+    if (btnIrParaLogin) {
+        btnIrParaLogin.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    }
 
     // Regras de validação
     const validationRules = {
@@ -242,11 +257,11 @@ document.addEventListener('DOMContentLoaded', () => {
             btnSubmit.disabled = true;
 
             setTimeout(() => {
-                alert('Conta criada com sucesso!');
+                // Mostrar modal de sucesso em vez do alerta nativo
+                showSuccessModal();
                 form.reset();
                 btnSubmit.textContent = originalText;
                 btnSubmit.disabled = false;
-                window.location.href = 'login.html';
             }, 2000);
         }
     });
