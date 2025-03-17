@@ -91,6 +91,23 @@
     margin: 0;
 }
 
+.item-size {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    margin: 0.2rem 0 0.5rem 0;
+}
+
+.item-size span {
+    font-weight: 500;
+    color: var(--gray-700);
+}
+
+.summary-product-size {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    margin-left: 0.5rem;
+}
+
 .tamanho {
     font-size: 0.9rem;
     color: var(--purple-500);
