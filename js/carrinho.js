@@ -8,6 +8,21 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Erro ao carregar itens do carrinho:', e);
     }
     
+    // Adicionar listener para o evento carrinhoAtualizado
+    document.addEventListener('carrinhoAtualizado', () => {
+        console.log('Evento carrinhoAtualizado recebido, atualizando interface...');
+        // Recarregar os itens do localStorage
+        try {
+            cartItems = JSON.parse(localStorage.getItem('carrinho')) || [];
+        } catch (e) {
+            console.error('Erro ao recarregar itens do carrinho:', e);
+        }
+        // Renderizar os itens atualizados
+        renderCartItems();
+        // Atualizar o resumo do pedido
+        atualizarResumo();
+    });
+    
     // Renderizar itens do carrinho
     const cartItemsContainer = document.querySelector('.cart-items');
     const cartSummary = document.querySelector('.cart-summary');
@@ -15,6 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderCartItems() {
         const cartContainer = document.querySelector('.cart-items');
         const cart = JSON.parse(localStorage.getItem('carrinho')) || [];
+
+        // Atualizar a variável cartItems com os dados mais recentes do localStorage
+        cartItems = cart;
 
         if (cart.length === 0) {
             cartContainer.innerHTML = `
@@ -90,6 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 radio.checked = false;
             });
 
+            // Atualizar o resumo do pedido
+            atualizarResumo();
+            
             return;
         }
 
@@ -103,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="item-info">
                         <h3>${item.nome}</h3>
                     <p class="item-price">${item.preco.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</p>
+                    <p class="item-size">Tamanho: <span>${item.tamanho || 'Único'}</span></p>
                     <div class="quantity-controls">
                         <button class="quantity-btn minus" data-id="${item.id}" data-action="decrease">-</button>
                         <span class="quantity">${item.quantidade || 1}</span>
@@ -141,6 +163,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 0);
         
         updateTotal(total);
+        
+        // Atualizar o resumo do pedido
+        atualizarResumo();
     }
 
     function updateTotal(total) {
@@ -454,26 +479,40 @@ document.addEventListener('DOMContentLoaded', () => {
     function removeItem(itemId) {
         const item = document.querySelector(`.cart-item[data-id="${itemId}"]`);
         if (item) {
-        item.classList.add('removing');
-        
-        setTimeout(() => {
+            item.classList.add('removing');
+            
+            setTimeout(() => {
+                // Remover o item do array local
                 cartItems = cartItems.filter(item => item.id !== itemId);
+                
+                // Atualizar o localStorage
                 localStorage.setItem('carrinho', JSON.stringify(cartItems));
-            
-            if (window.cartManager) {
-                window.cartManager.loadCartState();
-                window.cartManager.updateHeaderCounter();
-            }
-            
-            renderCartItems();
-
+                
+                // Se o CartManager estiver disponível, atualizar através dele
+                if (window.cartManager) {
+                    window.cartManager.loadCartState();
+                    window.cartManager.updateHeaderCounter();
+                }
+                
+                // Renderizar os itens atualizados
+                renderCartItems();
+                
+                // Atualizar explicitamente o resumo do pedido
+                atualizarResumo();
+                
+                // Atualizar o total
+                const total = cartItems.reduce((sum, item) => {
+                    return sum + (parseFloat(item.preco) * (item.quantidade || 1));
+                }, 0);
+                updateTotal(total);
+                
                 // Desabilitar o botão de finalizar se o carrinho ficar vazio
                 const finalizarBtn = document.querySelector('.btn-finalizar');
                 if (finalizarBtn && cartItems.length === 0) {
                     finalizarBtn.disabled = true;
                     finalizarBtn.title = 'Seu carrinho está vazio';
                 }
-        }, 300);
+            }, 300);
         }
     }
 
@@ -515,6 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 html += `
                     <div class="summary-product">
                         <span class="summary-product-name">${item.nome}</span>
+                        <span class="summary-product-size">Tam: ${item.tamanho || 'Único'}</span>
                         <span class="summary-product-quantity">${item.quantidade || 1}x</span>
                         <span class="summary-product-price">${precoTotal.toLocaleString('pt-BR', {
                             style: 'currency',

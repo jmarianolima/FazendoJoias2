@@ -79,16 +79,24 @@ class CartManager {
     }
 
     addItem(item) {
-        const existingItem = this.cartItems.find(i => i.id === item.id && i.tamanho === item.tamanho);
-        if (existingItem) {
-            existingItem.quantidade = (existingItem.quantidade || 1) + 1;
-        } else {
-            item.quantidade = 1;
-            this.cartItems.push(item);
+        console.log('[CartManager] Adicionando item:', item);
+        
+        // Garante que o item tenha um tamanho
+        if (!item.tamanho) {
+            item.tamanho = 'Único';
         }
+        
+        // Procura por um item igual (mesmo ID e tamanho)
+        const itemExistente = this.cartItems.find(i => i.id === item.id && i.tamanho === item.tamanho);
+        
+        if (itemExistente) {
+            itemExistente.quantidade += 1;
+        } else {
+            this.cartItems.push({ ...item, quantidade: 1 });
+        }
+        
         this.saveCartState();
-        this.updateHeaderCounter();
-        this.renderCartItems();
+        this.updateAllCounters();
     }
 
     removeItem(itemId) {
@@ -199,6 +207,7 @@ class CartManager {
                     <div class="cart-item-info">
                         <h3>${item.nome}</h3>
                         <p class="price">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                        <p class="item-size">Tamanho: <span>${item.tamanho || 'Único'}</span></p>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" data-id="${item.id}" data-action="decrease">-</button>
                             <span class="quantity">${item.quantidade || 1}</span>
@@ -285,6 +294,7 @@ class CartManager {
                     html += `
                         <div class="summary-product">
                             <span class="summary-product-name">${item.nome}</span>
+                            <span class="summary-product-size">Tam: ${item.tamanho || 'Único'}</span>
                             <span class="summary-product-quantity">${item.quantidade || 1}x</span>
                             <span class="summary-product-price">${formatarPreco(precoTotal)}</span>
                         </div>

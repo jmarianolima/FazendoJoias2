@@ -139,6 +139,7 @@ function atualizarItensResumo(carrinho) {
         html += `
             <div class="summary-product">
                 <span class="summary-product-name">${produto.nome}</span>
+                <span class="summary-product-size">Tam: ${produto.tamanho || 'Único'}</span>
                 <span class="summary-product-quantity">x${produto.quantidade}</span>
                 <span class="summary-product-price">R$ ${(produto.preco * produto.quantidade).toFixed(2).replace('.', ',')}</span>
             </div>
@@ -175,6 +176,7 @@ function carregarProdutosCarrinho() {
                 <div class="cart-item-info">
                     <h3>${produto.nome}</h3>
                     <p class="price">R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+                    <p class="item-size">Tamanho: <span>${produto.tamanho || 'Único'}</span></p>
                     <div class="quantity-controls">
                         <button class="quantity-btn minus" onclick="alterarQuantidade(${produto.id}, -1)">-</button>
                         <span class="quantity">${produto.quantidade}</span>

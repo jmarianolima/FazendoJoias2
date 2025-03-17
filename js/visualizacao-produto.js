@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         nome: produto.nome,
                         preco: produto.preco,
                         imagem: produto.imagem,
-                        tamanho: tamanhoSelecionado.textContent,
+                        tamanho: tamanhoSelecionado ? tamanhoSelecionado.textContent : 'Único',
                         quantidade: 1
                     };
 
