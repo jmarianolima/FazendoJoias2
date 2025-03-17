@@ -303,9 +303,13 @@
 /* Ações do Pedido */
 .acoes-pedido {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-secundario, .btn-voltar {
@@ -313,17 +317,32 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    padding: 1rem 2rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
+    width: 250px;
+    height: 48px;
+    text-align: center;
+    box-sizing: border-box;
+    font-size: 1rem;
+}
+
+.btn-secundario i, .btn-voltar i {
+    font-size: 1.1rem;
+}
+
+.btn-secundario span, .btn-voltar span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .btn-secundario {
     background: white;
     color: var(--purple-500);
-    border: 2px solid var(--purple-500);
+    border: 1px solid var(--purple-500);
 }
 
 .btn-secundario:hover {
@@ -334,6 +353,7 @@
 .btn-voltar {
     background: var(--purple-500);
     color: white;
+    border: 1px solid var(--purple-500);
 }
 
 .btn-voltar:hover {
@@ -376,10 +396,13 @@
 
     .acoes-pedido {
         flex-direction: column;
+        align-items: center;
+        gap: 1rem;
     }
 
     .btn-secundario, .btn-voltar {
         width: 100%;
+        max-width: 250px;
     }
 }
 
@@ -413,5 +436,113 @@
 
     .status-icon i {
         font-size: 1rem;
+    }
+}
+
+/* Estilos para o card de pagamento PIX */
+.card-pix {
+    margin-top: 2rem;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.pix-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.pix-qrcode {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#qrcode {
+    width: 200px;
+    height: 200px;
+}
+
+.pix-info {
+    flex: 1;
+    min-width: 300px;
+}
+
+.pix-info p {
+    margin-bottom: 1rem;
+    color: var(--gray-700);
+}
+
+.pix-copy {
+    margin: 1.5rem 0;
+}
+
+.pix-code-container {
+    display: flex;
+    margin-top: 0.5rem;
+}
+
+#pix-code {
+    flex: 1;
+    padding: 0.75rem;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px 0 0 8px;
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    background-color: var(--gray-100);
+}
+
+.btn-copy {
+    padding: 0.75rem 1rem;
+    background-color: var(--purple-500);
+    color: white;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-copy:hover {
+    background-color: var(--purple-600);
+}
+
+.pix-timer {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background-color: var(--purple-50);
+    border-radius: 8px;
+    border-left: 4px solid var(--purple-500);
+}
+
+.timer {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--purple-700);
+    margin: 0.5rem 0;
+}
+
+.timer-info {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+}
+
+@media (max-width: 768px) {
+    .pix-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .pix-info {
+        width: 100%;
     }
 } 
