@@ -7,6 +7,11 @@ class CartManager {
         this.setupListeners();
     }
 
+    // Função para formatar o preço no padrão brasileiro
+    formatarPreco(valor) {
+        return `R$${valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+    }
+
     setupListeners() {
         console.log('[CartManager] Configurando listeners...');
         // Garante que o DOM está carregado antes de inicializar
@@ -206,7 +211,7 @@ class CartManager {
                     </div>
                     <div class="cart-item-info">
                         <h3>${item.nome}</h3>
-                        <p class="price">R$ ${item.preco.toFixed(2).replace('.', ',')}</p>
+                        <p class="price">${this.formatarPreco(item.preco)}</p>
                         <p class="item-size">Tamanho: <span>${item.tamanho || 'Único'}</span></p>
                         <div class="quantity-controls">
                             <button class="quantity-btn minus" data-id="${item.id}" data-action="decrease">-</button>
@@ -263,20 +268,12 @@ class CartManager {
         const totalElement = document.querySelector('.total-value');
         const summaryProducts = document.querySelector('.summary-products');
         
-        const formatarPreco = (valor) => {
-            return valor.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-                minimumFractionDigits: 2
-            });
-        };
-        
         if (subtotalElement) {
-            subtotalElement.textContent = formatarPreco(subtotal);
+            subtotalElement.textContent = this.formatarPreco(subtotal);
         }
         
         if (totalElement) {
-            totalElement.textContent = formatarPreco(subtotal);
+            totalElement.textContent = this.formatarPreco(subtotal);
         }
 
         if (summaryProducts) {
@@ -296,7 +293,7 @@ class CartManager {
                             <span class="summary-product-name">${item.nome}</span>
                             <span class="summary-product-size">Tam: ${item.tamanho || 'Único'}</span>
                             <span class="summary-product-quantity">${item.quantidade || 1}x</span>
-                            <span class="summary-product-price">${formatarPreco(precoTotal)}</span>
+                            <span class="summary-product-price">${this.formatarPreco(precoTotal)}</span>
                         </div>
                     `;
                 });

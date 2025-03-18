@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const data = await response.json();
         const produtos = data.produtos;
 
+        // Função para formatar o preço no padrão brasileiro
+        const formatarPreco = (valor) => {
+            return `R$${valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+        };
+
         // Selecionar 5 produtos aleatórios para o carrossel
         const produtosAleatorios = produtos
             .sort(() => Math.random() - 0.5)
@@ -18,11 +23,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             <a href="visualizacaoproduto.html?id=${produto.id}" class="produto-card">
                 <div class="img-container">
                     <img src="${produto.imagem}" alt="${produto.nome}">
-                    <span class="preco-hover">R$ ${produto.preco.toFixed(2)}</span>
+                    <span class="preco-hover">${formatarPreco(produto.preco)}</span>
                 </div>
                 <div class="card-content">
                     <h3>${produto.nome}</h3>
-                    <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
+                    <p class="preco">${formatarPreco(produto.preco)}</p>
                 </div>
             </a>
         `).join('');

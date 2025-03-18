@@ -10,6 +10,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (!produtosGrid) return;
 
+        // Função para formatar o preço no padrão brasileiro
+        const formatarPreco = (valor) => {
+            return `R$${valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+        };
+
         // Função para criar o card do produto
         function criarProdutoCard(produto) {
             return `
@@ -17,12 +22,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <a href="visualizacao-produto.html?id=${produto.id}">
                         <div class="img-container">
                             <img src="${produto.imagem}" alt="${produto.nome}">
-                            <span class="preco-hover">R$ ${produto.preco.toFixed(2)}</span>
+                            <span class="preco-hover">${formatarPreco(produto.preco)}</span>
                         </div>
                         <div class="card-content">
                             <h3>${produto.nome}</h3>
                             <p class="descricao">${produto.descricao}</p>
-                            <p class="preco">R$ ${produto.preco.toFixed(2)}</p>
+                            <p class="preco">${formatarPreco(produto.preco)}</p>
                         </div>
                     </a>
                 </div>
@@ -37,11 +42,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             // Criar faixas de preço
             const faixasPreco = [
-                { min: 0, max: 1000, label: 'Até R$ 1.000' },
-                { min: 1000, max: 2000, label: 'R$ 1.000 a R$ 2.000' },
-                { min: 2000, max: 3000, label: 'R$ 2.000 a R$ 3.000' },
-                { min: 3000, max: 5000, label: 'R$ 3.000 a R$ 5.000' },
-                { min: 5000, max: Infinity, label: 'Acima de R$ 5.000' }
+                { min: 0, max: 1000, label: 'Até R$1.000' },
+                { min: 1000, max: 2000, label: 'R$1.000 a R$2.000' },
+                { min: 2000, max: 3000, label: 'R$2.000 a R$3.000' },
+                { min: 3000, max: 5000, label: 'R$3.000 a R$5.000' },
+                { min: 5000, max: Infinity, label: 'Acima de R$5.000' }
             ];
 
             // Popular selects

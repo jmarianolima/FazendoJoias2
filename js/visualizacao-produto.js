@@ -341,6 +341,11 @@ function mostrarMaisAvaliacoes(todasAvaliacoes) {
     });
 }
 
+// Função para formatar o preço no padrão brasileiro
+function formatarPreco(valor) {
+    return `R$${valor.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`;
+}
+
 // Carrega o produto e adiciona os eventos quando o documento estiver carregado
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('DOMContentLoaded disparado');
@@ -362,7 +367,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Preencher informações do produto na página
         document.querySelector('.produto-info h1').textContent = produto.nome;
-        document.querySelector('.preco').textContent = `R$ ${produto.preco.toFixed(2)}`;
+        document.querySelector('.preco').textContent = formatarPreco(produto.preco);
         document.querySelector('.produto-descricao p').textContent = produto.descricao;
         document.querySelector('.produto-imagem-principal img').src = produto.imagem;
         
