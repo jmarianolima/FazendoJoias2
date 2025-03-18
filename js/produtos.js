@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const produtosGrid = document.querySelector('.produtos-grid');
         const buscaInput = document.querySelector('.busca-input');
         const filtroSelects = document.querySelectorAll('.filtro-select');
+        const btnLimparBusca = document.querySelector('.btn-limpar-busca');
         
         if (!produtosGrid) return;
 
@@ -64,6 +65,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                 <option value="">Faixa de Preço</option>
                 ${faixasPreco.map((faixa, index) => `<option value="${index}">${faixa.label}</option>`).join('')}
             `;
+            
+            // Adicionar botões de limpar para cada select
+            filtroSelects.forEach((select) => {
+                // Cria um botão limpar para cada select caso não exista
+                const container = select.closest('.filtro-select-container');
+                if (container) {
+                    let btnLimpar = container.querySelector('.btn-limpar-filtro');
+                    
+                    if (!btnLimpar) {
+                        btnLimpar = document.createElement('button');
+                        btnLimpar.className = 'btn-limpar-filtro';
+                        btnLimpar.innerHTML = '<i class="fas fa-times"></i>';
+                        btnLimpar.style.display = 'none';
+                        btnLimpar.title = 'Limpar filtro';
+                        container.appendChild(btnLimpar);
+                        
+                        // Adiciona evento de clique para limpar
+                        btnLimpar.addEventListener('click', () => {
+                            select.selectedIndex = 0;
+                            btnLimpar.style.display = 'none';
+                            filtrarProdutos();
+                        });
+                    }
+                }
+            });
         }
 
         // Função para filtrar produtos
@@ -73,6 +99,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             const materialSelecionado = filtroSelects[1].value;
             const faixaPrecoIndex = filtroSelects[2].value;
             const categoriaSelecionada = document.querySelector('.tab-link.active').dataset.categoria;
+
+            // Atualizar visibilidade dos botões limpar
+            filtroSelects.forEach((select) => {
+                const container = select.closest('.filtro-select-container');
+                if (container) {
+                    const btnLimpar = container.querySelector('.btn-limpar-filtro');
+                    if (btnLimpar) {
+                        btnLimpar.style.display = select.selectedIndex > 0 ? 'flex' : 'none';
+                    }
+                }
+            });
 
             const faixasPreco = [
                 { min: 0, max: 1000 },
@@ -115,9 +152,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Inicializar filtros
         popularFiltros();
 
+        // Evento para limpar campo de busca
+        if (btnLimparBusca) {
+            btnLimparBusca.addEventListener('click', () => {
+                buscaInput.value = '';
+                btnLimparBusca.style.display = 'none';
+                filtrarProdutos();
+            });
+        }
+        
+        // Evento para mostrar/ocultar botão limpar busca
+        buscaInput.addEventListener('input', function() {
+            if (btnLimparBusca) {
+                btnLimparBusca.style.display = this.value ? 'flex' : 'none';
+            }
+            filtrarProdutos();
+        });
+
         // Event listeners para filtros
         buscaInput.addEventListener('input', filtrarProdutos);
-        filtroSelects.forEach(select => select.addEventListener('change', filtrarProdutos));
+        
+        // Adicionar evento para os selects
+        filtroSelects.forEach(select => {
+            // Evento de mudança normal
+            select.addEventListener('change', filtrarProdutos);
+        });
 
         // Event listeners para tabs de categoria
         const filtros = document.querySelectorAll('.tab-link');
