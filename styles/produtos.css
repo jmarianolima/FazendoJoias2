@@ -12,13 +12,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--neutral-50);
+    background-color: #FFFFFF;
     width: 100%;
 }
 
 .produtos-page main {
     flex: 1;
-    padding-top: var(--spacing-xl);
+    padding-top: 2rem;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
@@ -26,8 +26,8 @@
 
 /* Hero Section */
 .produtos-header {
-    background-color: var(--purple-100);
-    padding: var(--spacing-xl) 0;
+    background-color: #F4F1F9;
+    padding: 2rem 0;
     text-align: center;
     margin-bottom: 60px;
     position: relative;
@@ -50,16 +50,16 @@
 
 .produtos-header h1 {
     font-family: 'Playfair Display', serif;
-    color: var(--purple-700);
+    color: #3A2855;
     font-size: 2rem;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: 0.5rem;
     font-weight: 400;
     position: relative;
 }
 
 .produtos-header p {
-    color: var(--purple-600);
-    font-size: var(--font-base);
+    color: #5A4080;
+    font-size: 18px;
     max-width: 600px;
     margin: 0 auto;
     position: relative;
@@ -75,59 +75,88 @@
 
 .filtros-row {
     display: flex;
+    justify-content: space-between;
     gap: 1rem;
     margin-bottom: 1.5rem;
+    position: relative;
 }
 
-.busca-input {
-    flex: 2;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--gray-200);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--gray-900);
-    transition: all 0.3s ease;
-}
-
-.busca-input:focus {
-    outline: none;
-    border-color: var(--purple-500);
-    box-shadow: 0 0 0 3px rgba(var(--purple-500-rgb), 0.1);
-}
-
-.filtro-select {
+/* Containers dos filtros */
+.filtro-input-container,
+.filtro-select-container {
+    position: relative;
     flex: 1;
-    padding: 0.75rem 1rem;
-    border: 2px solid var(--gray-200);
-    border-radius: 8px;
-    font-size: 1rem;
-    color: var(--gray-900);
-    background-color: white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    appearance: none;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: right 1rem center;
-    padding-right: 2.5rem;
 }
 
-.filtro-select:focus {
+.filtro-input-container input,
+.filtro-select-container select {
+    width: 100%;
+    padding: 0.75rem 2rem 0.75rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background-color: white;
+    color: #4a5568;
+    font-size: 0.9rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236B7280' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    transition: all 0.3s ease;
+}
+
+.filtro-input-container input {
+    background-image: none;
+}
+
+.filtro-input-container input:focus,
+.filtro-select-container select:focus {
     outline: none;
-    border-color: var(--purple-500);
-    box-shadow: 0 0 0 3px rgba(var(--purple-500-rgb), 0.1);
+    border-color: #7B5BA8;
+    box-shadow: 0 0 0 3px rgba(123, 91, 168, 0.1);
+}
+
+/* Botões de limpar filtro */
+.btn-limpar-filtro {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.btn-limpar-busca {
+    right: 0.75rem;
+}
+
+.btn-limpar-filtro:hover {
+    background-color: #f0f0f0;
+    color: #7B5BA8;
 }
 
 .filtros-tabs {
     display: flex;
     gap: 1rem;
-    border-bottom: 1px solid var(--gray-200);
+    border-bottom: 1px solid #EFEFEF;
     padding-bottom: 0.5rem;
     position: relative;
 }
 
 .tab-link {
-    color: var(--gray-600);
+    color: #718096;
     text-decoration: none;
     padding: 0.5rem 1rem;
     font-weight: 500;
@@ -135,20 +164,20 @@
 }
 
 .tab-link:hover {
-    color: var(--purple-600);
+    color: #5A4080;
 }
 
 .tab-link.active {
-    color: var(--purple-600);
+    color: #5A4080;
     font-weight: 600;
 }
 
 .sem-resultados {
     text-align: center;
     padding: 3rem;
-    background: var(--gray-50);
+    background: #F9F9F9;
     border-radius: 12px;
-    color: var(--gray-600);
+    color: #718096;
     font-size: 1.1rem;
     margin: 2rem 0;
 }
@@ -167,24 +196,19 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: var(--spacing-lg);
-    padding: 0 var(--spacing-md);
+    gap: 1.5rem;
+    padding: 0 1rem;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
     .produtos-page main {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: 1.5rem 1rem;
     }
 
     .filtros-row {
         flex-direction: column;
         gap: 0.75rem;
-    }
-
-    .busca-input,
-    .filtro-select {
-        width: 100%;
     }
 
     .filtros-tabs {
@@ -198,7 +222,7 @@
     }
 
     .produtos-header {
-        padding: var(--spacing-lg) var(--spacing-md);
+        padding: 1.5rem 1rem;
     }
 
     .produtos-header h1 {
@@ -206,7 +230,7 @@
     }
 
     .produtos-header p {
-        font-size: var(--font-small);
+        font-size: 0.75rem;
     }
 }
 
@@ -279,7 +303,7 @@
 }
 
 .modal-provador .subtitulo {
-    color: var(--gray-600);
+    color: #718096;
     font-size: 1rem;
     margin-bottom: 1.5rem;
     line-height: 1.5;
@@ -309,7 +333,7 @@
 .modal-provador .instrucoes li {
     counter-increment: instrucoes;
     margin-bottom: 1rem;
-    color: var(--gray-700);
+    color: #4B5563;
     font-size: 0.95rem;
     display: flex;
     align-items: center;
@@ -347,7 +371,7 @@
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
-    color: var(--gray-900);
+    color: #111827;
     background: white;
     position: relative;
     overflow: hidden;
@@ -372,16 +396,16 @@
 .categoria-card.disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    background-color: var(--gray-50);
+    background-color: #F9F9F9;
     pointer-events: none;
-    border-color: var(--gray-100);
+    border-color: #F9F9F9;
 }
 
 .categoria-card.disabled::after {
     content: "Em breve";
     display: block;
     font-size: 0.8rem;
-    color: var(--gray-500);
+    color: #6B7280;
     margin-top: 0.5rem;
     font-style: italic;
     letter-spacing: 0.02em;
@@ -406,7 +430,7 @@
     font-size: 1.1rem;
     margin-bottom: 0.25rem;
     font-weight: 500;
-    color: var(--gray-800);
+    color: #1F2937;
 }
 
 .btn-voltar {
@@ -415,7 +439,7 @@
     left: 1.5rem;
     background: none;
     border: none;
-    color: var(--gray-500);
+    color: #6B7280;
     font-size: 0.95rem;
     cursor: pointer;
     display: flex;
@@ -438,7 +462,7 @@
     background: none;
     border: none;
     font-size: 1.25rem;
-    color: var(--gray-400);
+    color: #A1A1AA;
     cursor: pointer;
     transition: all 0.2s ease;
     width: 32px;
@@ -497,7 +521,7 @@
 
 .aviso {
     text-align: center;
-    color: var(--gray-500);
+    color: #6B7280;
     font-size: 0.85rem;
     line-height: 1.5;
     max-width: 85%;
@@ -513,7 +537,7 @@
 }
 
 .camera-container {
-    background: var(--gray-50);
+    background: #F9F9F9;
     border-radius: 14px;
     padding: 2rem;
     text-align: center;
@@ -534,7 +558,7 @@
 }
 
 .camera-text {
-    color: var(--gray-600);
+    color: #718096;
     font-size: 1rem;
     margin-bottom: 1rem;
 }
@@ -563,14 +587,14 @@
 }
 
 .produto-info h3 {
-    color: var(--gray-900);
+    color: #111827;
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
 
 .produto-info p {
-    color: var(--gray-600);
+    color: #718096;
     font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: 1rem;
@@ -603,7 +627,7 @@
 .camera-view {
     width: 100%;
     height: 400px;
-    background: var(--gray-900);
+    background: #111827;
     border-radius: 14px;
     overflow: hidden;
     position: relative;
@@ -813,19 +837,19 @@
 
 .instruction-message i {
     font-size: 2rem;
-    color: var(--purple-600);
+    color: #5A4080;
     margin-bottom: 1rem;
 }
 
 .instruction-message p {
-    color: var(--gray-800);
+    color: #1F2937;
     font-size: 1rem;
     margin-bottom: 0.5rem;
     line-height: 1.4;
 }
 
 .instruction-message .sub-message {
-    color: var(--gray-600);
+    color: #718096;
     font-size: 0.9rem;
 }
 
@@ -835,7 +859,7 @@
     right: 0.5rem;
     background: none;
     border: none;
-    color: var(--gray-500);
+    color: #6B7280;
     font-size: 1rem;
     cursor: pointer;
     padding: 0.25rem;
@@ -843,5 +867,48 @@
 }
 
 .instruction-message .btn-secondary:hover {
-    color: var(--gray-800);
+    color: #1F2937;
+}
+
+/* Estilos para os botões de limpar filtro */
+.btn-limpar-filtro {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    transition: all 0.2s ease;
+    z-index: 5;
+}
+
+.btn-limpar-filtro:hover {
+    background-color: #f0f0f0;
+    color: #7B5BA8;
+}
+
+.filtro-select-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Atualiza o container dos filtros com posição relativa */
+.filtros-row select,
+.filtros-row input {
+    position: relative;
+}
+
+.filtros-row select + .btn-limpar-filtro {
+    margin-left: -30px;
+    pointer-events: auto;
 } 
